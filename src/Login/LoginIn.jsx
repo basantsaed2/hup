@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SignupButtonContainer from '../assets/SignupButtonContainer.svg';
 import Loginpic from '../assets/Loginpic.png';
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +14,11 @@ function LoginIn({ setIsLoggedIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); 
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+  navigate('/login', { replace: true, state: location.state });
+},[location.state, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); 

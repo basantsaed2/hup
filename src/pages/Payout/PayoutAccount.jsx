@@ -217,10 +217,10 @@ const PayoutAccount = () => {
               <div className='flex'>
                 {item.status !== 'canceled' ? (
                   <td className="w-[158px] flex gap-1 justify-center items-center h-12">
-                    <button onClick={() => handlecancel(item.id, item.agent)} className='bg-three py-1 px-2 rounded-[8px] text-white'>
+                    <button onClick={() => handlecancel(item.id, item.amount)} className='bg-three py-1 px-2 rounded-[8px] text-white'>
                       confirm
                     </button>
-                    <button className='bg-three py-1 px-2 rounded-[8px] text-white' onClick={() => handelcancel(item.id, item.agent)}>cancel</button>
+                    <button className='bg-three py-1 px-2 rounded-[8px] text-white' onClick={() => handelcancel(item.id, item.amount)}>cancel</button>
                   </td>
                 ) : (
                   <td></td>
