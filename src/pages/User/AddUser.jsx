@@ -3,12 +3,12 @@ import picdone from '../../assets/picdone.svg';
 import AddAll from '../../ui/AddAll';
 import InputField from '../../ui/InputField';
 import InputArrow from '../../ui/InputArrow';
+import Inputfiltter from '../../ui/Inputfiltter';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Inputfiltter from '../../ui/Inputfiltter';
 
 const AddUser = () => {
   const navigate = useNavigate();

@@ -25,6 +25,7 @@
       })
         .then(response => {
           setData(response.data.data);
+  
         })
         .catch(() => {
           toast.error("Error fetching data")
@@ -70,7 +71,6 @@
       navigate('/UserDetails', { state: { sendData } });
     };
 
-    // Filtering data based on selected filter and search query
     const filteredData = data.filter((item) => {
       if(selectedFilter==="Filter"){
         return Object.values(item).some(value =>

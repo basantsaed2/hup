@@ -41,7 +41,7 @@ const AddTypeBuses = () => {
     }
   };
   useEffect(() => {
-    const { sendData } = location.state || {};
+    const { sendData } = location?.state || {};
     if (sendData) {
       setCount(sendData.seat_count);
       setName(sendData.name);
@@ -52,22 +52,22 @@ const AddTypeBuses = () => {
         setBusImage(sendData.bus_image);
         setBusImageor(sendData.bus_image);
       }
-
+      if (sendData.plan_image) {
+        setPlanImage(sendData.plan_image);
+        setPlanImageor(sendData.plan_image);
+      }
+  
+  
+  
+      if (sendData.seats_image) {
+        setSeatsImage(sendData.seats_image);
+        setSeatsImageor(sendData.seats_image);
+  
+  
+      }
     }
 
-    if (sendData.plan_image) {
-      setPlanImage(sendData.plan_image);
-      setPlanImageor(sendData.plan_image);
-    }
-
-
-
-    if (sendData.seats_image) {
-      setSeatsImage(sendData.seats_image);
-      setSeatsImageor(sendData.seats_image);
-
-
-    }
+   
 
     const timeout = setTimeout(() => {
       setLoading(false);
