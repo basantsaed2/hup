@@ -3,10 +3,8 @@ import styled from 'styled-components';
 
 const SwitchButton = ({ value, setValue, num, title,avl}) => {
   const kind = num ? "checkbox" : "";
-// useEffect(()=>{
-//   console.log(value)
 
-// },[value])
+
   const toggleValue = () => {
     if (num) {
       setValue(value === "0" ? "1" : "0");

@@ -12,8 +12,8 @@ import InputField from '../../ui/InputField'
 import picdone from '../../assets/picdone.svg'
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import 'react-date-picker/dist/DatePicker.css';
 import 'react-time-picker/dist/TimePicker.css';
+import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import WeekdaySelect from '../../ui/WeekdaySelect';
 const AddTrips = () => {
