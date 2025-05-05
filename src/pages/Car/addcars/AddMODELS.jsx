@@ -103,7 +103,7 @@ const AddMODELS = () => {
                                 toast.success('car BRANDS updated successfully');
                                 setTimeout(() => {
                                     navigate('/Car/MODELS');
-                                }, 3000);
+                                }, 2000);
                             })
                             .catch( ()=> {
                                 toast.error("network");
@@ -122,7 +122,7 @@ const AddMODELS = () => {
             
                             setTimeout(() => {
                                 navigate('/Car/MODELS');
-                            }, 3000);
+                            }, 2000);
                         })
                         .catch(() => {
                             toast.error("network");

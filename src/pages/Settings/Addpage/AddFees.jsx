@@ -121,7 +121,7 @@ const AddFees = () => {
                     toast.success('fees updated successfully');
                     setTimeout(() => {
                         navigate('/Settings/Fees');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                 });
@@ -138,7 +138,7 @@ const AddFees = () => {
 
                 setTimeout(() => {
                     navigate('/Settings/Fees');
-                }, 3000);
+                }, 2000);
             })
             .catch(() => {
             });

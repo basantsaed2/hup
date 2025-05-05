@@ -140,7 +140,7 @@ const AddBuses = () => {
 
           setTimeout(() => {
             navigate('/Buses');
-          }, 3000);
+          }, 2000);
           resetForm();
         })
         .catch(error => {
@@ -159,7 +159,7 @@ const AddBuses = () => {
 
           setTimeout(() => {
             navigate('/Buses');
-          }, 3000);
+          }, 2000);
           resetForm();
         })
         .catch(error => {

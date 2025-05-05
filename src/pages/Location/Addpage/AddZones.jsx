@@ -89,7 +89,7 @@ const Addzones= () => {
                   
                     setTimeout(() => {
                       navigate('/Location/Zones');
-                    }, 3000);
+                    }, 2000);
           })
           .catch(() => {
           });
@@ -106,7 +106,7 @@ const Addzones= () => {
                 
                   setTimeout(() => {
                     navigate('/Location/Zones');
-                  }, 3000);
+                  }, 2000);
         })
         .catch(() => {
         });

@@ -137,7 +137,7 @@ const AddTypeBuses = () => {
 
           setTimeout(() => {
             navigate('/Buses/TypeBuses');
-          }, 3000);
+          }, 2000);
           resetForm();
 
         })
@@ -157,7 +157,7 @@ const AddTypeBuses = () => {
 
         setTimeout(() => {
           navigate('/Buses/TypeBuses');
-        }, 3000); resetForm();
+        }, 2000); resetForm();
 
       })
       .catch(error => {

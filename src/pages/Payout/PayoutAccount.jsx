@@ -150,6 +150,7 @@ const PayoutAccount = () => {
           <table className="w-full border-y border-x border-black ">
             <thead className="w-full">
               <tr className='bg-four w-[1012px] h-[56px]' >
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3"> date</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left"> amount</th>
                 <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">currency</th>
@@ -162,6 +163,7 @@ const PayoutAccount = () => {
             <tbody>
               {filteredData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                  <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.agent?.name?? ''}</td>
                   <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.date ?? ''}</td>
                   <td className="w-[158px]   h-[56px]  text-[12px]  ">{item?.amount ?? ''}</td>
                   <td className="w-[158px]  h-[56px]  text-[12px]  ">{item?.currency?.name ?? ''}{item?.currency?.symbol ?? ''}</td>

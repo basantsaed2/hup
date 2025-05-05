@@ -91,7 +91,7 @@ const AddCommission = () => {
           toast.success('Commission updated successfully');
           setTimeout(() => {
             navigate('/Commission');
-          }, 3000);
+          }, 2000);
         })
         .catch(() => {
         });
@@ -106,7 +106,7 @@ const AddCommission = () => {
         toast.success('Commission updated successfully');
         setTimeout(() => {
           navigate('/Commission');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
       });

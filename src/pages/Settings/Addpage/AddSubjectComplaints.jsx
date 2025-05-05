@@ -67,7 +67,7 @@ const AddSubjectComplaints = () => {
                     toast.success('Subject Complaints  updated  successfully');
                     setTimeout(() => {
                         navigate('/Settings/SubjectComplaints');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                 });
@@ -83,7 +83,7 @@ const AddSubjectComplaints = () => {
                 toast.success('SubjectComplaints added  successfully');
                 setTimeout(() => {
                     navigate('/Settings/SubjectComplaints');
-                }, 3000);
+                }, 2000);
             })
             .catch(() => {
             });

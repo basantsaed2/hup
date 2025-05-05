@@ -68,7 +68,7 @@ const AddTraintype = () => {
                     toast.success('type updated successfully');
                     setTimeout(() => {
                         navigate('/Train');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                 });
@@ -85,7 +85,7 @@ const AddTraintype = () => {
 
                 setTimeout(() => {
                     navigate('/Train');
-                }, 3000);
+                }, 2000);
             })
             .catch(() => {
             });

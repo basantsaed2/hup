@@ -95,7 +95,7 @@ const AddCaetogries = () => {
                                 toast.success('car category updated successfully');
                                 setTimeout(() => {
                                     navigate('/Car');
-                                }, 3000);
+                                }, 2000);
                             })
                             .catch(() => {
                                 toast.error("network");
@@ -114,7 +114,7 @@ const AddCaetogries = () => {
             
                             setTimeout(() => {
                                 navigate('/Car');
-                            }, 3000);
+                            }, 2000);
                         })
                         .catch(() => {
                             toast.error("network");

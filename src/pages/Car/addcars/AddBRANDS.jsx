@@ -100,7 +100,7 @@ const AddBRANDS = () => {
                     toast.success('car BRANDS updated successfully');
                     setTimeout(() => {
                         navigate('/Car/BRANDS');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                     toast.error("network");
@@ -120,7 +120,7 @@ const AddBRANDS = () => {
 
                 setTimeout(() => {
                     navigate('/Car/BRANDS');
-                }, 3000);
+                }, 2000);
             })
             .catch(error => {
                 console.error('Error adding country:', error);

@@ -137,7 +137,7 @@ const AddCARS = () => {
                     toast.success('car  updated successfully');
                     setTimeout(() => {
                         navigate('/Car/CARS');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(error => {
                     console.error('Error updating BRANDS:', error);
@@ -158,7 +158,7 @@ const AddCARS = () => {
 
                 setTimeout(() => {
                     navigate('/Car/CARS');
-                }, 3000);
+                }, 2000);
             })
             .catch(error => {
                 console.error('Error adding country:', error);

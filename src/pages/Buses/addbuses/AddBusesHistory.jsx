@@ -68,11 +68,10 @@ const AddBusesHistory = () => {
       icon:icon,
     }
    
-    if (edit && nametwo === name) {
-      return toast.error('You should change the amenities name');
-    }
+    // if (edit && nametwo === name) {
+    //   return toast.error('You should change the amenities name');
+    // }
     
-    // لو إضافة أو الاسم اتغير → ضيف الاسم عادي
     newBus.name = name;
     const { sendData } = location.state || {};
     const token = localStorage.getItem('token');
@@ -90,7 +89,7 @@ const AddBusesHistory = () => {
 
           setTimeout(() => {
             navigate('/Buses/BusesHistory');
-          }, 3000);
+          }, 2000);
         })
         .catch(error => {
           const statusCode = error.response.status;
@@ -112,7 +111,7 @@ const AddBusesHistory = () => {
 
           setTimeout(() => {
             navigate('/Buses/BusesHistory');
-          }, 3000);
+          }, 2000);
         })
         .catch(error => {
           const statusCode = error.response.status;

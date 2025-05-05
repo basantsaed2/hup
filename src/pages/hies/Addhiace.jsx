@@ -9,6 +9,8 @@ import InputField from '../../ui/InputField';
 import FileUploadButton from '../../ui/FileUploadButton';
 import SwitchButton from '../../ui/SwitchButton';
 import Inputfiltter from '../../ui/Inputfiltter';
+import Aminites from '../../ui/amintes.jsx'; // Import the Aminites component for amenities selection
+
 
 const Addhiace = () => {
   const navigate = useNavigate();
@@ -21,6 +23,8 @@ const Addhiace = () => {
   const [originalFlag, setOriginalFlag] = useState(null);
   const [status, setStatus] = useState('inactive');
   const [edit, setEdit] = useState(false);
+      const [selectedDays, setSelectedDays] = useState([]);
+  
     const [loading, setLoading] = useState(true);
   
   const [errors, setErrors] = useState({
@@ -75,16 +79,21 @@ const Addhiace = () => {
       setBusNumber(sendData.bus_number);
       setPic(sendData.bus_image);
       setCapacity(sendData.capacity);
-      // setBusType(sendData.bus_type_id);
       setStatus(sendData.status);
       setAgent(sendData.agent_id);
       setEdit(true);
       if (sendData.bus_image) {
             setPic(sendData.bus_image);
             setOriginalFlag(sendData.bus_image);
-      
-
       }
+    
+      setSelectedDays(() => {
+        const selected = sendData.amenities?.map(item => item.id);
+  setSelectedDays(() => {
+    const combined =selected
+    return Array.from(new Set(combined));
+  });
+      });
     }
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -103,6 +112,8 @@ const Addhiace = () => {
       agent_id: agent,
       capacity: capacity,
       status: status,
+      aminty_id:selectedDays
+
     };
 
     if (pic != originalFlag) {
@@ -125,7 +136,7 @@ const Addhiace = () => {
 
           setTimeout(() => {
             navigate('/Hiace');
-          }, 3000);
+          }, 2000);
           resetForm();
         })
         .catch(() => {
@@ -142,7 +153,7 @@ const Addhiace = () => {
 
           setTimeout(() => {
             navigate('/Hiace');
-          }, 3000);
+          }, 2000);
           resetForm();
         })
         .catch(() => {
@@ -152,6 +163,8 @@ const Addhiace = () => {
 
   const resetForm = () => {
     setAgent('');
+    setSelectedDays([]);
+    setOriginalFlag(null);
     setBusNumber('');
     // setBusType('');
     setCapacity('');
@@ -213,6 +226,11 @@ const Addhiace = () => {
           onFileChange={handleFileChange}
         />
         </div>
+        <div className='flex items-end justify-center'>
+
+<Aminites selectedDays={selectedDays} setSelectedDays={setSelectedDays} />
+
+</div>
         <SwitchButton value={status} title='status' setValue={setStatus} />
         <ToastContainer />
       </div>

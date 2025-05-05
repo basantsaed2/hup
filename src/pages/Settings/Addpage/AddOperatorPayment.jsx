@@ -93,7 +93,7 @@ const AddOperatorPayment = () => {
              toast.success(' Add Payment Methods updated  successfully'); 
                                 setTimeout(() => {
                                   navigate('/Settings/OperatorPayment');
-                                }, 3000);
+                                }, 2000);
         })
         .catch(() => {
         });
@@ -110,7 +110,7 @@ const AddOperatorPayment = () => {
         toast.success(' Add Payment Methods added  successfully'); 
         setTimeout(() => {
           navigate('/Settings/OperatorPayment');
-        }, 3000);
+        }, 2000);
     })
     .catch(() => {
     });

@@ -68,7 +68,7 @@ const AddNationality = () => {
                     toast.success('nationality updated  successfully');
                     setTimeout(() => {
                         navigate('/Settings/Nationality');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                 });
@@ -84,7 +84,7 @@ const AddNationality = () => {
                 toast.success('nationality added  successfully');
                 setTimeout(() => {
                     navigate('/Settings/Nationality');
-                }, 3000);
+                }, 2000);
             })
             .catch(() => {
             });

@@ -67,7 +67,7 @@ const AddTrainClass = () => {
                     toast.success('Class updated successfully');
                     setTimeout(() => {
                         navigate('/Train/TrainClass');
-                    }, 3000);
+                    }, 2000);
                 })
                 .catch(() => {
                 });
@@ -84,7 +84,7 @@ const AddTrainClass = () => {
 
                 setTimeout(() => {
                     navigate('/Train/TrainClass');
-                }, 3000);
+                }, 2000);
             })
             .catch(() => {
             });

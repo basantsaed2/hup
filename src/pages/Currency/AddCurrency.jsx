@@ -80,7 +80,7 @@ const AddCurrency = () => {
           toast.success('Currency updated successfully');
           setTimeout(() => {
             navigate('/Currency');
-          }, 3000);
+          }, 2000);
         })
         .catch(error => {
           console.error('Error updating country:', error);
@@ -98,7 +98,7 @@ const AddCurrency = () => {
 
         setTimeout(() => {
           navigate('/Currency');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
       });

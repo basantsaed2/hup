@@ -100,7 +100,7 @@ const AddOffStation = () => {
 
           setTimeout(() => {
             navigate('/Location/Stations');
-          }, 3000);
+          }, 2000);
         })
         .catch(error => {
           console.error('Error updating country:', error);
@@ -118,7 +118,7 @@ const AddOffStation = () => {
 
         setTimeout(() => {
           navigate('/Location/Stations');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
       });

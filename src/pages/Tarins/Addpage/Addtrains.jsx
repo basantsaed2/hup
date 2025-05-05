@@ -102,7 +102,7 @@ const Addtrains = () => {
                             toast.success('Train updated successfully');
                             setTimeout(() => {
                                 navigate('/Train/Trains');
-                            }, 3000);
+                            }, 2000);
                         })
                         .catch(() => {
                         });
@@ -119,7 +119,7 @@ const Addtrains = () => {
         
                         setTimeout(() => {
                             navigate('/Train/Trains');
-                        }, 3000);
+                        }, 2000);
                     })
                     .catch(() => {                    });
         

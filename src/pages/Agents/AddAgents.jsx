@@ -205,7 +205,7 @@ const AddAgents = () => {
       })
         .then(() => {
           toast.success('Operator updated successfully');
-          setTimeout(() => navigate('/Agents'), 3000);
+          setTimeout(() => navigate('/Agents'), 2000);
         })
         .catch((error) =>{
           toast.error(error);}
@@ -218,7 +218,7 @@ const AddAgents = () => {
     })
       .then(() => {
         toast.success('Operator added successfully');
-        setTimeout(() => navigate('/Agents'), 3000);
+        setTimeout(() => navigate('/Agents'), 2000);
       })
       .catch(error => {
         toast.error(error);

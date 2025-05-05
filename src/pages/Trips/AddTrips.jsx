@@ -131,7 +131,7 @@ useEffect(()=>{
     }
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timeout);
   }, [location.state]);
@@ -350,7 +350,7 @@ newTrip.day=selectedDays,
           toast.success('Trip updated successfully');
           setTimeout(() => {
             navigate('/Trips');
-          }, 3000);
+          }, 2000);
         })
        
       return;
@@ -365,7 +365,7 @@ newTrip.day=selectedDays,
 
         setTimeout(() => {
           navigate('/Trips');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
       });
@@ -619,6 +619,8 @@ newTrip.day=selectedDays,
             value={datastart}
             format="dd-MM-yyyy" 
             disableClock={true}
+            disableCalendar={false}
+            minDate={new Date()} // يمنع اختيار أي تاريخ قبل النهارده
           />
         </div>
        

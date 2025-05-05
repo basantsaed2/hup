@@ -95,7 +95,7 @@ const AddTrainRoute = () => {
 
           setTimeout(() => {
             navigate('/Train/TrainRoute');
-          }, 3000);
+          }, 2000);
         })
         .catch(() => {
         });
@@ -112,7 +112,7 @@ const AddTrainRoute = () => {
 
         setTimeout(() => {
           navigate('/Train/TrainRoute');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
       });

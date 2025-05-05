@@ -111,7 +111,7 @@ const AddComplaints = () => {
              toast.success('Complaints updated successfully');
                               setTimeout(() => {
                                   navigate('/Complaints');
-                              }, 3000);
+                              }, 2000);
         })
         .catch(() => {
           toast.error('Error updating Complaints:')
@@ -130,7 +130,7 @@ const AddComplaints = () => {
         toast.success('Complaints updated successfully');
         setTimeout(() => {
                               navigate('/Complaints');
-                            }, 3000);
+                            }, 2000);
       })
       .catch((error) => {
         toast.error('Error adding Complaints:', error)

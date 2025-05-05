@@ -75,7 +75,7 @@ function LoginIn({ setIsLoggedIn }) {
           <div className='relative'>
           
 <input
-        type={showPassword ? 'text' : 'password'}
+        type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className="w-full h-[72px] border border-one rounded-[8px] pl-3 pr-12"
@@ -86,11 +86,11 @@ function LoginIn({ setIsLoggedIn }) {
         onClick={() => setShowPassword(!showPassword)}
         className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 focus:outline-none"
       >
-        {showPassword ? (
+        {/* {showPassword ? (
           <FiEyeOff size={24} />
         ) : (
           <FiEye size={24} />
-        )}
+        )} */}
       </button>
 </div>
 

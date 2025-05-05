@@ -94,7 +94,7 @@ const AddPaymentMethods = () => {
              toast.success(' Add Payment Methods updated  successfully'); 
                                 setTimeout(() => {
                                   navigate('/Settings/PaymentMethods');
-                                }, 3000);
+                                }, 2000);
         })
         .catch(() => {
         });
@@ -111,7 +111,7 @@ const AddPaymentMethods = () => {
         toast.success(' Add Payment Methods added  successfully'); 
         setTimeout(() => {
           navigate('/Settings/PaymentMethods');
-        }, 3000);
+        }, 2000);
     })
     .catch(() => {
     });

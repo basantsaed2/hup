@@ -81,7 +81,7 @@ const AddCities = () => {
           toast.success('city updated successfully'); 
                     setTimeout(() => {
                       navigate('/Location/Cities');
-                    }, 3000);
+                    }, 2000);
         })
         .catch((error) => {
           console.log("2 2 2");
@@ -101,7 +101,7 @@ const AddCities = () => {
               
                 setTimeout(() => {
                   navigate('/Location/Cities');
-                }, 3000);
+                }, 2000);
       })
       .catch(() => {
       });

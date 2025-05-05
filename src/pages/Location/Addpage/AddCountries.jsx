@@ -82,7 +82,7 @@ const AddCountries = () => {
       })
         .then(() => {
           toast.success('Country updated successfully');
-          setTimeout(() => navigate('/Location'), 3000);
+          setTimeout(() => navigate('/Location'), 2000);
         })
         .catch(() => { });
       return;
@@ -93,7 +93,7 @@ const AddCountries = () => {
     })
       .then(() => {
         toast.success('Country added successfully');
-        setTimeout(() => navigate('/Location'), 3000);
+        setTimeout(() => navigate('/Location'), 2000);
       })
       .catch(() => { });
 

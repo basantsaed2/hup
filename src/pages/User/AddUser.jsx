@@ -120,7 +120,7 @@ const AddUser = () => {
           toast.success('User updated successfully'); 
           setTimeout(() => {
             navigate('/User');
-          }, 3000);
+          }, 2000);
         })
         .catch(() => {
           toast.error("Failed network");
@@ -137,7 +137,7 @@ const AddUser = () => {
         toast.success('User added successfully'); 
         setTimeout(() => {
           navigate('/User');
-        }, 3000);
+        }, 2000);
       })
       .catch(() => {
         toast.error("Failed network");
