@@ -117,30 +117,32 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">agent </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">email</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Capacity</th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">bus Hiace </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Image</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Status</th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Amenities</th>
+              <th className="w-[200px] h-[56px] text-[16px] border-b text-left">Amenities</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                <td className="w-[143px] h-[56px] text-[16px] px-2">{item?.agent_name??"N//A"}</td>
-                <td className="w-[143px] h-[56px] text-[12px]">{item?.agent_email??"N//A"}</td>
-                <td className="w-[143px] h-[56px] text-[16px]">{item?.capacity??"N//A"}</td>
+                <td className="w-[140px] h-[56px] text-[16px] px-2">{item?.agent_name??"N//A"}</td>
+                <td className="w-[140px] h-[56px] text-[12px]">{item?.agent_email??"N//A"}</td>
+                <td className="w-[140px] h-[56px] text-[16px]">{item?.capacity??"N//A"}</td>
+                <td className="w-[140px] h-[56px] text-[12px]">{item?.bus_number??"N//A"}</td>
                 <td><img className="w-5 h-5" src={item.bus_image === null ? `data:image/png;base64,${item.bus_image}` : item.bus_image} alt="Bus" /></td>
-                <td className="w-[143px] h-[56px] text-[16px] text-nine">
+                <td className="w-[140px] h-[56px] text-[16px] text-nine">
                   <span className="bg-eight font-normal p-2 rounded-[8px]">{item?.status??"N//A"}</span>
                 </td>
-                <td className="w-[143px] h-[56px] text-[10px]">
+                <td className="w-[200px] h-[56px] text-[10px]">
                   {item.amenities && item.amenities.length > 0
                     ? item.amenities.map((amenity, index) => (
                       <span className='text-[10px]' key={index}>{amenity.name}{index < item.amenities.length - 1 && '-'}</span>
                     ))
                     : 'No amenities'}
                 </td>
-                <td className="w-[143px] h-[56px] text-[16px] flex justify-start gap-2 items-center">
+                <td className="w-[140px] h-[56px] text-[16px] flex justify-start gap-2 items-center">
                   <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
                   <img
                     className='w-[24px] h-[24px] ml-2 cursor-pointer'
@@ -171,6 +173,10 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
               <div className="flex gap-4">
                 <strong>Capacity:</strong>
                 <span>{item?.capacity??"N//A"}</span>
+              </div>
+              <div className="flex gap-4">
+                <strong>Hiace:</strong>
+                <span>{item?.bus_number??"N//A"}</span>
               </div>
               <div className="flex gap-4">
           <strong>bus Image:</strong>

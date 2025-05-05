@@ -635,6 +635,17 @@ newTrip.day=selectedDays,
             format="dd-MM-yyyy"
             disableClock={true}
             disableCalendar={false}
+            minDate={new Date()} // يمنع اختيار أي تاريخ قبل النهارده
+
+          />
+        </div>
+        <div className=' flex  justify-between items-center w-[200px] md:w-[300px] h-[48px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven   pl-0 md:pl-10'>
+          <span className='text-[12px] md:text-[16px]'>departure Time </span>
+          <TimePicker
+            onChange={handledepartureTime}
+            value={departureTime}
+            format="HH:mm"
+            disableClock={true}
           />
         </div>
          <div className=' flex  justify-between items-center w-[200px] md:w-[300px] h-[48px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven  pl-0 md:pl-10'>
@@ -647,15 +658,7 @@ newTrip.day=selectedDays,
             disableCalendar={false}
           />
         </div>
-          <div className=' flex  justify-between items-center w-[200px] md:w-[300px] h-[48px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven   pl-0 md:pl-10'>
-          <span className='text-[12px] md:text-[16px]'>departure Time </span>
-          <TimePicker
-            onChange={handledepartureTime}
-            value={departureTime}
-            format="HH:mm"
-            disableClock={true}
-          />
-        </div>
+         
         <div className='w-full flex justify-start items-center'>
 
         <InputField
@@ -696,6 +699,8 @@ newTrip.day=selectedDays,
             value={fixedDate}
             format="dd-MM-yyyy"
             disableClock={true}
+            minDate={new Date()} // يمنع اختيار أي تاريخ قبل النهارده
+
             disableCalendar={false}
             />
         </div>

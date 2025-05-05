@@ -26,6 +26,7 @@ const Complaints = () => {
       })
         .then(response => {
           setData(response.data.complaints);
+          console.log(response.data.complaints)
   
         })
          .catch(() => {
@@ -60,10 +61,10 @@ const Complaints = () => {
         }
       });
     };
-    const handleEdit = (index) => {
-      const sendData = data.find((item) => item.id === index);
-      navigate('/AddComplaints', { state: { sendData } });
-    }
+    // const handleEdit = (index) => {
+    //   const sendData = data.find((item) => item.id === index);
+    //   navigate('/AddComplaints', { state: { sendData } });
+    // }
     const handreject=(id,message)=>{
 
       axios
@@ -74,7 +75,8 @@ const Complaints = () => {
       })
       .then(() => {
         toast.success('reject  successfully');
-      
+        setUpdate(!update);
+
       })
       .catch(() => {
         toast.error('Error  reject:', )
@@ -91,7 +93,8 @@ const Complaints = () => {
       })
       .then(() => {
         toast.success('resolve  successfully');
-      
+        setUpdate(!update);
+
       })
       .catch(() => {
         toast.error('Error  resolve:', )
@@ -131,7 +134,7 @@ const Complaints = () => {
           />
           <CiSearch className='w-4 h-4 md:w-6 text-black font-medium absolute left-2 md:h-6' />
         </div>
-        <ThreeThing navGo="/AddComplaints" liked 
+        <ThreeThing navGo="/AddComplaints" like
         labelMap={labelMap}
              cheose={cheose} // Pass the cheose array to ThreeThing component
              selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component
@@ -171,10 +174,10 @@ const Complaints = () => {
                     </td>
                     <td className="w-[143px]  h-[56px]  text-[16px]  text-yellow-500  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
                     <td className="w-[143px]  h-[56px]  text-[16px]  flex justify-start gap-2 items-center">
-                      <img className='w-[24px] h-[24px]'
+                      {/* <img className='w-[24px] h-[24px]'
                                           onClick={() => handleEdit(item.id)} 
 
-                      src={pin}/>
+                      src={pin}/> */}
  <img
                     className='w-[24px] h-[24px] ml-2 cursor-pointer'
                     src={delet}
@@ -215,7 +218,7 @@ const Complaints = () => {
                     <span className="bg-eight font-normal p-1 rounded-[8px] text-nine">{item.status}</span>
                   </div>
                 <div className='flex'>
-                          <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
+                          {/* <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} /> */}
                           <img
                             className='w-[24px] h-[24px] ml-2 cursor-pointer'
                             src={delet}

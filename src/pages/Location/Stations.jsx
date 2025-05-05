@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ThreeThing from '../../component/ThreeThing';
+import Swal from 'sweetalert2';
 import NavLocation from './NavLocation';
 import delet from '../../assets/delete.svg';
 import pin from '../../assets/pin.svg';
@@ -32,16 +33,34 @@ const Stations = () => {
               });
   }, [update]);
 
-  const handleDelete = (index) => {
+  const handleDelete = (index,zoneName) => {
+
     const token = localStorage.getItem('token');
-    axios.delete(`https://bcknd.ticket-hub.net/api/admin/station/delete/${index}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(() => {
-        setUpdate(!update);
-      })
-      .catch(() => {
-      });
+
+    Swal.fire({
+      title: `Are you sure you want to delete ${zoneName}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`https://bcknd.ticket-hub.net/api/admin/station/delete/${index}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then(() => {
+            setUpdate(!update);
+            Swal.fire('Deleted!', `${zoneName} has been deleted successfully.`, 'success');
+          })
+          .catch(() => {
+            Swal.fire('Error!', `There was an error while deleting ${zoneName}.`, 'error');
+          });
+      } else {
+        Swal.fire('Cancelled', `${zoneName} was not deleted.`, 'info');
+      }
+    });
   };
 
   const handleEdit = (index) => {
@@ -112,7 +131,7 @@ const cheose = ["Filter","name", "country_name","city_name", "zone_name"]
               <td className="w-[143px] h-[56px] text-[16px] ">{item?.status??"N//A"}</td>
               <td className="w-[143px] h-[56px] text-[16px] flex justify-start gap-5 items-center">
                 <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
-                <img className='w-[24px] h-[24px] ml-2 cursor-pointer' src={delet} onClick={() => handleDelete(item.id)} alt="delete" />
+                <img className='w-[24px] h-[24px] ml-2 cursor-pointer' src={delet} onClick={() => handleDelete(item.id,item.name)} alt="delete" />
               </td>
             </tr>
           ))}
@@ -166,8 +185,8 @@ const cheose = ["Filter","name", "country_name","city_name", "zone_name"]
     <div>
       <NavLocation />
       <div className='flex mx-2 mt-6 gap-3'>
-        <Tiglebutton action={action === 'on' ? 'on' : 'off'} onClick={() => handleToggle('on')} title='Pick-up' />
-        <Tiglebutton action={action === 'on' ? 'off' : 'on'} onClick={() => handleToggle('off')} title='Drop-off' />
+        <Tiglebutton  action={action === 'on' ? 'off' : 'on'}  onClick={() => handleToggle('off')} title='Pick-up' />
+        <Tiglebutton action={action === 'on' ? 'on' : 'off'}onClick={() => handleToggle('on')} title='Drop-off' />
       </div>
       {/* Search Bar */}
       <div className='flex justify-between items-center gap-3 relative mt-6 px-5'>

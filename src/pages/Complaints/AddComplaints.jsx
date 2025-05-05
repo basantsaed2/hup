@@ -73,6 +73,7 @@ const AddComplaints = () => {
     if (!user) formErrors.user = 'user is required';
     if (!subject) formErrors.subject = 'subject is required';
     if (!message) formErrors.message = 'message is required';
+    if (!data) formErrors.data = 'data is required';
     // if (!data) formErrors.date = 'data is required';
     setErrors(formErrors);
     Object.values(formErrors).forEach((error) => {
@@ -168,6 +169,8 @@ const AddComplaints = () => {
           <div className=' flex  justify-between items-center w-[200px] md:w-[300px] h-[48px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven pl-0 md:pl-10'>
                 <span className='text-[12px] md:text-[16px]'>date</span>
                   <DatePicker
+                              minDate={new Date()} // يمنع اختيار أي تاريخ قبل النهارده
+
                     onChange={handleDateChange}
                     value={data}
                     format="dd-MM-yyyy"

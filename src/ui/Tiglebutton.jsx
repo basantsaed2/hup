@@ -3,7 +3,7 @@ import React from 'react';
 const Tiglebutton = ({ action, onClick ,title }) => {
 
   const style = action === "on"
-    ? ' bg-ten  '
+    ? ' bg-orange-400  '
     : 'border-three border ';
 
   return (

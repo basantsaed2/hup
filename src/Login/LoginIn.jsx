@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SignupButtonContainer from '../assets/SignupButtonContainer.svg';
 import Loginpic from '../assets/Loginpic.png';
-import { FaRegEyeSlash } from "react-icons/fa6";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,26 +68,31 @@ function LoginIn({ setIsLoggedIn }) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className='w-[80%] h-[56px]  lg:h-[72px] border-one border-1 rounded-[8px] mt-2 lg:mt-5 pl-3'
+            className='w-full h-[56px] my-3 lg:h-[72px] border-one border-1 rounded-[8px] mt-2 lg:mt-5 pl-3'
             placeholder='email'
           />
 
           <div className='relative'>
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword === true && (<FaRegEyeSlash className='absolute top-1/3 lg:top-1/2         right-25   sm:right-30  md:right-30      lg:right-25    text-2xl' />)}
-              {showPassword === false && (<MdOutlineRemoveRedEye className='absolute top-1/3 lg:top-1/2  right-25  sm:right-30   md:right-30   lg:right-25 text-2xl' />)}
-            </button>
-            <input 
-              type={showPassword ? 'text' : 'password'} 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className='w-[80%] h-[56px]  lg:h-[72px] border-one border-1 rounded-[8px] mt-2 lg:mt-5 pl-3'
-              placeholder='password'
-            />
-          </div>
+          
+<input
+        type={showPassword ? 'text' : 'password'}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="w-full h-[72px] border border-one rounded-[8px] pl-3 pr-12"
+        placeholder="Password"
+      />
+      <button
+        type="button"
+        onClick={() => setShowPassword(!showPassword)}
+        className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 focus:outline-none"
+      >
+        {showPassword ? (
+          <FiEyeOff size={24} />
+        ) : (
+          <FiEye size={24} />
+        )}
+      </button>
+</div>
 
           <button onClick={handleLogin}>
             <img src={SignupButtonContainer} className='mt-5 w-[90%]' />

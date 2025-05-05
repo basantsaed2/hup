@@ -118,6 +118,7 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
             <tr className='bg-four w-[1012px] h-[56px]'>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">agent </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">email</th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Number</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Capacity</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Image</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Status</th>
@@ -130,6 +131,7 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
                 <td className="w-[143px] h-[56px] text-[16px] px-2 ">{item?.agent_name??"N//A"}</td>
                 <td className="w-[143px] h-[56px] text-[12px]">{item?.agent_email??"N//A"}</td>
+                <td className="w-[143px] h-[56px] text-[12px]">{item?.bus_number??"N//A"}</td>
                 <td className="w-[143px] h-[56px] text-[16px]">{item?.capacity??"N//A"}</td>
                 <td><img className="w-5 h-5" src={item.bus_image === null ? `data:image/png;base64,${item.bus_image}` : item.bus_image} alt="Bus" /></td>
                 <td className="w-[143px] h-[56px] text-[16px] text-nine">
@@ -169,6 +171,10 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
               <div className="flex gap-4">
                 <strong>email:</strong>
                 <span>{item?.agent_email??"N//A"}</span>
+              </div>
+              <div className="flex gap-4">
+                <strong>bus number:</strong>
+                <span>{item?.bus_number??"N//A"}</span>
               </div>
               <div className="flex gap-4">
                 <strong>Capacity:</strong>
