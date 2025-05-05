@@ -221,7 +221,7 @@ const Addhiace = () => {
 
         <FileUploadButton
           name="busImage"
-          kind="busImage"
+          kind="Hiace Image"
           flag={pic}
           onFileChange={handleFileChange}
         />

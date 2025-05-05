@@ -117,8 +117,8 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">agent </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">email</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Capacity</th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">bus Hiace </th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Image</th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left"> Hiace Number </th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Hiace Image</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Status</th>
               <th className="w-[200px] h-[56px] text-[16px] border-b text-left">Amenities</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Action</th>
@@ -175,11 +175,11 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
                 <span>{item?.capacity??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>Hiace:</strong>
+                <strong>Hiace Number:</strong>
                 <span>{item?.bus_number??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-          <strong>bus Image:</strong>
+          <strong>Hiace Image:</strong>
           <img 
             className="w-5 h-5"
             src={item.bus_image === null ? `data:image/png;base64,${item.bus_image}` : item.bus_image}

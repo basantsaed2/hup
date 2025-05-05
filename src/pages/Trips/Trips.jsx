@@ -42,7 +42,7 @@ const Trips = () => {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://bcknd.ticket-hub.net/api/admin/user/trip/${index}`, {
+        axios.delete(`https://bcknd.ticket-hub.net/api/admin/trip/delete/${index}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
