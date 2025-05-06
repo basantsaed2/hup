@@ -169,7 +169,7 @@ const labelMap = {
           </thead>
           <tbody>
 
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
                    <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
@@ -202,7 +202,7 @@ const labelMap = {
       </div>
          <div className="mt-10 ml-5 lg:hidden">
               <div className='w-[95%] bg-six'>
-                {filteredData.map((item, index) => (
+                {paginatedData.map((item, index) => (
                   <div key={index} className='flex flex-col gap-4 p-3'>
                        <div className="flex gap-4">
                 <strong>S/N :</strong>

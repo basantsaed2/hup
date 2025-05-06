@@ -153,7 +153,7 @@ const AddAgents = () => {
     if (!name) formErrors.name = 'name is required';
     if (!description) formErrors.description = 'description is required';
     if (!email.includes('@gmail.com')) formErrors.email = 'Email should contain @gmail.com';
-    if (!edit && password.length < 8) formErrors.password = 'Password must be at least 6 characters';
+    if (!edit && password.length < 8) formErrors.password = 'Password must be at least 8 characters';
     if (!phone) formErrors.phone = 'Phone is required';
     if (!trainCommission) formErrors.trainCommission = 'trainCommission is required';
     if (!busCommission) formErrors.busCommission = 'busCommission is required';
