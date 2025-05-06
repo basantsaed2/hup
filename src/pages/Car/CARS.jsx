@@ -9,6 +9,8 @@ import ThreeThing from '../../component/ThreeThing.jsx';
 import { CiSearch } from "react-icons/ci";
 import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Pagination from '@mui/material/Pagination';
+
 const CARS = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -98,6 +100,17 @@ const labelMap = {
   status: "status",
 
 };
+
+      const [currentPage, setCurrentPage] = useState(1);
+   const rowsPerPage = 10;
+      const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+      const paginatedData = filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+      );
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [searchQuery]);
   return (
     <div>
               <ToastContainer />
@@ -126,6 +139,10 @@ const labelMap = {
       <table className="w-full border-y border-x border-black ">
       <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]' >
+              
+            <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                S/N
+              </th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> model</th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> category</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">brand</th>
@@ -139,19 +156,23 @@ const labelMap = {
           </thead>
           <tbody>
 
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                  <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                 <td className="flex gap-1 px-2 ">
                   <img  className="w-5 h-5"src={item.image===null?`data:image/png;base64,${item.image}`:item.image}/>
                   <span className='w-[143px] h-[56px]  text-[16px]'>{item?.model_name??"N//A"}</span>
                   </td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item?.category_name??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item?.brand_name??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item?.agent_name??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item?.car_number??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item?.car_color??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[10px]">{item?.car_year??"N//A"}</td>
-                <td className="w-[143px]  h-[56px]  text-[12px]">{item.status}</td>
+                <td className="w-[143px]  h-[56px]  text-[10px]">{item?.category_name??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[10px]">{item?.brand_name??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[10px]">{item?.agent_name??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[10  px]">{item?.car_number??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[10px]">{item?.car_color??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[8px]">{item?.car_year??"N//A"}</td>
+                <td className="w-[143px]  h-[56px]  text-[12px] ">
+                  <span className='bg-gray-200 px-2 py-1 rounded-2xl'>{item.status}</span></td>
                 <td className="w-[143px]  h-[56px]  text-[16px]  flex justify-start gap-2 items-center">
                   <img className='w-[24px] h-[24px]' src={pin}
                     onClick={() => handleEdit(item.id)} />
@@ -169,8 +190,12 @@ const labelMap = {
       </div>
     <div className="mt-10 ml-5 lg:hidden">
             <div className='w-[95%] bg-six'>
-              {filteredData.map((item, index) => (
+              {paginatedData.map((item, index) => (
                 <div key={index} className='flex flex-col gap-4 p-3'>
+                     <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>
                   <div className="flex gap-4">
                     <strong>model:</strong>
                     <span>{item?.model_name??"N//A"}</span>
@@ -221,7 +246,26 @@ const labelMap = {
               ))}
             </div>
           </div>
-          
+              <div className="flex justify-center mt-4">
+                  <Pagination
+                    count={pageCount}
+                    page={currentPage}
+                    onChange={(e, page) => setCurrentPage(page)}
+                    sx={{
+                      "& .MuiPaginationItem-root": {
+                        color: "#F58220",
+                        "&.Mui-selected": {
+                          backgroundColor: "#F58220",
+                          color: "white",
+                        },
+                        "&:hover": {
+                          backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+                        },
+                      },
+                    }}
+                    shape="rounded"
+                  />
+                </div>
     </div>
   )
 }

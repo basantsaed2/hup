@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import { CiSearch } from "react-icons/ci"; // Importing search icon
 import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Pagination from '@mui/material/Pagination';
+
 const Cities = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -89,6 +91,20 @@ const cheose = ["Filter","country_name", "name", "status"]
     name: "name",
     status: "status",
   };
+
+
+  
+     
+      const [currentPage, setCurrentPage] = useState(1);
+      const rowsPerPage = 10;
+      const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+      const paginatedData = filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+      );
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [searchQuery]);
   return (
     <div>
       <NavLocation />
@@ -116,6 +132,8 @@ const cheose = ["Filter","country_name", "name", "status"]
         <table className="w-full  border-y border-x border-black">
           <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]'>
+            <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">S/N</th>
+
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">City Name</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Country Name</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Status</th>
@@ -123,8 +141,11 @@ const cheose = ["Filter","country_name", "name", "status"]
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                  <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">   
+                {(currentPage - 1) * rowsPerPage + index + 1}
+                  </td>
                 <td className="w-[143px] h-[56px] text-[16px] px-4">{item?.name??"N//A"}</td>
                 <td className="w-[143px] h-[56px] text-[16px] px-4">{item?.country_name??"N//A"}</td>
                 <td className="w-[143px] h-[56px] text-[16px] text-nine">
@@ -151,8 +172,13 @@ const cheose = ["Filter","country_name", "name", "status"]
       </div>
       <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
-          {filteredData.map((item, index) => (
+          {paginatedData.map((item, index) => (
             <div key={index} className='flex flex-col gap-4 p-3'>
+              <div className="flex gap-4">
+                <strong>S/N:</strong>
+                <span>                           {(currentPage - 1) * rowsPerPage + index + 1}
+                </span>
+              </div>
               <div className="flex gap-4">
                 <strong>city:</strong>
                 <span>{item?.name??"N//A"}</span>
@@ -178,6 +204,25 @@ const cheose = ["Filter","country_name", "name", "status"]
             </div>
           ))}
         </div>
+      </div>
+       <div className="flex justify-center mt-4">
+        <Pagination
+          count={pageCount}
+          page={currentPage}
+          onChange={(e, page) => setCurrentPage(page)}
+          sx={{
+            '& .MuiPaginationItem-root': {
+              color: '#F58220',
+              '&.Mui-selected': {
+                backgroundColor: '#F58220',
+                color: 'white',
+              },
+              '&:hover': {
+                backgroundColor: '#f5923a', // درجة أفتح عند الـhover (اختياري)
+              },
+            },
+          }}   shape="rounded"
+        />
       </div>
     </div>
   );

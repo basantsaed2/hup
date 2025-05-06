@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { CiSearch } from "react-icons/ci"; // Import search icon for UI
+import Pagination from '@mui/material/Pagination';
+
 const Fees = () => {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState(''); // State for search query
@@ -89,6 +91,17 @@ const Fees = () => {
     hiace_fees: "Hiace ",
     private_request_fees: "Private Request ",
   };
+  
+        const [currentPage, setCurrentPage] = useState(1);
+     const rowsPerPage = 10;
+        const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+        const paginatedData = filteredData.slice(
+          (currentPage - 1) * rowsPerPage,
+          currentPage * rowsPerPage
+        );
+      useEffect(() => {
+        setCurrentPage(1);
+      }, [searchQuery]);
   return (
     <div>
         <ToastContainer />
@@ -123,6 +136,10 @@ const Fees = () => {
       <table className="w-full border-y border-x border-black ">
       <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]'>
+            <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                S/N
+              </th>
+
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">Train </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Hiace </th>
@@ -133,6 +150,9 @@ const Fees = () => {
           <tbody>
           {filteredData.length !== 0 && filteredData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                     <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                 <td className="w-[143px] h-[56px] text-[16px] px-2 ">{item?.train_fees??"N//A"} </td>
                 <td className="w-[143px] h-[56px] text-[16px] ">{item?.bus_fees??"N//A"} </td>
                 <td className="w-[143px] h-[56px] text-[16px] ">{item?.hiace_fees??"N//A"} </td>
@@ -158,6 +178,10 @@ const Fees = () => {
   <div className='w-[95%] bg-six'>
   {filteredData.length !== 0 && filteredData.map((item, index) => (
       <div key={index} className='flex flex-col gap-4 p-3'>
+          <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>
         <div className="flex gap-4">
           <strong>Train :</strong>
           <span>{item?.train_fees??"N//A"}</span>

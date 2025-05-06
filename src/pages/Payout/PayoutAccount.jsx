@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import ThreeThing from '../../component/ThreeThing.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Pagination from '@mui/material/Pagination';
 
 const PayoutAccount = () => {
   const [data, setData] = useState([]);
@@ -121,7 +122,16 @@ const PayoutAccount = () => {
     });
   };
   
-
+  const [currentPage, setCurrentPage] = useState(1);
+   const rowsPerPage = 10;
+      const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+      const paginatedData = filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+      );
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [searchQuery]); 
   return (
     <div>
       <NavPayoutAccount />
@@ -150,6 +160,9 @@ const PayoutAccount = () => {
           <table className="w-full border-y border-x border-black ">
             <thead className="w-full">
               <tr className='bg-four w-[1012px] h-[56px]' >
+              <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                S/N
+              </th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3"> date</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left"> amount</th>
@@ -163,6 +176,9 @@ const PayoutAccount = () => {
             <tbody>
               {filteredData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                   <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                   <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.agent?.name?? ''}</td>
                   <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.date ?? ''}</td>
                   <td className="w-[158px]   h-[56px]  text-[12px]  ">{item?.amount ?? ''}</td>
@@ -191,6 +207,10 @@ const PayoutAccount = () => {
         <div className='w-[95%] bg-six'>
           {filteredData.map((item, index) => (
             <div key={index} className='flex flex-col gap-4 p-3'>
+                <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>
               <div className="flex gap-4">
                 <strong>date:</strong>
                 <span>{item?.date ?? ''}</span>
@@ -233,7 +253,27 @@ const PayoutAccount = () => {
           ))}
         </div>
       </div>
-
+      <div className="flex justify-center mt-4">
+          
+ <Pagination
+          count={pageCount}
+          page={currentPage}
+          onChange={(e, page) => setCurrentPage(page)}
+          sx={{
+            "& .MuiPaginationItem-root": {
+              color: "#F58220",
+              "&.Mui-selected": {
+                backgroundColor: "#F58220",
+                color: "white",
+              },
+              "&:hover": {
+                backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+              },
+            },
+          }}
+          shape="rounded"
+        />
+      </div>
       <ToastContainer />
     </div>
   )

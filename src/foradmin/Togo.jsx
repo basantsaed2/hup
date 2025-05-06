@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation,Navigate } from 'react-router-dom';
 import Dash from '../pages/Dash/Dash.jsx';
 import Home from '../pages/Home/Home.jsx';
 import User from '../pages/User/User.jsx';
@@ -129,7 +129,9 @@ const Togo = ({ setIsLoggedIn }) => {
       <div className='w-full'>
         <Home setIsLoggedIn={setIsLoggedIn} setopen={setopen} open={open} />
         <Routes>
-          <Route path='/' element={<></>} />
+          <Route path='/login' element={<Navigate to="/Home"/>} />
+          {/* <Route path='/login' element={<Navigate to="/Home"/>} /> */}
+          <Route path='/Home' element={<></>} />
           <Route path='/User' element={<User />} />
           <Route path='/Userbookingdetails' element={<Userbookingdetails />} />
           <Route path='/AddUser' element={<AddUser />} />

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { CiSearch } from "react-icons/ci"; // Import search icon for UI
 import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Pagination from '@mui/material/Pagination';
 
 const PaymentMethods = () => {
       const [data, setData] = useState([]);
@@ -89,6 +90,16 @@ const PaymentMethods = () => {
         name: "name",
         status:"status"
       };
+        const [currentPage, setCurrentPage] = useState(1);
+         const rowsPerPage = 10;
+            const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+            const paginatedData = filteredData.slice(
+              (currentPage - 1) * rowsPerPage,
+              currentPage * rowsPerPage
+            );
+          useEffect(() => {
+            setCurrentPage(1);
+          }, [searchQuery]);
   return (
     <div>
               <ToastContainer />
@@ -117,6 +128,9 @@ const PaymentMethods = () => {
       <table className="w-full border-y border-x border-black ">
       <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]' >
+            <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                S/N
+              </th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> image</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
@@ -125,10 +139,12 @@ const PaymentMethods = () => {
           </thead>
           <tbody>
 
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
                
-
+               <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                                 <td className="w-[143px] h-[56px]  text-[16px] px-4 ">{item?.name??"N//A"}</td>
                                 <img  className="w-5 h-5"src={item.image===null?`data:image/png;base64,${item.image}`:item.image}/>
 
@@ -136,12 +152,14 @@ const PaymentMethods = () => {
                 <td className="w-[143px]  h-[56px]  text-[16px]  flex justify-start gap-2 items-center">
                   <img className='w-[24px] h-[24px]' src={pin}
                     onClick={() => handleEdit(item.id)} />
-                  <img
-                    className='w-[24px] h-[24px] ml-2 cursor-pointer'
-                    src={delet}
-                    onClick={() => handleDelete(item.id,item.name)}   
-                    alt="delete"
+                {item.id=="1"?<></>:         <img
+                  className='w-[24px] h-[24px] ml-2 cursor-pointer'
+                  src={delet}
+                  onClick={() => handleDelete(item.id,item.name)}   
+                  alt="delete"
                   />
+         
+                }
                 </td>
               </tr>
             ))}
@@ -151,8 +169,12 @@ const PaymentMethods = () => {
     </div>
     <div className="mt-10 ml-5 lg:hidden">
       <div className='w-[95%] bg-six'>
-        {filteredData.map((item, index) => (
+        {paginatedData.map((item, index) => (
           <div key={index} className='flex flex-col gap-4 p-3'>
+                <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>
             <div className="flex gap-4">
               <strong>Name:</strong>
               <span>{item.name}</span>
@@ -170,19 +192,38 @@ const PaymentMethods = () => {
             </div>
             <div className='flex'>
               <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
-              <img
+              {item.id=="1"?<></>:          <img
                 className='w-[24px] h-[24px] ml-2 cursor-pointer'
                 src={delet}
                 onClick={() => handleDelete(item.id,item.name)}   
                 alt="delete"
-              />
+              />}
             </div>
             <div className='w-full bg-white h-2'></div>
           </div>
         ))}
       </div>
     </div>
-            
+                <div className="flex justify-center mt-4">
+                    <Pagination
+                      count={pageCount}
+                      page={currentPage}
+                      onChange={(e, page) => setCurrentPage(page)}
+                      sx={{
+                        "& .MuiPaginationItem-root": {
+                          color: "#F58220",
+                          "&.Mui-selected": {
+                            backgroundColor: "#F58220",
+                            color: "white",
+                          },
+                          "&:hover": {
+                            backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+                          },
+                        },
+                      }}
+                      shape="rounded"
+                    />
+                  </div>
     </div>
   )
 }

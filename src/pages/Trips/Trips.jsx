@@ -8,6 +8,8 @@ import ThreeThing from '../../component/ThreeThing';
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
+import Pagination from '@mui/material/Pagination';
+
 const Trips = () => {
    const [data, setData] = useState([]);
      const [searchQuery, setSearchQuery] = useState(''); 
@@ -91,6 +93,16 @@ const labelMap = {
   currency:"currency",
   arrival_time:"arrival"
 };
+  const [currentPage, setCurrentPage] = useState(1);
+   const rowsPerPage = 10;
+      const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+      const paginatedData = filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+      );
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [searchQuery]);
   return (
     <div>
               <ToastContainer />
@@ -121,6 +133,9 @@ const labelMap = {
             <table className="w-full border-y border-x border-black ">
             <thead  className="w-full">
                       <tr className='bg-four w-[1012px] h-[56px]' >
+                      <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                S/N
+              </th>
                         <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3">name</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">type</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">date</th>
@@ -134,8 +149,11 @@ const labelMap = {
                     </thead>
                     <tbody>
                      
-                    {filteredData.map((item,index) => (
+                    {paginatedData.map((item,index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
+                       <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                              <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.name??"N//A"}</td>
                           <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.trip_type??"N//A"}</td>
                           <td className="w-[143px] h-[56px]  text-[12px] ">{item?.date??"N//A"}</td>
@@ -162,8 +180,12 @@ const labelMap = {
                     {/* Mobile view */}
                 <div className="mt-10 ml-5 lg:hidden">
                   <div className='w-[95%] bg-six'>
-                    {filteredData.map((item, index) => (
+                    {paginatedData.map((item, index) => (
                       <div key={index} className='flex flex-col gap-4 p-3'>
+                        <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>
                         <div className="flex gap-4">
                           <strong>name:</strong>
                           <span>{item?.name??"N//A"}</span>
@@ -212,6 +234,26 @@ const labelMap = {
                     ))}
                   </div>
                 </div>
+                    <div className="flex justify-center mt-4">
+                        <Pagination
+                          count={pageCount}
+                          page={currentPage}
+                          onChange={(e, page) => setCurrentPage(page)}
+                          sx={{
+                            "& .MuiPaginationItem-root": {
+                              color: "#F58220",
+                              "&.Mui-selected": {
+                                backgroundColor: "#F58220",
+                                color: "white",
+                              },
+                              "&:hover": {
+                                backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+                              },
+                            },
+                          }}
+                          shape="rounded"
+                        />
+                      </div>
     </div>
   )
 }

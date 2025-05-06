@@ -95,7 +95,7 @@ function LoginIn({ setIsLoggedIn }) {
 </div>
 
           <button onClick={handleLogin}>
-            <img src={SignupButtonContainer} className='mt-5 w-[90%]' />
+            <img src={SignupButtonContainer} className='w-full h-[56px] my-3 lg:h-[72px]   rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95' />
           </button>
         </div>
       </div>

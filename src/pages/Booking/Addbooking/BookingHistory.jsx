@@ -6,6 +6,8 @@ import ThreeThing from '../../../component/ThreeThing'
 import { CiSearch } from "react-icons/ci"; // Import search icon for UI
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Pagination from '@mui/material/Pagination';
+
 const BookingHistory = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
@@ -77,9 +79,18 @@ email:"country",
 phone:"Time",
 country:"country",
 
-
-
 };
+
+      const [currentPage, setCurrentPage] = useState(1);
+   const rowsPerPage = 10;
+      const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+      const paginatedData = filteredData.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+      );
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [searchQuery]);
   return (
 
     <div>
@@ -107,6 +118,7 @@ country:"country",
       <table className="w-full border-y border-x border-black ">
       <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]' >
+            <th className="text-left px-2 ">S/N</th>
             <th className="text-left px-2 ">Route</th>
               <th className="text-left px-2">Date</th>
               <th className="text-left ">country </th>
@@ -116,11 +128,14 @@ country:"country",
           </thead>
           <tbody>
 
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                       <tr
                       key={index}
                       className="border-y hover:border-4 relative hover:bg-six"
                     >
+                        <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  {(currentPage - 1) * rowsPerPage + index + 1}
+                </td>
                       <td className="w-[143px] h-[56px]  text-[16px] font-normal text-five px-1 ">
                   {`${item?.trip?.city?.name??"N//A"}-->${item?.trip?.to_city.name??"N//A"}`}
                       </td>
@@ -140,8 +155,12 @@ country:"country",
             {/* Mobile view */}
       <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
-          {filteredData.map((item, index) => (
+          {paginatedData.map((item, index) => (
             <div key={index} className='flex flex-col gap-4 p-3'>
+                 <div className="flex gap-4">
+                <strong>S/N :</strong>
+                <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+              </div>  
               <div className="flex gap-4">
                 <strong>Route:</strong>
                 <span>   
@@ -182,7 +201,26 @@ country:"country",
           ))}
         </div>
       </div>
-      
+       <div className="flex justify-center mt-4">
+              <Pagination
+                count={pageCount}
+                page={currentPage}
+                onChange={(e, page) => setCurrentPage(page)}
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    color: "#F58220",
+                    "&.Mui-selected": {
+                      backgroundColor: "#F58220",
+                      color: "white",
+                    },
+                    "&:hover": {
+                      backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+                    },
+                  },
+                }}
+                shape="rounded"
+              />
+            </div>
     </div>
   )
 }

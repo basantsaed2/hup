@@ -8,6 +8,8 @@
   import { CiSearch } from "react-icons/ci";
   import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import Pagination from '@mui/material/Pagination';
+
   const User = () => {
     const [data, setData] = useState([]);
     const [update, setUpdate] = useState(false);
@@ -15,6 +17,8 @@
     const [selectedFilter, setSelectedFilter] = useState(''); 
     const navigate = useNavigate();
 
+   
+ 
     useEffect(() => {
       const token = localStorage.getItem('token');
 
@@ -86,19 +90,28 @@
       }
       return false;
     });
-  const cheose = ["Filter","name", "email", "country", "city", "Zone"]
+  const cheose = ["Filter","name", "email", "country", "city", "zone"]
   const labelMap = {
     Filter: "Filter",
     name: "name",
     email: "Gmail",
     country: "country",
     city:"city",
-    Zone:"Zone"
+    zone:"Zone"
   };
 
     const names = ["User", "email", "Country", "Cities", "Zones", "Action"];
     const fieldsToShow = ["name", "email", "country", "city", "zone",];
-    
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 10;
+    const pageCount = Math.ceil(filteredData.length / rowsPerPage);
+    const paginatedData = filteredData.slice(
+      (currentPage - 1) * rowsPerPage,
+      currentPage * rowsPerPage
+    );
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
     return (
       <div>
         <ToastContainer />
@@ -129,8 +142,9 @@
           <table className="w-full border-y border-x border-black ">
             <thead className="w-full ">
               <tr className='bg-four w-[1012px] h-[56px]'>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">User</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Gmail</th>
+                <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">S/N</th>
+                <th className="w-[158px] h-[56px] text-[16px] border-b text-left ">User</th>
+                <th className="w-[170px] h-[56px] text-[16px] border-b text-left">Gmail</th>
                 <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Country</th>
                 <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Cities</th>
                 <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Zones</th>
@@ -139,13 +153,16 @@
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((item, index) => (
+              {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                  <td className="flex flex-col w-[143px] h-[56px] absolute top-1 gap-1 items-start justify-start">
-                    <span className=" lg:text-[12px] xl:text-[16px] font-normal text-five px-1">{item?.name??"N//A"}</span>
-                    <span className=" lg:text-[12px] xl:text-[16px] font-normal text-five px-1">{item?.phone??"N//A"}</span>
+                  <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">   
+                           {(currentPage - 1) * rowsPerPage + index + 1}
+                  </td>
+                  <td className="flex flex-col w-[170px] h-[56px] absolute top-1 gap-1 items-start justify-start">
+                    <span className="  text-[12px]  font-normal text-five px-1">{item?.name??"N//A"}</span>
+                    <span className="  text-[12px]  font-normal text-five px-1">{item?.phone??"N//A"}</span>
                   </td> 
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.email??"N//A"}</td>
+                  <td className="w-[170px]   h-[56px] text-[10px]  px-1  lg:text-right xl:text-start">{item?.email??"N//A"}</td>
                   <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.country??"N//A"}</td>
                   <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.city??"N//A"}</td>
                   <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.zone??"N//A"}</td>
@@ -169,10 +186,12 @@
 
           <div className="mt-10 ml-5 lg:hidden">
     <div className='w-[95%] bg-six'>
-      {filteredData.map((item, index) => (
+      {paginatedData.map((item, index) => (
         <div key={index} className='flex flex-col gap-4 p-3'>
           
+          <span>S/N :  {(currentPage - 1) * rowsPerPage + index + 1} </span>
           {fieldsToShow.map((field, i) => (
+            
                   <div key={i} className="flex gap-4">
                     <span><strong>{names[i]}:</strong></span>
                     <span>{item[field] ? item[field] : "N//A"}</span>
@@ -195,7 +214,25 @@
       ))}
   </div>
   </div>
-
+  <div className="flex justify-center mt-4">
+  <Pagination
+    count={pageCount}
+    page={currentPage}
+    onChange={(e, page) => setCurrentPage(page)}
+    sx={{
+      '& .MuiPaginationItem-root': {
+        color: '#F58220',
+        '&.Mui-selected': {
+          backgroundColor: '#F58220',
+          color: 'white',
+        },
+        '&:hover': {
+          backgroundColor: '#f5923a', // درجة أفتح عند الـhover (اختياري)
+        },
+      },
+    }}   shape="rounded"
+  />
+</div>
       </div>
     );
   };
