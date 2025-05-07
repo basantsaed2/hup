@@ -168,6 +168,8 @@ const AddAgents = () => {
 
     if (enableHiace && isNaN(hiaceCommission)) formErrors.hiaceCommission = 'Hiace commission must be a number';
 
+    if (enableprivate && isNaN(privaterequset)) formErrors.hiaceCommission = 'privat request commission must be a number';
+
     setErrors(formErrors);
     Object.values(formErrors).forEach((error) => toast.error(error));
     return Object.keys(formErrors).length === 0;
@@ -183,10 +185,10 @@ const AddAgents = () => {
       password,
       phone,
       description,
-      commission_type: "private", // أو استخدم القيمة المناسبة بناءً على متطلباتك
-      bus_modules: enableBus ? 1 : 0,  // إذا تم تمكين Bus، تكون القيمة 1، وإلا 0
-      train_modules: enableTrain ? 1 : 0,  // إذا تم تمكين Train، تكون القيمة 1، وإلا 0
-      hiace_modules: enableHiace ? 1 : 0,  // إذا تم تمكين Hiace، تكون القيمة 1، وإلا 0
+      commission_type: "private", 
+      bus_modules: enableBus ? 1 : 0,  
+      train_modules: enableTrain ? 1 : 0,  
+      hiace_modules: enableHiace ? 1 : 0, 
       private_modules:enableprivate? 1 : 0
     };
     
@@ -320,10 +322,10 @@ if (loading) {
         <FileUploadButton name="image" kind="image" flag={flag} onFileChange={handleFileChange} />
 </div>  
 </div>
-<div className=' flex  gap-2'>
+<div className=' flex flex-wrap  gap-2'>
 
         {/* Train Commission */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col  gap-2">
           <label className="flex items-center gap-2 cursor-pointer">
             <div
               className={`w-12 h-6 flex items-center bg-gray-300 rounded-full p-1 duration-300 ${
