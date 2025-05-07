@@ -190,7 +190,9 @@ const AddAgents = () => {
       train_modules: enableTrain ? 1 : 0,  
       hiace_modules: enableHiace ? 1 : 0, 
       private_modules:enableprivate? 1 : 0
-    };
+    };  
+
+    
     
     if (enableTrain) newCountryData.train_commission = trainCommission;
     if (enableBus) newCountryData.bus_commission = busCommission;
