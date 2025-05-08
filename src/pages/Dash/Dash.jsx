@@ -19,6 +19,9 @@ import IconTrain from '../../IconsImprot/IconTrain';
 import { FaCarAlt } from "react-icons/fa";
 import { TbCarSuv } from "react-icons/tb";
 import { IoIosCloseCircle } from "react-icons/io";
+import { MdArrowForwardIos } from "react-icons/md";
+
+
 const Dash = ({ activeLink ,open ,setopen}) => {
   const [openFinancial, setOpenFinancial] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
@@ -97,8 +100,21 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                     <i className={`text-[16px] font-medium ml-4`}>
                       {item.icon}
                     </i>
-                    <span className='text-[16px] font-medium ml-4 text-white'>
-                      {item.text}
+                    <span className='text-[16px] font-medium ml-4 text-white flex items-center gap-1'>
+                     <span>
+                       {item.text} 
+                      </span>
+                      {item.text === "Financial" && (
+  <MdArrowForwardIos
+    className={`mx-3 transform transition duration-300 pt-1 ${openFinancial ? 'rotate-90' : ''}`}
+  />
+)}
+{item.text === "Settings" && (
+  <MdArrowForwardIos
+    className={`mx-3 transform transition duration-300  pt-1  ${openSettings ? 'rotate-90' : ''}`}
+  />
+)}
+
                     </span>
                   </NavLink>
 
@@ -112,7 +128,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                             className={`flex justify-start items-center mx-3 w-[250px] ${activeLink === option.href ? 'bg-white' : ''
                               } relative h-[48px] my-2 rounded-[8px] group overflow-hidden`}
                           >
-                            <span className={`ml-2 ${activeLink === option.href ? 'text-one' : 'text-white'
+                            <span className={`ml-2   flex gap-1 ${activeLink === option.href ? 'text-one' : 'text-white'
                               }`}>
                               {option.text}
                             </span>
@@ -138,9 +154,13 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                             className={`flex justify-start items-center mx-3 w-[250px] ${activeLink === option.href ? 'bg-white' : ''
                               } relative h-[48px] my-2 rounded-[8px] group overflow-hidden`}
                           >
-                            <span className={` ml-2 ${activeLink === option.href ? 'text-one' : 'text-white'
+                            <span className={` ml-2  flex gap-1${activeLink === option.href ? 'text-one' : 'text-white'
                               }`}>
-                              {option.text}
+
+<span className={` ${activeLink === option.href ? 'text-one' : 'text-white'   }`}>
+                       {option.text} 
+                      </span>
+                      
                             </span>
                             {activeLink === option.href && (
                               <img
@@ -227,8 +247,11 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                     <i className={`text-[8px] font-medium ml-4`}>
                       {item.icon}
                     </i>
-                    <span className='text-[8px] font-medium ml-4 text-white'>
+                    <span className='text-[8px] font-medium ml-4 text-white flex gap-1'>
+                      <span>
                       {item.text}
+                      </span>
+                           <IoIosArrowDown />  
                     </span>
                   </NavLink>
 
@@ -244,7 +267,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                           >
                             <span className={` ml-2 text-[8px] ${activeLink === option.href ? 'text-one' : 'text-white'
                               }`}>
-                              {option.text}
+                              {option.text}                 
+
                             </span>
                             {activeLink === option.href && (
                               <img
@@ -270,7 +294,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
                           >
                             <span className={` ml-2 text-[8px] ${activeLink === option.href ? 'text-one' : 'text-white'
                               }`}>
-                              {option.text}
+                              {option.text}                     
+
                             </span>
                             {activeLink === option.href && (
                               <img
