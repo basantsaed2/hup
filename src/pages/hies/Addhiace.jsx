@@ -17,7 +17,7 @@ const Addhiace = () => {
   const location = useLocation();
   const [busNumber, setBusNumber] = useState('');
   // const [busType, setBusType] = useState('');
-  const [capacity, setCapacity] = useState('');
+  // const [capacity, setCapacity] = useState('');
   const [agent, setAgent] = useState('');
   const [pic, setPic] = useState(null);
   const [originalFlag, setOriginalFlag] = useState(null);
@@ -47,7 +47,7 @@ const Addhiace = () => {
     let formErrors = {};
     if (!busNumber) formErrors.busNumber = 'Bus number is required';
     if (!pic && !edit) formErrors.pic = 'Bus image is required';
-    if (!capacity) formErrors.capacity = 'Capacity is required or should write number';
+    // if (!capacity) formErrors.capacity = 'Capacity is required or should write number';
     // if (!busType) formErrors.busType = 'Bus type is required';
     if (!agent) formErrors.agent = 'Agent type is required';
 
@@ -60,16 +60,18 @@ const Addhiace = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    if (name === 'capacity') {
-      if (/^\d*$/.test(value)) {
-        setCapacity(value);
-      }
-    } else {
-      if (name === 'busNumber') setBusNumber(value);
-      // if (name === 'bus_types') setBusType(value);
-      if (name === 'agents') setAgent(value);
-    }
+    if (name === 'busNumber') setBusNumber(value);
+    // if (name === 'bus_types') setBusType(value);
+    if (name === 'agents') setAgent(value);
+    // if (name === 'capacity') {
+    //   // if (/^\d*$/.test(value)) {
+    //   //   setCapacity(value);
+    //   // }
+    // } else {
+    //   if (name === 'busNumber') setBusNumber(value);
+    //   // if (name === 'bus_types') setBusType(value);
+    //   if (name === 'agents') setAgent(value);
+    // }
   };
 
 
@@ -78,7 +80,7 @@ const Addhiace = () => {
     if (sendData) {
       setBusNumber(sendData.bus_number);
       setPic(sendData.bus_image);
-      setCapacity(sendData.capacity);
+      // setCapacity(sendData.capacity);
       setStatus(sendData.status);
       setAgent(sendData.agent_id);
       setEdit(true);
@@ -110,7 +112,7 @@ const Addhiace = () => {
       bus_number: busNumber,
       bus_type_id:null,
       agent_id: agent,
-      capacity: capacity,
+      capacity: "14",
       status: status,
       aminty_id:selectedDays
 
@@ -167,7 +169,7 @@ const Addhiace = () => {
     setOriginalFlag(null);
     setBusNumber('');
     // setBusType('');
-    setCapacity('');
+    // setCapacity('');
     setPic(null);
     setStatus('inactive');
     setEdit(false);
@@ -209,14 +211,14 @@ const Addhiace = () => {
           onChange={handleChange}
           required
         />
-      
+{/*       
         <InputField
           email='number'
           placeholder="Capacity"
           name="capacity"
           value={capacity}
           onChange={handleChange}
-        />
+        /> */}
                 <div className='flex items-end justify-center'>
 
         <FileUploadButton
