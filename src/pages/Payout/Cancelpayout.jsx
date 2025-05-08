@@ -99,7 +99,7 @@ return (
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> date</th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> amount</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">currency</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">agent</th>
+              {/* <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">agent</th> */}
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
             </tr>
           </thead>
@@ -110,13 +110,13 @@ return (
                       <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                                <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.agent?.name?? ''}</td>
-                                <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.date?? ''}</td>
-                                <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.amount?? ''}</td>
-                                <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.currency?.name?? ''}{item?.currency?.symbol?? ''}</td>
-                                <td className="w-[143px] h-[56px]  text-[16px] ">{item?.agent?.name?? ''}</td>
+                                <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.agent?.name?? "N//A"}</td>
+                                <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.date?? "N//A"}</td>
+                                <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.amount?? "N//A"}</td>
+                                <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.currency?.name?? "N//A"}{item?.currency?.symbol?? "N//A"}</td>
+                                {/* <td className="w-[143px] h-[56px]  text-[16px] ">{item?.agent?.name?? "N//A"}</td> */}
 
-                <td className="w-[143px]  h-[56px]  text-[16px]  text-nine  "><span className="bg-eight font-normal  rounded-[8px]">{item?.status?? ''}</span></td>
+                <td className="w-[143px]  h-[56px]  text-[16px]  text-nine  "><span className="bg-eight font-normal  rounded-[8px]">{item?.status?? "N//A"}</span></td>
               
               </tr>
             ))}
@@ -135,23 +135,23 @@ return (
               </div>
             <div className="flex gap-4">
               <strong>date:</strong>
-              <span>{item?.date?? ''}</span>
+              <span>{item?.date?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
               <strong>amount:</strong>
-              <span>{item?.amount?? ''}</span>
+              <span>{item?.amount?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
               <strong>currency:</strong>
-              <span>{item?.currency?.name}{item?.currency?.symbol?? ''}</span>
+              <span>{item?.currency?.name??"N//A"}{item?.currency?.symbol?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
               <strong>agent:</strong>
-              <span>{item?.agent?.name?? ''}</span>
+              <span>{item?.agent?.name??"N//A"}</span>
             </div>
             <div className="flex gap-4">
               <strong>Status:</strong>
-              <span className="bg-eight font-normal p-1 rounded-[8px] text-nine">{item?.status?? ''}</span>
+              <span className="bg-eight font-normal p-1 rounded-[8px] text-nine">{item?.status?? "N//A"}</span>
             </div>
         
           

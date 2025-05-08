@@ -214,7 +214,7 @@ useEffect(()=>{
   };
   const handleDatePickerChange = (newData) => {
     if (newData) {
-      const day = newData.getDate() + 1;
+      const day = newData.getDate() ;
       const month = newData.getMonth() + 1;
       const year = newData.getFullYear();
 
@@ -226,7 +226,7 @@ useEffect(()=>{
   };
   const handlehandlemaxBookDate = (newData) => {
     if (newData) {
-      const day = newData.getDate() + 1;
+      const day = newData.getDate() ;
       const month = newData.getMonth() + 1;
       const year = newData.getFullYear();
 
@@ -250,7 +250,7 @@ useEffect(()=>{
   // };
   const handstartDate = (newData) => {
     if (newData) {
-      const day = newData.getDate() + 1;
+      const day = newData.getDate() ;
       const month = newData.getMonth() + 1;
       const year = newData.getFullYear();
 
