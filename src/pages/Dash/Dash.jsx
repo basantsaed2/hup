@@ -21,6 +21,7 @@ import { TbCarSuv } from "react-icons/tb";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MdArrowForwardIos } from "react-icons/md";
 
+import { IoIosArrowDown } from "react-icons/io";
 
 const Dash = ({ activeLink ,open ,setopen}) => {
   const [openFinancial, setOpenFinancial] = useState(false);
@@ -31,7 +32,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
 }
   
   const menuItems = [
-    { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Home" },
+    { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Homes" },
     { icon: <IconUser />, iconactive: <IconUser active />, text: "User", href: "/User" },
     { icon: <IconLocation />, iconactive: <IconLocation active />, text: "Location", href: "/Location" },
     { icon: <IconBuses />, iconactive: <IconBuses active />, text: "Buses", href: "/Buses" },
@@ -50,7 +51,6 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     },
     { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operator", href: "/Agents" },
     { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
-    { icon: <IconCommissionSetup />, iconactive: <IconCommissionSetup active />, text: "Commission Setup", href: "/Commission" },
     { icon: <IconCurrency />, iconactive: <IconCurrency active />, text: "Currency", href: "/Currency" },
     { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/Allpayot" },
     {
@@ -62,15 +62,21 @@ const Dash = ({ activeLink ,open ,setopen}) => {
           { text: "●  Operator Payment", href: "/Settings/OperatorPayment" },
           { text: "●  Fees", href: "/Settings/Fees" },
         ]
-    }
+    },
+        { icon: <IconCommissionSetup />, iconactive: <IconCommissionSetup active />, text: "Commission Setup", href: "/Commission" },
+
   ];
 
 
   return (
     
-        <div className="relative ">
-  <div className="direction-rtl hidden md:block h-full w-[300px]  ">
-    <div className="flex-col  h-screen text-center overflow-y-scroll overflow-x-hidden direction-ltr">
+    <div className='h-full '>
+
+      <nav   style={{ 
+          msOverflowStyle: 'none', 
+          scrollbarWidth: 'none'
+        }}
+ className="hidden lg:block space-y-3 w-[300px] pt-6 text-center px-3 h-[calc(100vh-1px)] overflow-y-auto  overflow-x-hidden">
      
           <div className='flex mx-auto justify-center gap-2 my-3'>
             <span className='font-[400] text-white text-[32px]'>Ticket hub</span>
@@ -200,12 +206,10 @@ const Dash = ({ activeLink ,open ,setopen}) => {
               )
             ))}
           </ul>
-        </div>
-      </div>
+        </nav>
+      
      
      
-
-
   {open&&(
 
      <div className={`direction-rtl fixed  z-100   md:hidden`}>
@@ -335,10 +339,12 @@ const Dash = ({ activeLink ,open ,setopen}) => {
               )
             ))}
           </ul>
-        </div>
       </div>
+    </div>
        )} 
 
+
+ 
     </div>
   );
 };

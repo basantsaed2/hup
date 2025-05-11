@@ -36,7 +36,7 @@ import Cancelpayout from '../pages/Payout/Cancelpayout.jsx';
 import Financial from '../pages/Financial/Financial.jsx';
 import Settings from '../pages/Settings/Settings.jsx';
 import Car from '../pages/Car/Car.jsx';
-//
+import Homes from '../pages/Dashbrod/Homes.jsx'
 import Train from '../pages/Tarins/Tarin.jsx'
 const Togo = ({ setIsLoggedIn }) => {
   const [activeLink, setActiveLink] = useState('/');
@@ -129,9 +129,9 @@ const Togo = ({ setIsLoggedIn }) => {
       <div className='w-full'>
         <Home setIsLoggedIn={setIsLoggedIn} setopen={setopen} open={open} />
         <Routes>
-          <Route path='/login' element={<Navigate to="/Home"/>} />
+          <Route path='/login' element={<Navigate to="/Homes"/>} />
           {/* <Route path='/login' element={<Navigate to="/Home"/>} /> */}
-          <Route path='/Home' element={<></>} />
+          <Route path='/Homes' element={<Homes/>} />
           <Route path='/User' element={<User />} />
           <Route path='/Userbookingdetails' element={<Userbookingdetails />} />
           <Route path='/AddUser' element={<AddUser />} />
