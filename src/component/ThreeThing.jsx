@@ -21,7 +21,7 @@ const TheeThing = ({navGo,like,labelMap,selectedFilter,cheose,setSelectedFilter}
           }}
         value={selectedFilter}
         onChange={handleChange}
-        className=' flex justify-center w-20 text-[12px]  items-center h-9 text-white bg-one py-1 px-1 rounded-[8px] gap-1'>
+        className=' flex justify-center w-40  text-[14px] md:text-[20px]  items-center h-9 text-white bg-one py-1 px-1 rounded-[8px] gap-1  '>
       
       {cheose.map((option, index) => (
   <option key={index} value={option}>
@@ -33,7 +33,7 @@ const TheeThing = ({navGo,like,labelMap,selectedFilter,cheose,setSelectedFilter}
       </select>
           )}
        {cheose.length !== 0 && ( 
-         <img src={filter} className='w-4 h-4   text-black font-medium absolute left-15'/>)}
+         <img src={filter} className='w-4 h-4   text-black font-medium absolute left-30'/>)}
 
 
          

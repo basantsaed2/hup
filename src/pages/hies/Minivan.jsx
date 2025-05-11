@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CiSearch } from "react-icons/ci"; // Import search icon for UI
 import Pagination from '@mui/material/Pagination';
 
-const Hiace = () => {
+const Minivan = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
   const [searchQuery, setSearchQuery] = useState(''); 
@@ -61,7 +61,7 @@ const Hiace = () => {
 
   const handleEdit = (index) => {
     const sendData = data.find((item) => item.id === index);
-    navigate('/Addhiace', { state: { sendData } });
+    navigate('/MinivanAdd', { state: { sendData } });
   };
   const filteredData = data.filter((item) => {
     if(selectedFilter==="Filter"){
@@ -112,7 +112,7 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
           />
           <CiSearch className='w-4 h-4 md:w-6 text-black font-medium absolute left-2 md:h-6' />
         </div>
-        <ThreeThing navGo='/Addhiace' liked
+        <ThreeThing navGo='/MinivanAdd' liked
            labelMap={labelMap}
            cheose={cheose} // Pass the cheose array to ThreeThing component
            selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component
@@ -256,4 +256,4 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
   );
 };
 
-export default Hiace;
+export default Minivan;

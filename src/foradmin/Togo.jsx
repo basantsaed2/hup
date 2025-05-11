@@ -13,8 +13,8 @@ import Booking from '../pages/Booking/Booking.jsx';
 import Bookingdetailsmore from '../pages/Booking/Addbooking/Bookingdetailsmore.jsx';
 import Trips from '../pages/Trips/Trips.jsx';
 import AddTrips from '../pages/Trips/AddTrips.jsx';
-import Hiace from '../pages/hies/Hiace.jsx';
-import Addhiace from '../pages/hies/Addhiace.jsx';
+import Hiace from '../pages/hies/Minivan.jsx';
+import Addhiace from '../pages/hies/MinivanAdd.jsx';
 
 import Agents from '../pages/Agents/Agents.jsx';
 import AddAgents from '../pages/Agents/AddAgents.jsx'
@@ -111,8 +111,8 @@ const Togo = ({ setIsLoggedIn }) => {
     else if (location.pathname === '/Settings/AddFees') {
       setActiveLink('/Settings/Fees');
     }
-    else if (location.pathname === '/Addhiace') {
-      setActiveLink('/Hiace');
+    else if (location.pathname === '/MinivanAdd') {
+      setActiveLink('/Minivan');
     }
      else if (location.pathname === '/Tarins/Tarin') {
       setActiveLink('/Tarins/Tarin');
@@ -152,8 +152,8 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/Train/*' element={<Train />} />
           {/*  */}
 
-          <Route path='/Hiace' element={<Hiace />} />
-          <Route path='/Addhiace' element={<Addhiace/>} />
+          <Route path='/Minivan' element={<Hiace />} />
+          <Route path='/MinivanAdd' element={<Addhiace/>} />
 
           <Route path='/Commission' element={<CommissionSetup />} />
           <Route path='/AddCommission' element={<AddCommissionSetup />} />

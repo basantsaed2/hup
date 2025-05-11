@@ -176,12 +176,12 @@ const Countries = () => {
                     src={pin}
                     onClick={() => handleEdit(item.id)}
                   />
-                  <img
+                  {/* <img
                     className="w-[24px] h-[24px] ml-2 cursor-pointer"
                     src={delet}
                     onClick={() => handleDelete(item.id, item.name)}
                     alt="delete"
-                  />
+                  /> */}
                 </td>
               </tr>
             ))}
@@ -225,12 +225,12 @@ const Countries = () => {
                   src={pin}
                   onClick={() => handleEdit(item.id)}
                 />
-                <img
+                {/* <img
                   className="w-[24px] h-[24px] ml-2 cursor-pointer"
                   src={delet}
                   onClick={() => handleDelete(item.id, item.name)}
                   alt="delete"
-                />
+                /> */}
               </div>
               <div className="w-full bg-white h-2"></div>
             </div>

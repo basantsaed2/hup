@@ -34,9 +34,11 @@ const Dash = ({ activeLink ,open ,setopen}) => {
   const menuItems = [
     { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Homes" },
     { icon: <IconUser />, iconactive: <IconUser active />, text: "User", href: "/User" },
+        { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operator", href: "/Agents" },
+
     { icon: <IconLocation />, iconactive: <IconLocation active />, text: "Location", href: "/Location" },
     { icon: <IconBuses />, iconactive: <IconBuses active />, text: "Buses", href: "/Buses" },
-    { icon: <TbCarSuv  className='text-white w-5 h-5'/>, iconactive: <TbCarSuv  className='w-5 h-5 text-one' active />, text: "Hiace", href: "/Hiace" },
+    { icon: <TbCarSuv  className='text-white w-5 h-5'/>, iconactive: <TbCarSuv  className='w-5 h-5 text-one' active />, text: "Mini van ", href: "/Minivan" },
 
     { icon: <IconTrain />, iconactive: <IconTrain active />, text: "Train", href: "/Train" },
     { icon: <IconBooking />, iconactive: <IconBooking active />, text: "Bookings", href: "/Booking" },
@@ -49,8 +51,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
         { text: "● canceled payments   ", href: "/Financial/PendingPayments" }
       ]  
     },
-    { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operator", href: "/Agents" },
-    { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
+    // { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
     { icon: <IconCurrency />, iconactive: <IconCurrency active />, text: "Currency", href: "/Currency" },
     { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/Allpayot" },
     {
@@ -212,7 +213,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
      
   {open&&(
 
-     <div className={`direction-rtl fixed  z-100   md:hidden`}>
+     <div className={`direction-rtl fixed  z-100  lg:hidden`}>
         <div className='flex-col w-[200px] sm:w-[300px]  h-screen bg-one text-center overflow-y-scroll overflow-x-hidden direction-ltr'>
         <div className='flex '>
           <div className='flex mx-auto justify-center gap-2 my-3'>

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import AddAll from '../../ui/AddAll';
+import AddAll from '../../ui/AddAll.jsx';
 import picdone from '../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
-import InputField from '../../ui/InputField';
-import FileUploadButton from '../../ui/FileUploadButton';
-import SwitchButton from '../../ui/SwitchButton';
-import Inputfiltter from '../../ui/Inputfiltter';
+import InputField from '../../ui/InputField.jsx';
+import FileUploadButton from '../../ui/FileUploadButton.jsx';
+import SwitchButton from '../../ui/SwitchButton.jsx';
+import Inputfiltter from '../../ui/Inputfiltter.jsx';
 import Aminites from '../../ui/amintes.jsx'; // Import the Aminites component for amenities selection
 
 
-const Addhiace = () => {
+const MinivanAdd = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [busNumber, setBusNumber] = useState('');
@@ -134,10 +134,10 @@ const Addhiace = () => {
         },
       })
         .then(() => {
-          toast.success('bus updated  successfully');
+          toast.success('Mini van updated  successfully');
 
           setTimeout(() => {
-            navigate('/Hiace');
+            navigate('/Minivan');
           }, 2000);
           resetForm();
         })
@@ -151,10 +151,10 @@ const Addhiace = () => {
         },
       })
         .then(() => {
-          toast.success('bus added  successfully');
+          toast.success('Mini van added  successfully');
 
           setTimeout(() => {
-            navigate('/Hiace');
+            navigate('/Minivan');
           }, 2000);
           resetForm();
         })
@@ -186,11 +186,11 @@ const Addhiace = () => {
   return (
 <div>
 
-      <AddAll navGo='/Hiace' name="Add Hiace" />
+      <AddAll navGo='/Minivan' name="Add Mini van" />
       <div className='ml-6 flex flex-wrap mt-6 gap-6'>
 
         <InputField
-          placeholder="hiace Number"
+          placeholder="Mini van Number"
           name="busNumber"
           value={busNumber}
           onChange={handleChange}
@@ -245,4 +245,4 @@ const Addhiace = () => {
   );
 };
 
-export default Addhiace ;
+export default MinivanAdd ;

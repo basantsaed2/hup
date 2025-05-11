@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import rrr from '../../assets/rrr.svg';
 import { FiAlignJustify } from "react-icons/fi";
 import { useLocation } from 'react-router-dom';
 import { BiLogOut } from "react-icons/bi";
+import { CiBellOn } from "react-icons/ci";
+
 const Home = ({ setIsLoggedIn, open, setopen }) => {
   const location = useLocation();
  
@@ -40,22 +41,22 @@ const Home = ({ setIsLoggedIn, open, setopen }) => {
   
   return (
     <div>
-      <div className='w-full h-[56px] hidden md:flex mt-6 px-[26px] justify-between'>
+      <div className='w-[95%] rounded-2xl p-10 mx-auto h-[56px] hidden lg:flex mt-6 px-[26px] justify-between bg-orange-400 '>
         <div className='flex justify-center items-center gap-3'>
           <img className='bg-two rounded-full w-[56px] h-[56px]' />
-          <span className='font-medium text-[24px]'>name</span>
+          <span className='font-medium text-[24px]'>Super Adimn</span>
         </div>
         <div className='flex justify-center items-center gap-3'>
     <button  onClick={Handle}>
     <BiLogOut className='w-8 text-one h-8'/>
       </button>     
 
-          <img src={rrr} />
+          <i><CiBellOn className=' text-one h-8  w-8'/></i>
         </div>
       </div>
       {!open &&(
 
-      <div className='flex  w-full  md:hidden'>
+      <div className='flex  w-full   lg:hidden'>
         <button className=' h-15 px-5 flex items-center  w-[50%]' onClick={handleopen}>
           <FiAlignJustify  className='w-8 text-one h-8 text-right'/>
         </button>

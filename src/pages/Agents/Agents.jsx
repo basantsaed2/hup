@@ -73,8 +73,8 @@ const Agents = () => {
       title: `Commission train: ${commission.train}
       Commission bus: ${commission.bus}
       Commission hiace: ${commission.hiace}`,
-      icon: 'success',
-      confirmButtonText: 'OK', // زر "OK" بعد عرض القيمة
+      // icon: 'success',
+      // confirmButtonText: 'OK', // زر "OK" بعد عرض القيمة
     });}
     else{
       Swal.fire({
