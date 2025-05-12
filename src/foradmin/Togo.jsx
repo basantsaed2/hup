@@ -29,7 +29,7 @@ import Currency from '../pages/Currency/Currency.jsx';
 import AddCurrency from '../pages/Currency/AddCurrency.jsx';
 //
 import Allpayot from '../pages/Payout/Allpayot.jsx';
-import PayoutAccount from '../pages/Payout/PayoutAccount.jsx';
+import HistoryPayout from '../pages/Payout/HistoryPayout.jsx';
 import Cancelpayout from '../pages/Payout/Cancelpayout.jsx';
 
 //
@@ -90,7 +90,7 @@ const Togo = ({ setIsLoggedIn }) => {
     } else if (location.pathname === '/Currency' || location.pathname === '/AddCurrency') {
       setActiveLink('/Currency');
     } else if (location.pathname === '/Allpayot' ||
-      location.pathname === '/PayoutAccount' ||
+      location.pathname === '/HistoryPayout' ||
       location.pathname === '/Cancelpayout'
     ) {
       setActiveLink('/Allpayot');
@@ -126,9 +126,9 @@ const Togo = ({ setIsLoggedIn }) => {
       <div className='bg-one  '>
         <Dash activeLink={activeLink}  setopen={setopen} open={open} />
       </div>
-      <div className='w-full'>
+      <div className='w-full '>
         <Home setIsLoggedIn={setIsLoggedIn} setopen={setopen} open={open} />
-        <Routes>
+        <Routes >
           <Route path='/login' element={<Navigate to="/Homes"/>} />
           {/* <Route path='/login' element={<Navigate to="/Home"/>} /> */}
           <Route path='/Homes' element={<Homes/>} />
@@ -160,7 +160,7 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/Currency' element={<Currency />} />
           <Route path='/AddCurrency' element={<AddCurrency />} />
           <Route path='/Allpayot' element={<Allpayot />} />
-          <Route path='/PayoutAccount' element={<PayoutAccount />} />
+          <Route path='/HistoryPayout' element={<HistoryPayout />} />
           <Route path='/Cancelpayout' element={<Cancelpayout />} />
           <Route path='/Financial/*' element={<Financial />} />
           <Route path='/Settings/*' element={<Settings />} />

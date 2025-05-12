@@ -40,8 +40,8 @@ const Home = ({ setIsLoggedIn, open, setopen }) => {
   },  [location.pathname]);
   
   return (
-    <div>
-      <div className='w-[95%] rounded-2xl p-10 mx-auto h-[56px] hidden lg:flex mt-6 px-[26px] justify-between bg-orange-400 '>
+    <div >
+      <div className='w-[95%] rounded-2xl p-10 mx-auto h-[56px] my-4 hidden lg:flex mt-6 px-[26px] justify-between bg-three '>
         <div className='flex justify-center items-center gap-3'>
           <img className='bg-two rounded-full w-[56px] h-[56px]' />
           <span className='font-medium text-[24px]'>Super Adimn</span>

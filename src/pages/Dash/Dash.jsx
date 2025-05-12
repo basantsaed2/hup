@@ -77,7 +77,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
           msOverflowStyle: 'none', 
           scrollbarWidth: 'none'
         }}
- className="hidden lg:block space-y-3 w-[300px] pt-6 text-center px-3 h-[calc(100vh-1px)] overflow-y-auto  overflow-x-hidden">
+ className="hidden lg:block space-y-3 w-[300px] pt-6 text-center px-3 h-[calc(100vh-1px)]  overflow-y-scroll overflow-x-hidden">
      
           <div className='flex mx-auto justify-center gap-2 my-3'>
             <span className='font-[400] text-white text-[32px]'>Ticket hub</span>

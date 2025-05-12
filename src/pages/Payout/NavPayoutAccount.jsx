@@ -14,18 +14,18 @@ const NavPayoutAccount= () => {
         ${isActive ? 'border-b-1 border-b-three' : ''}`
       }
     >
-     History
+     pending
     
             </NavLink>
             <NavLink 
             
-              to="/PayoutAccount"
+              to="/HistoryPayout"
               className={({ isActive }) => 
                 `text-center py-3 px-4 text-gray-800 font-semibold border border-transparent transition-colors 
                 ${isActive ? 'border-b-1 border-b-three' : ''}`
               }
             >
-               pending  
+                 History
             </NavLink>
       
             <NavLink 

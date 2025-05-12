@@ -9,9 +9,9 @@ const Allpayot = () => {
     <div>
         <Routes>
         
-        <Route path="/" element={<HistoryPayout/>} />
+        <Route path="/" element={<PayoutAccount/>} />
         <Route path="/Cancelpayout" element={<Cancelpayout/>} />
-        <Route path="/PayoutAccount" element={<PayoutAccount/>} />
+        <Route path="/HistoryPayout" element={<HistoryPayout/>} />
         
       </Routes>
     </div>

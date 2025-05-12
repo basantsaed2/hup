@@ -1,18 +1,19 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Select from 'react-select';
 import { IoIosArrowDown } from "react-icons/io";
 
-const InputArrow = ({ placeholder, value, like, onChange, name }) => {
-  
-  const [arrayof, setArray] = useState([]);
-  const [control, setControl] = useState(name);
+const InputArrow = ({ placeholder, value, onChange, name ,like}) => {
+  const [options, setOptions] = useState([]);
 
-  const shape = like
-    ? "absolute top-[60%] left-43 md:left-65 w-[18px] h-[24px] transition group-focus-within:rotate-90"
-    : "absolute top-[60%] right-4 w-[18px] h-[24px] transition group-focus-within:rotate-90";
+  const mapDataToOptions = (data) => {
+    return data.map(item => ({
+      value: item.id || item.category_id,
+      label: item.name || item.category_name || item.bus_number,
+    }));
+  };
 
   useEffect(() => {
-    
     const token = localStorage.getItem('token');
 
     axios.get(`https://bcknd.ticket-hub.net/api/admin/${name}`, {
@@ -20,139 +21,92 @@ const InputArrow = ({ placeholder, value, like, onChange, name }) => {
         Authorization: `Bearer ${token}`,
       }
     })
-      .then(response => {
-        if (name === "countries") return setArray(response.data.countries);
-        if (name === "cities") return setArray(response.data.cities);
-        if (name === "zones") return setArray(response.data.zones);
-        if (name === "users") return setArray(response.data.users);
-        if (name === "car_categories") return setArray(response.data);
-        if (name === "car_brands") return setArray(response.data);
-        if (name === "operators") return setArray(response.data.operators);
-        if (name === "busses") return setArray(response.data.buses);
-        if (name === "currencies") return setArray(response.data.currancies);
-        if (name === "trainTypes") return setArray(response.data.trainTypes);
-        if (name === "trainRoutes") return setArray(response.data.routes);
-        if (name === "trainclasses") return setArray(response.data.trainClasses);
-        if (name === "agents") return setArray(response.data.agents);
-       
-      })
-      .catch(error => {
-        console.log(token);
-        console.error('Error fetching data:', error);
-      });
-  }, [name]);  
+    .then(response => {
+      let data = [];
+      if (name === "countries") data = response.data.countries;
+      else if (name === "cities") data = response.data.cities;
+      else if (name === "zones") data = response.data.zones;
+      else if (name === "users") data = response.data.users;
+      else if (name === "car_categories") data = response.data;
+      else if (name === "car_brands") data = response.data;
+      else if (name === "operators") data = response.data.operators;
+      else if (name === "busses") data = response.data.buses;
+      else if (name === "currencies") data = response.data.currancies;
+      else if (name === "trainTypes") data = response.data.trainTypes;
+      else if (name === "trainRoutes") data = response.data.routes;
+      else if (name === "trainclasses") data = response.data.trainClasses;
+      else if (name === "agents") data = response.data.agents;
+
+      setOptions(mapDataToOptions(data));
+    })
+    .catch(error => {
+      console.error('Error fetching  data:', error);
+    });
+  }, [name]);
+
+// const shape = like
+//   ? "absolute  z-1 top-[60%] left-42 md:left-65 w-[18px] h-[24px] transition group-focus-within:rotate-90"
+//   : "absolute    z-1 top-[60%] right-4 md:right-4 w-[18px] h-[24px] transition group-focus-within:rotate-90";
 
   return (
     <div className="relative group flex flex-col gap-3 items-start justify-center">
-      <IoIosArrowDown className={shape} />
-      <span className='font-bold  text-one'>{placeholder}</span>
-      <select
-        id="options"
-        value={value}
-        onChange={onChange}
-        name={name}
-        style={{
-          appearance: 'none',
-          WebkitAppearance: 'none',
-          MozAppearance: 'none',
-          paddingRight: '20px',
-          backgroundImage: 'none',
+       {/* <IoIosArrowDown className={shape} /> */}
+       <span className='font-bold  text-one'>{placeholder}</span>
+      <Select
+        options={options}
+        value={options.find(option => option.value === value)}
+        onChange={(selected) => {
+          onChange({ target: { value: selected?.value, name } });
         }}
-        className="w-[200px] md:w-[300px] h-[48px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven pl-10"
-      >
-        <option value="null">{placeholder}</option>
-        {arrayof && arrayof.length > 0 && arrayof.map((item) => {
-          if (control === "countries") {
-            return (
-              <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-            );
-          } else if (control === "cities") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          } else if (control === "trainclasses") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          } else if (control === "trainRoutes") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          } else if (control === "zones") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          } else if (control === "agents") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          } 
-          else if (control === "bus_types") {
-            return (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            );
-          }  else if (control === "users") {
-              return (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              );
-          }  else if (control === "car_categories") {
-              return (
-                <option key={item.id} value={item.id}>
-                  {item.name}
-                </option>
-              );
-          }  else if (control === "car_brands") {
-              return (
-                <option key={item.category_id} value={item.category_id}>
-                  {item.category_name}
-                </option>
-              );
-          }  else if (control === "operators") {
-              return (
-                <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-              );
-          }  else if (control === "busses") {
-              return (
-                <option key={item.id} value={item.id}>
-                {item.bus_number}
-              </option>
-              );
-          }  else if (control === "currencies") {
-              return (
-                <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-              );
-          }  else if (control === "trainTypes") {
-              return (
-                <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-              );
-          } else {
-            return null; 
-          }
-        })}
-      </select>
+        placeholder={` ${placeholder}`}
+        isSearchable
+        isClearable={false}
+        classNames={{
+          control: () => "Z-2  w-50 h-12 md:w-[300px] md:h-[72px] border-1 border-two rounded-[8px] placeholder-seven pl-10",
+          menu: () => ' bg-white border border-gray-200 rounded-md mt-1',
+          option: ({ isFocused }) =>
+            isFocused ? 'bg-gray-100 px-4 py-2 cursor-pointer' : 'px-4 py-2 cursor-pointer',
+        }}
+        styles={{
+          // dropdownIndicator: () => ({ display: 'none' }),
+          indicatorSeparator: () => ({ display: 'none' }),
+          control: (base) => ({
+            ...base,
+            boxShadow: 'none',
+            borderColor: '#E0E0E0',
+            ':hover': {
+              borderColor: '#999',
+            },
+            cursor: 'pointer',
+          }),
+          singleValue: (base) => ({
+            ...base,
+            color: '#333',
+          }),
+          placeholder: (base) => ({
+            ...base,
+            color: '#aaa',
+          }),
+        }}
+        noOptionsMessage={() =>"No Results "}
+      />
     </div>
+  );
+};
+
+const DropdownIndicator = (props) => {
+  const { menuIsOpen } = props.selectProps;
+  return (
+    <components.DropdownIndicator {...props}>
+      <IoIosArrowDown
+        size={20}
+        color="#888"
+        style={{
+          transform: menuIsOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+          transition: 'transform 0.2s ease',
+        }}
+      />
+    </components.DropdownIndicator>
   );
 };
 

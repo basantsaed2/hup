@@ -7,7 +7,8 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import InputField from '../../ui/InputField';
 import FileUploadButton from '../../ui/FileUploadButton';
-import Inputfiltter from '../../ui/Inputfiltter';
+// import Inputfiltter from '../../ui/Inputfiltter';
+import InputOperatorer from '../../ui/InputOperator';
 
 const AddAgents = () => {
   const navigate = useNavigate();
@@ -160,7 +161,7 @@ const AddAgents = () => {
     if (!hiaceCommission) formErrors.hiaceCommission = 'hiaceCommission is required';
     if (!privaterequset) formErrors.hiaceCommission = 'privaterequset is required';
     else if (!/^[+]?\d+$/.test(phone)) formErrors.phone = 'Phone should contain only numbers or start with a "+"';
-    if (!flag && !edit) formErrors.flag = 'Flag is required';
+    if (!flag && !edit) formErrors.flag = 'image is required';
 
     if (enableTrain && isNaN(trainCommission)) formErrors.trainCommission = 'Train commission must be a number';
     if (enableBus && isNaN(busCommission)){ formErrors.busCommission = 'Bus commission must be a number';
@@ -214,9 +215,18 @@ const AddAgents = () => {
           toast.success('Operator updated successfully');
           setTimeout(() => navigate('/Agents'), 2000);
         })
-        .catch((error) =>{
-          toast.error(error);}
-      );
+      .catch((error) => {
+  const errors = error?.response?.data?.message;
+
+  // استخراج أول رسالة من أول مفتاح
+  if (errors && typeof errors === 'object') {
+    const firstKey = Object.keys(errors)[0];
+    const firstMessage = errors[firstKey][0];
+    toast.error(firstMessage);
+  } else {
+    toast.error("Something went wrong.");
+  }
+});
       return;
     }
 
@@ -226,17 +236,13 @@ const AddAgents = () => {
       .then(() => {
         toast.success('Operator added successfully');
         setTimeout(() => navigate('/Agents'), 2000);
-      })
-      .catch(error => {
-        toast.error(error);
-      });
-
-    setDescription('');
+          setDescription('');
     setName('');
     setEmail('');
     setPassword('');
     setPhone('');
     setFlag(null);
+    setOriginalFlag(null)
     setEdit(false);
     setTrainCommission('');
      setBusCommission('');
@@ -253,6 +259,20 @@ setEnableprivate(false);
   setfixedthree(true)
   setEnableprivate(false)
   setprivaterequset('')
+      })
+   .catch((error) => {
+  const errors = error?.response?.data?.message;
+
+  // استخراج أول رسالة من أول مفتاح
+  if (errors && typeof errors === 'object') {
+    const firstKey = Object.keys(errors)[0];
+    const firstMessage = errors[firstKey][0];
+    toast.error(firstMessage);
+  } else {
+    toast.error("Something went wrong.");
+  }
+});
+  
   };
 // Train
 useEffect(() => {
@@ -355,7 +375,7 @@ if (loading) {
           </label>
           {enableTrain && (
             <>
-              <Inputfiltter
+              <InputOperatorer
 //
 name="swticher"
 placeholder="type"
@@ -400,7 +420,7 @@ placeholder="type"
           </label>
           {enableBus && (
             <>
-              <Inputfiltter
+              <InputOperatorer
               //
         name="swticher"
                         placeholder="type"
@@ -445,7 +465,7 @@ placeholder="type"
           </label>
           {enableHiace && (
             <>
-              <Inputfiltter
+              <InputOperatorer
               //
         name="swticher"
         

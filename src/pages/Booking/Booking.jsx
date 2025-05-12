@@ -7,8 +7,8 @@ const Booking = () => {
   return (
     <Routes>
         
-    <Route path="/" element={<BookingHistory/>} />
-    <Route path="/CurrentBookings" element={<CurrentBookings/>} />
+    <Route path="/" element={<CurrentBookings/>} />
+    <Route path="/BookingHistory" element={<BookingHistory/>} />
     <Route path="/CanceledBooking" element={<CanceledBooking/>} />
     
   </Routes>
