@@ -68,14 +68,25 @@ const Agents = () => {
   };
   const show = (commissions) => {
     const commission = commissions[0]; 
-  if(commission){
-    Swal.fire({
-      title: `Commission train: ${commission.train}
-      Commission bus: ${commission.bus}
-      Commission hiace: ${commission.hiace}`,
-      // icon: 'success',
-      // confirmButtonText: 'OK', // زر "OK" بعد عرض القيمة
-    });}
+ if (commission) {
+  let message = '';
+  
+  if (commission.train !== null) {
+    message += `Commission train: ${commission.train}\n`;
+  }
+  if (commission.bus !== null) {
+    message += `Commission bus: ${commission.bus}\n`;
+  }
+  if (commission.hiace !== null) {
+    message += `Commission hiace: ${commission.hiace}\n`;
+  }
+
+  Swal.fire({
+    title: message.trim(), // يحذف الفراغ الأخير
+    // icon: 'success',
+    // confirmButtonText: 'OK',
+  });
+}
     else{
       Swal.fire({
         title: ` no Commissions `,
@@ -157,13 +168,13 @@ const labelMap = {
             <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
                 S/N
               </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">name</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">phone</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">points </th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">role </th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">email </th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">commission</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">image</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Name</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Phone</th>
+              {/* <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Points </th> */}
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Role </th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Email </th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Commission</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Image</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>
@@ -176,7 +187,7 @@ const labelMap = {
                 </td>
                 <td className="w-[143px] h-[56px]  text-[12px] px-2  ">{item?.name??"N//A"}</td>
                 <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.phone??"N//A"}</td>
-                <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.points??"N//A"}</td>
+                {/* <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.points??"N//A"}</td> */}
                 <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.role??"N//A"}</td>
                 <td className="w-[143px] h-[56px]  text-[12px]   ">{item?.email??"N//A"}</td>
                 <td className="w-[143px] h-[56px]  text-[12px]  underline  "><button
@@ -209,35 +220,35 @@ const labelMap = {
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
                     <div className="flex gap-4">
-                      <strong>name:</strong>
+                      <strong>Name:</strong>
                       <span>{item?.name??"N//A"}</span>
                     </div>
 
                     <div className="flex gap-4">
-                      <strong>phone:</strong>
+                      <strong>Phone:</strong>
                       <span>{item?.phone??"N//A"}</span>
                     </div>
 
-                    <div className="flex gap-4">
-                      <strong>points:</strong>
+                    {/* <div className="flex gap-4">
+                      <strong>Points:</strong>
                       <span>{item?.points??"N//A"}</span>
-                    </div>
+                    </div> */}
 
                     <div className="flex gap-4">
-                      <strong>role:</strong>
+                      <strong>Role:</strong>
                       <span>{item?.role??"N//A"}</span>
                     </div>
 
                     <div className="flex gap-4">
-                      <strong>email:</strong>
+                      <strong>Email:</strong>
                       <span>{item?.email??"N//A"}</span>
                     </div>
 
                     <div className="flex gap-4">
-                      <strong>commission:</strong>
+                      <strong>Commission:</strong>
                       <button
                 className='bg-three px-2  rounded-4xl py-1'
-                onClick={()=>show(item.commissions)}>commission</button>
+                onClick={()=>show(item.commissions)}>Commission</button>
                                     </div>
                     <div className="flex gap-4">
                       <strong>image:</strong>

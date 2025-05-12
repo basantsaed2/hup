@@ -122,9 +122,20 @@ const Payments = () => {
             (currentPage - 1) * rowsPerPage,
             currentPage * rowsPerPage
           );
+                const [isModalOpen, setIsModalOpen] = useState(false);
+            const [modalImage, setModalImage] = useState('');
         useEffect(() => {
           setCurrentPage(1);
         }, [searchQuery]);
+         const openModal = (image) => {
+    setModalImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage('');
+  }
   return (
     <div>
               <ToastContainer />
@@ -154,12 +165,12 @@ const Payments = () => {
                 <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
                 S/N
               </th>
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">amount</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">receipt </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">travelers</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">travel_date</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">total</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">status</th>
+                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Amount</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Receipt </th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Travelers</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Travel_date</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Total</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
                   <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
                 </tr>
               </thead>
@@ -170,8 +181,14 @@ const Payments = () => {
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
                     <td className="w-[143px] h-[56px]  text-[14px] px-2 ">{item?.amount??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[14px] ">  <img  className="w-5 h-5"src={item.receipt_image===null?`data:image/png;base64,${item.receipt_image}`:item.receipt_image}/> </td>
-                    <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.travelers??"N//A"}</td>
+ <td className="w-[143px] h-[56px] text-[16px]">
+            <img
+              className="w-10 h-10 cursor-pointer"
+              src={item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image}
+              alt="Receipt"
+              onClick={() => openModal(item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image)}
+            />
+          </td>                          <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.travelers??"N//A"}</td>
                     <td className="w-[143px] h-[56px]  text-[14px] ">{item?.travel_date??"N//A"}</td>
                     <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.total??"N//A"}</td>
                     <td className="w-[143px]  h-[56px]  text-[14px]  text-nine  "><span className="bg-eight font-normal rounded-[8px]">{item.status }</span></td>
@@ -197,18 +214,20 @@ const Payments = () => {
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
               <div className="flex gap-4">
-                <strong>amount:</strong>
+                <strong>Amount:</strong>
                 <span>{item?.amount??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-          <strong>receipt:</strong>
-          <img 
-            className="w-5 h-5"
+          <strong>Receipt:</strong>
+       <img 
             src={item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image}
+              className="w-5 h-5 cursor-pointer"
+              alt="Receipt"
+              onClick={() => openModal(item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image)}
           />
         </div>
               <div className="flex gap-4">
-                <strong>travelers:</strong>
+                <strong>Travelers:</strong>
                 <span>{item?.travelers??"N//A"}</span>
               </div>
               <div className="flex gap-4">
@@ -217,7 +236,7 @@ const Payments = () => {
               </div>
          
               <div className="flex gap-4">
-                <strong>total:</strong>
+                <strong>Total:</strong>
                 <span>{item?.total??"N//A"}</span>
               </div>
               <div className="flex gap-4">
@@ -256,6 +275,23 @@ const Payments = () => {
                 shape="rounded"
               />
             </div>
+                    {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 bg-opacity-70 flex justify-center items-center z-50">
+          <div className="relative">
+            <img
+              src={modalImage}
+              alt="no Image"
+              className="max-w-full max-h-[80vh] object-contain"
+            />
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-black text-6xl"
+            >
+              &times; 
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

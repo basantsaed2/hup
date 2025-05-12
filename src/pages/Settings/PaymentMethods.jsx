@@ -132,7 +132,7 @@ const PaymentMethods = () => {
                 S/N
               </th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> image</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> Image</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
@@ -184,7 +184,7 @@ const PaymentMethods = () => {
               <span className="bg-eight font-normal p-1 rounded-[8px] text-nine">{item.status}</span>
             </div>
             <div className="flex gap-4">
-              <strong>image:</strong>
+              <strong>Image:</strong>
               <img 
                 className="w-5 h-5"
                 src={item.image === null ? `data:image/png;base64,${item.image}` : item.image}

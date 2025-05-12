@@ -72,14 +72,14 @@ const AddAgents = () => {
         setOriginalFlag(sendData.image);
       }
   
-    
-      setEnableTrain(true);
-      setEnableBus(true);
-      setEnableHiace(true);
-      setEnableprivate(true);
+    const commission = sendData.commissions?.[0];
+
+setEnableTrain(commission?.train != null);
+setEnableBus(commission?.bus != null);
+setEnableHiace(commission?.hiace != null);
+setEnableprivate(commission?.privateRequest != null);
     
       const token = localStorage.getItem('token');
-      const commission = sendData.commissions[0];
       console.log(commission)
       axios.get("https://bcknd.ticket-hub.net/api/admin/defaultCommission", {
         headers: {
@@ -156,10 +156,10 @@ const AddAgents = () => {
     if (!email.includes('@gmail.com')) formErrors.email = 'Email should contain @gmail.com';
     if (!edit && password.length < 8) formErrors.password = 'Password must be at least 8 characters';
     if (!phone) formErrors.phone = 'Phone is required';
-    if (!trainCommission) formErrors.trainCommission = 'trainCommission is required';
-    if (!busCommission) formErrors.busCommission = 'busCommission is required';
-    if (!hiaceCommission) formErrors.hiaceCommission = 'hiaceCommission is required';
-    if (!privaterequset) formErrors.hiaceCommission = 'privaterequset is required';
+    // if (!trainCommission) formErrors.trainCommission = 'trainCommission is required';
+    // if (!busCommission) formErrors.busCommission = 'busCommission is required';
+    // if (!hiaceCommission) formErrors.hiaceCommission = 'hiaceCommission is required';
+    // if (!privaterequset) formErrors.hiaceCommission = 'privaterequset is required';
     else if (!/^[+]?\d+$/.test(phone)) formErrors.phone = 'Phone should contain only numbers or start with a "+"';
     if (!flag && !edit) formErrors.flag = 'image is required';
 
@@ -335,7 +335,7 @@ if (loading) {
 
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
-      <AddAll navGo='/Agents' name="Add Agents" />
+      <AddAll navGo='/Agents' name= {edit?"Edit operator":"Add operator"}  />
       <div className="flex flex-wrap gap-6 mt-6">
         <InputField placeholder="Name" name="name" value={name} onChange={handleChange} required />
         <InputField placeholder="Description" name="description" value={description} onChange={handleChange} required />
@@ -520,12 +520,16 @@ placeholder="type"
 </div>
    
 
-      <div className="flex gap-3">
-      <button onClick={handleSave}>
-            <img className="my-6 w-75 h-20" src={picdone} alt="Save" />
-            </button>
-      </div>
+   <div className="flex gap-3">
+     
+        <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>
+              <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Eidt":"Add"}</span>
+               <span className='absolute w-20 h-20 right-45 lg:right-60 z-2 bg-three top-0 transform transition rotate-45'></span>
+               <span className='absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30'></span>
 
+
+          </button>
+      </div>
       <ToastContainer />
     </div>
   );

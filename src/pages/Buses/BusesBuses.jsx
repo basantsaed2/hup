@@ -128,8 +128,8 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
       <thead className="w-full">
             <tr className='bg-four w-[1012px] h-[56px]'>
             <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">S/N</th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">agent </th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">email</th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">Agent </th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Email</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Number</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Capacity</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Bus Image</th>
@@ -184,15 +184,15 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
                 <span>{(currentPage - 1) * rowsPerPage + index + 1}</span>
               </div>
               <div className="flex gap-4">
-                <strong>agent:</strong>
+                <strong>Agent:</strong>
                 <span>{item?.agent_name??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>email:</strong>
+                <strong>Email:</strong>
                 <span>{item?.agent_email??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>bus number:</strong>
+                <strong>Bus number:</strong>
                 <span>{item?.bus_number??"N//A"}</span>
               </div>
               <div className="flex gap-4">
@@ -200,7 +200,7 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
                 <span>{item?.capacity??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-          <strong>bus Image:</strong>
+          <strong>Bus Image:</strong>
           <img 
             className="w-5 h-5"
             src={item.bus_image === null ? `data:image/png;base64,${item.bus_image}` : item.bus_image}

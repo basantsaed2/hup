@@ -129,15 +129,15 @@ const Currency = () => {
             <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
                 S/N
               </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">name</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">symbol </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Name</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Symbol </th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>
           <tbody>
 
-            {filteredData.map((item, index) => (
+            {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
                        <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
@@ -170,18 +170,18 @@ const Currency = () => {
       </div>
       <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
-          {filteredData.map((item, index) => (
+          {paginatedData.map((item, index) => (
             <div key={index} className='flex flex-col gap-4 p-3'>
                 <div className="flex gap-4">
                 <strong>S/N :</strong>
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
               <div className="flex gap-4">
-                <strong>name:</strong>
+                <strong>Name:</strong>
                 <span>{item?.name??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>symbol:</strong>
+                <strong>Symbol:</strong>
                 <span>{item?.symbol??"N//A"}</span>
               </div>
               <div className="flex gap-2">

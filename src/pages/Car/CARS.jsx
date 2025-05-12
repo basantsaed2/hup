@@ -143,14 +143,14 @@ const labelMap = {
             <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
                 S/N
               </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> model</th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> category</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">brand</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">agent</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">car number</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">car color</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Model</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> Category</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Brand</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Agent</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Car Number</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Car Color</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">year</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">status</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>
@@ -197,39 +197,39 @@ const labelMap = {
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
                   <div className="flex gap-4">
-                    <strong>model:</strong>
+                    <strong>Model:</strong>
                     <span>{item?.model_name??"N//A"}</span>
                   </div>
                 
                   <div className="flex gap-4">
-                    <strong>image:</strong>
+                    <strong>Image:</strong>
                     <img 
                       className="w-5 h-5"
                       src={item.image === null ? `data:image/png;base64,${item.image}` : item.image}
                     />
                   </div>
                   <div className="flex gap-4">
-                    <strong>category:</strong>
+                    <strong>Category:</strong>
                     <span>{item?.category_name??"N//A"}</span>
                   </div>
                   <div className="flex gap-4">
-                    <strong>brand:</strong>
+                    <strong>Brand:</strong>
                     <span>{item?.brand_name??"N//A"}</span>
                   </div>
                   <div className="flex gap-4">
-                    <strong>agent:</strong>
+                    <strong>Agent:</strong>
                     <span>{item?.agent_name??"N//A"}</span>
                   </div>
                   <div className="flex gap-4">
-                    <strong>car number:</strong>
+                    <strong>Car Number:</strong>
                     <span>{item?.car_number??"N//A"}</span>
                   </div>
                   <div className="flex gap-4">
-                    <strong>car color:</strong>
+                    <strong>Car Color:</strong>
                     <span>{item?.car_color??"N//A"}</span>
                   </div>
                   <div className="flex gap-4">
-                    <strong>year:</strong>
+                    <strong>Year:</strong>
                     <span>{item?.car_year??"N//A"}</span>
                   </div>
                   <div className='flex'>

@@ -140,7 +140,7 @@ const labelMap = {
               </th>
 
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">brand name</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Brand Name</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>

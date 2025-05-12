@@ -136,11 +136,11 @@ to_city:"to city"
                 S/N
               </th>
 
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">train Route </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">from country </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">from city </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">to country </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">to city </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Train Route </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">From country </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">From city </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">To country </th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">To city </th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>
@@ -181,23 +181,23 @@ to_city:"to city"
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
               <div className="flex gap-4">
-                <strong>train Route:</strong>
+                <strong>Train Route:</strong>
                 <span>{item?.name??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>from country :</strong>
+                <strong>From country :</strong>
                 <span>{item?.from_country??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>from city :</strong>
+                <strong>From city :</strong>
                 <span>{item?.from_city??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>to country :</strong>
+                <strong>To country :</strong>
                 <span>{item?.to_country??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>to city:</strong>
+                <strong>To city:</strong>
                 <span>{item?.to_city??"N//A"}</span>
               </div>
               

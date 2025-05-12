@@ -61,9 +61,9 @@ const Commission = () => {
 <table className="w-full border-y border-x border-black ">
 <thead  className="w-full">
                 <tr className='bg-four w-[1012px] h-[56px]' >
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">train </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">bus </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">hiace</th>
+                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Train </th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Bus </th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Hiace</th>
                   <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Action</th>
 
                 </tr>
@@ -89,19 +89,19 @@ const Commission = () => {
           <div className='w-[95%] bg-six'>
               <div className='flex flex-col gap-4 p-3'>
                 <div className="flex gap-4">
-                  <strong>train:</strong>
+                  <strong>Train:</strong>
                   <span>{data.train}%</span>
                 </div>
                 <div className="flex gap-4">
-                  <strong>bus:</strong>
+                  <strong>Bus:</strong>
                   <span>{data.bus}%</span>
                 </div>
                 <div className="flex gap-4">
-                  <strong>train:</strong>
+                  <strong>Train:</strong>
                   <span>{data.hiace}%</span>
                 </div>
                 <div className="flex gap-4">
-                  <strong>hiace:</strong>
+                  <strong>Hiace:</strong>
                   <span>{data.train}%</span>
                 </div>
                 

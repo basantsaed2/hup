@@ -201,11 +201,11 @@ const TypeBuses = () => {
           <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
         </div>
               <div className="flex gap-4">
-                <strong>agent:</strong>
+                <strong>Agent:</strong>
                 <span>{item?.name??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>bus Image:</strong>
+                <strong>Bus Image:</strong>
                 <img
                   className="w-5 h-5"
                   src={item.bus_image === null ? `data:image/png;base64,${item.bus_image}` : item.bus_image}
@@ -213,7 +213,7 @@ const TypeBuses = () => {
               </div>
 
               <div className="flex gap-4">
-                <strong>plan image :</strong>
+                <strong>Plan image :</strong>
                 <img
                   className="w-5 h-5"
                   src={item.plan_image === null ? `data:image/png;base64,${item.plan_image}` : item.plan_image}
@@ -230,7 +230,7 @@ const TypeBuses = () => {
               </div>
 
               <div className="flex gap-4">
-                <strong>seat_count:</strong>
+                <strong>Seat_count:</strong>
                 <span>{item?.seat_count??"N//A"}</span>
               </div>
               <div className="flex gap-4">

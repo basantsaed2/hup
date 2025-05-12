@@ -127,8 +127,8 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
             <tr className='bg-four w-[1012px] h-[56px]'>
             <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">S/N</th>
 
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">agent </th>
-              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">email</th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left pl-3">Agent </th>
+              <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Email</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Capacity</th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left"> Hiace Number </th>
               <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Hiace Image</th>
@@ -183,11 +183,11 @@ const cheose = ["Filter","agent_name", "agent_email", "capacity","status",
           <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
         </div>
               <div className="flex gap-4">
-                <strong>agent:</strong>
+                <strong>Agent:</strong>
                 <span>{item?.agent_name??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>email:</strong>
+                <strong>Email:</strong>
                 <span>{item?.agent_email??"N//A"}</span>
               </div>
               <div className="flex gap-4">

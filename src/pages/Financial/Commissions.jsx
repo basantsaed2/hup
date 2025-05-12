@@ -53,6 +53,18 @@ const Commissions = () => {
       total:"total",
       status:"status"
     };
+      const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState('');
+
+  const openModal = (image) => {
+    setModalImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage('');
+  }
     const [currentPage, setCurrentPage] = useState(1);
        const rowsPerPage = 10;
           const pageCount = Math.ceil(filteredData.length / rowsPerPage);
@@ -94,12 +106,12 @@ const Commissions = () => {
                 S/N
               </th>
 
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">amount</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">receipt image</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">travelers</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">travel_date</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">total</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">status</th>
+                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Amount</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Receipt Image</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Travelers</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Travel_date</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Total</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,8 +122,14 @@ const Commissions = () => {
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
                     <td className="w-[143px] h-[56px]  text-[16px] px-2">{item?.amount??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">  <img  className="w-5 h-5"src={item.receipt_image===null?`data:image/png;base64,${item.receipt_image}`:item.receipt_image}/> </td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.travelers??"N//A"}</td>
+ <td className="w-[143px] h-[56px] text-[16px]">
+            <img
+              className="w-10 h-10 cursor-pointer"
+              src={item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image}
+              alt="Receipt"
+              onClick={() => openModal(item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image)}
+            />
+          </td>                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.travelers??"N//A"}</td>
                     <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.travel_date??"N//A"}</td>
                     <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.total??"N//A"}</td>
                     <td className="w-[143px]  h-[56px]  text-[16px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
@@ -130,27 +148,29 @@ const Commissions = () => {
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
               <div className="flex gap-4">
-                <strong>amount:</strong>
+                <strong>Amount:</strong>
                 <span>{item?.amount??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-          <strong>receipt:</strong>
+          <strong>Receipt:</strong>
           <img 
-            className="w-5 h-5"
             src={item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image}
+              className="w-5 h-5 cursor-pointer"
+              alt="Receipt"
+              onClick={() => openModal(item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image)}
           />
         </div>
               <div className="flex gap-4">
-                <strong>travelers:</strong>
+                <strong>Travelers:</strong>
                 <span>{item?.travelers??"N//A"}</span>
               </div>
               <div className="flex gap-4">
-                <strong>travel_date:</strong>
+                <strong>Travel_date:</strong>
                 <span>{item?.travel_date??"N//A"}</span>
               </div>
        
               <div className="flex gap-4">
-                <strong>total:</strong>
+                <strong>Total:</strong>
                 <span>{item?.total??"N//A"}</span>
               </div>
               <div className="flex gap-4">
@@ -184,6 +204,23 @@ const Commissions = () => {
                 shape="rounded"
               />
             </div>
+            {isModalOpen && (
+        <div className="fixed inset-0 bg-black/50 bg-opacity-70 flex justify-center items-center z-50">
+          <div className="relative">
+            <img
+              src={modalImage}
+              alt="no Image"
+              className="max-w-full max-h-[80vh] object-contain"
+            />
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-black text-6xl"
+            >
+              &times; 
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

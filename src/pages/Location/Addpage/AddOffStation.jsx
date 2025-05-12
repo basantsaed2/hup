@@ -8,10 +8,14 @@ import picdone from '../../../assets/picdone.svg';
 import InputArrow from '../../../ui/InputArrow'
 import SwitchButton from '../../../ui/SwitchButton';
 import InputField from '../../../ui/InputField'
-import Inputfiltter from '../../../ui/Inputfiltter'
+import Inputfiltter from '../../../ui/Inputfiltter';
+import GetLocationLink from '../../../ui/GetLocationLink';
 
 
 const AddOffStation = () => {
+    const [namegoogle, setnamegoogle] = useState('');
+  const [google, setgoogle] = useState('');
+
   const navigate = useNavigate();
   const location = useLocation();
   const [country, setCountry] = useState('');
@@ -29,6 +33,7 @@ const AddOffStation = () => {
     city: "",
     name: '',
     zone: '',
+    google: '',
   });
   useEffect(() => {
     const { sendData } = location.state || {};
@@ -62,6 +67,7 @@ const AddOffStation = () => {
     if (!name) formErrors.name = 'name is required';
     if (!city) formErrors.city = 'city is required';
     if (!zone) formErrors.zone = 'zone is required';
+    // if (!google) formErrors.google = 'google-map is required';
     if (pickup === "0" && dropoff === "0") formErrors.check = "At least choose one"
     setErrors(formErrors);
     Object.values(formErrors).forEach((error) => {
@@ -71,6 +77,8 @@ const AddOffStation = () => {
   };
 
   const handleSave = () => {
+        console.log(google)
+
     if (!validateForm()) {
       return;
     }
@@ -84,6 +92,8 @@ const AddOffStation = () => {
       pickup: pickup,
       dropoff: dropoff,
       zone_id: zone,
+            location:"https://maps.google.com/?q=30.493888070301598,30.763831292120003",
+
       basic_station: "0"
     };
 
@@ -126,6 +136,7 @@ const AddOffStation = () => {
     setpickup("0")
     setdropoff("0")
     setValue("inactive");
+    setgoogle('');
 
     setCountry('');
     setName('');
@@ -143,7 +154,7 @@ const AddOffStation = () => {
   return (
     <div className='ml-6 flex flex-col  mt-6 gap-6'>
 
-      <AddAll navGo='/Location/Stations' name="add Stations" />
+      <AddAll navGo='/Location/Stations' name={edit?"Edit Stations":"Add Stations"} />
       <div className='flex flex-wrap gap-6  mt-6'>
         <InputField placeholder="Stations"
           name="name"
@@ -180,10 +191,26 @@ const AddOffStation = () => {
       <SwitchButton value={valuee} setValue={setValue} />
       <SwitchButton value={pickup} num title="pickup" setValue={setpickup} />
       <SwitchButton value={dropoff} num title="dropoff" setValue={setdropoff} />
+   {/* <div className=" flex flex-col my-3 ">
+        <span className="text-2xl  text-black ">Place</span>
+        <div className="flex flex-wrap gap-6 mt-6 bg-eight p-5">
+        <GetLocationLink
+            google={google} // تمرير الإحداثيات هنا
+            setnamegoogle={setnamegoogle}
+            onLocationChange={(location) => setgoogle(location)}
+          />
+                  </div>
+      </div> */}
+     <div className="flex gap-3">
+     
+        <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>
+              <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Eidt":"Add"}</span>
+               <span className='absolute w-20 h-20 right-45 lg:right-60 z-2 bg-three top-0 transform transition rotate-45'></span>
+               <span className='absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30'></span>
 
-      <button onClick={handleSave}>
-      <img className="my-6 w-75 h-20" src={picdone} alt="Save" />
-      </button>
+
+          </button>
+      </div>
       <ToastContainer />
 
 

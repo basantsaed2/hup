@@ -34,7 +34,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
   const menuItems = [
     { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Homes" },
     { icon: <IconUser />, iconactive: <IconUser active />, text: "User", href: "/User" },
-        { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operator", href: "/Agents" },
+        { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operators", href: "/Agents" },
 
     { icon: <IconLocation />, iconactive: <IconLocation active />, text: "Location", href: "/Location" },
     { icon: <IconBuses />, iconactive: <IconBuses active />, text: "Buses", href: "/Buses" },

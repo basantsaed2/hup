@@ -137,7 +137,7 @@ const [currentPage, setCurrentPage] = useState(1);
                 S/N
               </th>
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">category </th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Category </th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
             </tr>
           </thead>
@@ -190,7 +190,7 @@ const [currentPage, setCurrentPage] = useState(1);
                     />
                   </div>
                   <div className="flex gap-4">
-                    <strong>category :</strong>
+                    <strong>Category :</strong>
                     <span>{item?.category_name??"N//A"}</span>
                   </div>
                   <div className='flex'>

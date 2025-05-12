@@ -136,14 +136,14 @@ const labelMap = {
                       <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
                 S/N
               </th>
-                        <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3">name</th>
-                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">type</th>
-                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">date</th>
-                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">departure time</th>
-                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">arrival time</th>
+                        <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3">Name</th>
+                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Type</th>
+                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Date</th>
+                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Departure Time</th>
+                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Arrival Time</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">price</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">currency </th>
-                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left"> status</th>
+                        <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left"> Status</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Action</th>
                       </tr>
                     </thead>
@@ -187,31 +187,31 @@ const labelMap = {
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
                         <div className="flex gap-4">
-                          <strong>name:</strong>
+                          <strong>Name:</strong>
                           <span>{item?.name??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>type:</strong>
+                          <strong>Type:</strong>
                           <span>{item?.trip_type??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>date:</strong>
+                          <strong>Date:</strong>
                           <span>{item?.date??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>departure time:</strong>
+                          <strong>Departure Time:</strong>
                           <span>{item?.departure_time??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>arrival time:</strong>
+                          <strong>Arrival Time:</strong>
                           <span>{item?.arrival_time??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>price:</strong>
+                          <strong>Price:</strong>
                           <span>{item?.price??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
-                          <strong>currency:</strong>
+                          <strong>Currency:</strong>
                           <span>{item?.currency_name??"N//A"}</span>
                         </div>
 

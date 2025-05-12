@@ -96,9 +96,9 @@ return (
               </th>
 
               <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> date</th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> amount</th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">currency</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Date</th>
+              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left"> Amount</th>
+              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Currency</th>
               {/* <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">agent</th> */}
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
             </tr>
@@ -134,19 +134,19 @@ return (
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
             <div className="flex gap-4">
-              <strong>date:</strong>
+              <strong>Date:</strong>
               <span>{item?.date?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>amount:</strong>
+              <strong>Amount:</strong>
               <span>{item?.amount?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>currency:</strong>
+              <strong>Currency:</strong>
               <span>{item?.currency?.name??"N//A"}{item?.currency?.symbol?? "N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>agent:</strong>
+              <strong>Agent:</strong>
               <span>{item?.agent?.name??"N//A"}</span>
             </div>
             <div className="flex gap-4">

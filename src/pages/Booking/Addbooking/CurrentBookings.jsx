@@ -164,11 +164,11 @@ const [currentPage, setCurrentPage] = useState(1);
                 S/N
               </th>
 
-                <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">destenation_from </th>
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">destenation_to</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">date </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">seats_count</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">code</th>
+                <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Destenation_from </th>
+                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Destenation_to</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Date </th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Seats_count</th>
+                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Code</th>
                   <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
                   <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
 
@@ -209,27 +209,27 @@ const [currentPage, setCurrentPage] = useState(1);
                 <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
               </div>
               <div className="flex gap-4">
-                <strong>destenation_from:</strong>
+                <strong>Destenation_from:</strong>
                 <span>{item.destenation_from}</span>
               </div>
              
               <div className="flex gap-4">
-                <strong>destenation_to:</strong>
+                <strong>Destenation_to:</strong>
                 <span>{item.destenation_to}</span>
               </div>
              
               <div className="flex gap-4">
-                <strong>date:</strong>
+                <strong>Date:</strong>
                 <span>{item.date}</span>
               </div>
              
               <div className="flex gap-4">
-                <strong>seats_count:</strong>
+                <strong>Seats_count:</strong>
                 <span>{item.seats_count}</span>
               </div>
              
               <div className="flex gap-4">
-                <strong>code:</strong>
+                <strong>Code:</strong>
                 <span>{item.code}</span>
               </div>
              

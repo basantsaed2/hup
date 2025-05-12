@@ -136,11 +136,11 @@ country:"country",
                 S/N
               </th>
                     <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Class </th>
-                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">agent </th>
+                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Agent </th>
                     <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">type </th>
-                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">route </th>
+                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Route </th>
                     <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Class </th>
-                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">country </th>
+                    <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Country </th>
                     <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Status </th>
                     <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
                 </tr>
@@ -191,7 +191,7 @@ country:"country",
               <span>{item?.name??"N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>agent:</strong>
+              <strong>Agent:</strong>
               <span>{item?.agent??"N//A"}</span>
             </div>
             <div className="flex gap-4">
@@ -199,7 +199,7 @@ country:"country",
               <span>{item?.type??"N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>route:</strong>
+              <strong>Route:</strong>
               <span>{item?.route??"N//A"}</span>
             </div>
             <div className="flex gap-4">
@@ -207,7 +207,7 @@ country:"country",
               <span>{item?.name??"N//A"}</span>
             </div>
             <div className="flex gap-4">
-              <strong>country:</strong>
+              <strong>Country:</strong>
               <span>{item?.country??"N//A"}</span>
             </div>
             <div className="flex gap-4">

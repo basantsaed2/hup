@@ -121,7 +121,7 @@ country:"country",
             <th className="text-left px-2 ">S/N</th>
             <th className="text-left px-2 ">Route</th>
               <th className="text-left px-2">Date</th>
-              <th className="text-left ">country </th>
+              <th className="text-left ">Country </th>
               <th className="text-left px-2">Time</th>
               <th className="text-left px-2">Booking</th>
             </tr>
@@ -175,12 +175,12 @@ country:"country",
               </div>
              
               <div className="flex gap-4">
-                <strong>country residence:</strong>
+                <strong>Country residence:</strong>
                 <span>{item?.trip?.country.name??"N//A"}</span>
               </div>
              
               <div className="flex gap-4">
-                <strong>city:</strong>
+                <strong>City:</strong>
                 <span>{item?.city??"N//A"}</span>
               </div>
              
