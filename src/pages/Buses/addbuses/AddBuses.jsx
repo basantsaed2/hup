@@ -232,7 +232,7 @@ const AddBuses = () => {
         </div>
         <div className='flex items-end justify-center'>
 
-        <Aminites selectedDays={selectedDays} setSelectedDays={setSelectedDays} />
+        <Aminites placeholder="aminites"  name="aminites" selectedDays={selectedDays} setSelectedDays={setSelectedDays} />
 
       </div>
         <SwitchButton value={status} title='status' setValue={setStatus} />

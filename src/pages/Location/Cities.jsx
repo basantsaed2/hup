@@ -170,6 +170,7 @@ const cheose = ["Filter","country_name", "name", "status"]
           </tbody>
         </table>
       </div>
+      
       <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
           {paginatedData.map((item, index) => (

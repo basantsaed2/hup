@@ -9,12 +9,27 @@ import InputArrow from '../../../ui/InputArrow'
 import SwitchButton from '../../../ui/SwitchButton';
 import InputField from '../../../ui/InputField'
 import Inputfiltter from '../../../ui/Inputfiltter';
-import GetLocationLink from '../../../ui/GetLocationLink';
+// import GetLocationLink from '../../../ui/GetLocationLink';
+import MapPicker from '../../../ui/MapPicker';
 
 
 const AddOffStation = () => {
-    const [namegoogle, setnamegoogle] = useState('');
-  const [google, setgoogle] = useState('');
+ const [locat, setLocation] = useState({
+    lat: 30.033333, // القاهرة
+    lng: 31.233334,
+  });
+   const updateLocation = (newLocation) => {
+    setLocation(newLocation);
+  };
+//     const [namegoogle, setnamegoogle] = useState('');
+//     const [tourPickUp, setTourPickUp] = useState({
+//       pick_up_country: '',
+//       pick_up_city: '',
+//       pick_up_map: '',
+//       lat: 31.2001, // Default latitude (Alexandria)
+//       lng: 29.9187, // Default longitude 
+// });
+//   const [google, setgoogle] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,6 +43,19 @@ const AddOffStation = () => {
   const [edit, setEdit] = useState(false);
     const [loading, setLoading] = useState(true);
   
+    const extractLatLng = (url) => {
+  // استخراج الإحداثيات من الرابط باستخدام تعبير منتظم
+  const regex = /q=([-+]?[0-9]*\.?[0-9]+),([-+]?[0-9]*\.?[0-9]+)/;
+  const matches = url.match(regex);
+
+  if (matches) {
+    const lat = parseFloat(matches[1]);
+    const lng = parseFloat(matches[2]);
+    return { lat, lng };
+  } else {
+    return null; // في حالة عدم وجود الإحداثيات في الرابط
+  }
+};
   const [errors, setErrors] = useState({
     country: '',
     city: "",
@@ -46,8 +74,23 @@ const AddOffStation = () => {
       setValue(sendData.status);
       setpickup(sendData.pickup);
       setdropoff(sendData.dropoff);
+
+      // 
+      const url = sendData.location;
+const locatio = extractLatLng(url);
+
+if (locatio) {
+  console.log(`Latitude: ${locatio.lat}, Longitude: ${locatio.lng}`);
+} else {
+  console.log("لم يتم العثور على الإحداثيات في الرابط.");
+}
+      setLocation({ 
+        lat: locatio.lat, 
+    lng: locatio.lng,
+  })
       setEdit(true);
     }
+    
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -67,6 +110,7 @@ const AddOffStation = () => {
     if (!name) formErrors.name = 'name is required';
     if (!city) formErrors.city = 'city is required';
     if (!zone) formErrors.zone = 'zone is required';
+    if (!locat.lat) formErrors.zone = 'location is required';
     // if (!google) formErrors.google = 'google-map is required';
     if (pickup === "0" && dropoff === "0") formErrors.check = "At least choose one"
     setErrors(formErrors);
@@ -77,8 +121,6 @@ const AddOffStation = () => {
   };
 
   const handleSave = () => {
-        console.log(google)
-
     if (!validateForm()) {
       return;
     }
@@ -92,7 +134,7 @@ const AddOffStation = () => {
       pickup: pickup,
       dropoff: dropoff,
       zone_id: zone,
-            location:"https://maps.google.com/?q=30.493888070301598,30.763831292120003",
+            location:`https://maps.google.com/?q=${locat.lat},${locat.lng}`,
 
       basic_station: "0"
     };
@@ -136,7 +178,7 @@ const AddOffStation = () => {
     setpickup("0")
     setdropoff("0")
     setValue("inactive");
-    setgoogle('');
+    // setgoogle('');
 
     setCountry('');
     setName('');
@@ -144,6 +186,26 @@ const AddOffStation = () => {
     setZone('')
     setEdit(false);
   };
+//    const handleChangeTourPickUp = (e) => {
+//     const { name, value } = e.target;
+
+//     // If user enters a Google Maps link, extract lat/lng and update state
+//     if (name === "pick_up_map") {
+//       const googleCoords = extractLatLngFromGoogleLink(value);
+//       if (googleCoords) {
+//         setTourPickUp((prev) => ({
+//           ...prev,
+//           pick_up_map: value, // Store full URL
+//           lat: googleCoords.lat,
+//           lng: googleCoords.lng,
+//         }));
+//       } else {
+//         setTourPickUp((prev) => ({ ...prev, [name]: value }));
+//       }
+//     } else {
+//       setTourPickUp((prev) => ({ ...prev, [name]: value }));
+// }
+// };
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -191,16 +253,28 @@ const AddOffStation = () => {
       <SwitchButton value={valuee} setValue={setValue} />
       <SwitchButton value={pickup} num title="pickup" setValue={setpickup} />
       <SwitchButton value={dropoff} num title="dropoff" setValue={setdropoff} />
-   {/* <div className=" flex flex-col my-3 ">
+   <div className=" flex flex-col my-3 ">
         <span className="text-2xl  text-black ">Place</span>
         <div className="flex flex-wrap gap-6 mt-6 bg-eight p-5">
-        <GetLocationLink
+   {/* <input type="hidden" name="lat" value={tourPickUp.lat} />
+        <input type="hidden" name="lng" value={tourPickUp.lng} />
+
+        <div className="border rounded-xl overflow-hidden shadow-md">
+        <GetLocationLink tourPickUp={tourPickUp} setTourPickUp={setTourPickUp} />
+</div>  */}
+
+        {/* <GetLocationLink
             google={google} // تمرير الإحداثيات هنا
             setnamegoogle={setnamegoogle}
             onLocationChange={(location) => setgoogle(location)}
-          />
+          /> */}
+
+           <div className=" mx-auto p-6">
+      <MapPicker location={locat} onLocationChange={updateLocation} />
+    </div>
                   </div>
-      </div> */}
+      </div>
+      
      <div className="flex gap-3">
      
         <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>

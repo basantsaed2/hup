@@ -86,7 +86,7 @@ const Stations = () => {
     name: " name",
     country_name: "country",
     city_name: " city",
-    zone_name: "  zone"
+    zone_name: "zone"
   };
 
   const renderTable = (items) => {

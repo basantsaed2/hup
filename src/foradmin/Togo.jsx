@@ -31,7 +31,11 @@ import AddCurrency from '../pages/Currency/AddCurrency.jsx';
 import Allpayot from '../pages/Payout/Allpayot.jsx';
 import HistoryPayout from '../pages/Payout/HistoryPayout.jsx';
 import Cancelpayout from '../pages/Payout/Cancelpayout.jsx';
-
+import PrivateRequest from '../pages/PrivateRequest/PrivateRequest.jsx'
+//
+import Request from '../pages/Request/Request.jsx'
+import Point from '../pages/Point/Point.jsx'
+import AddPoint from '../pages/Point/AddPoint.jsx'
 //
 import Financial from '../pages/Financial/Financial.jsx';
 import Settings from '../pages/Settings/Settings.jsx';
@@ -114,6 +118,9 @@ const Togo = ({ setIsLoggedIn }) => {
     else if (location.pathname === '/MinivanAdd') {
       setActiveLink('/Minivan');
     }
+    else if (location.pathname === '/AddPoint' ) {
+      setActiveLink('/Point');
+    }
      else if (location.pathname === '/Tarins/Tarin') {
       setActiveLink('/Tarins/Tarin');
     } else {
@@ -154,7 +161,12 @@ const Togo = ({ setIsLoggedIn }) => {
 
           <Route path='/Minivan' element={<Hiace />} />
           <Route path='/MinivanAdd' element={<Addhiace/>} />
+          <Route path='/Request' element={<Request/>} />
+          <Route path='/Request' element={<Request/>} />
+          <Route path='/Point' element={<Point/>} />
+          <Route path='/AddPoint' element={<AddPoint/>} />
 
+          <Route path='/PrivateRequest' element={<PrivateRequest />} />
           <Route path='/Commission' element={<CommissionSetup />} />
           <Route path='/AddCommission' element={<AddCommissionSetup />} />
           <Route path='/Currency' element={<Currency />} />

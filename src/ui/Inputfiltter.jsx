@@ -78,6 +78,10 @@ const Inputfiltter = ({ placeholder, value, like, onChange, name, shara }) => {
               value: item.id,
               label: `number ${item.bus_number} name ${item.bus_type_name}`
             }));
+          }  else if (name === 'trainRoutes') {
+         data = res.data.routes
+              .filter(item => item.from_country_id == shara)
+              .map(item => ({ value: item.id, label: item.name }));
           }
 
           setOptions(data);

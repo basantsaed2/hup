@@ -16,13 +16,16 @@ import IconCurrency from '../../IconsImprot/IconCurrency';
 import IconPayoutAccount from '../../IconsImprot/IconPayoutAccount';
 import IconSetting from '../../IconsImprot/IconSetting';
 import IconTrain from '../../IconsImprot/IconTrain';
+import IconWalletRequests from '../../IconsImprot/IconWalletRequests';
+import IconPrivaterequest from '../../IconsImprot/IconPrivaterequest';
+import IconPoint from '../../IconsImprot/IconPoint';
 import { FaCarAlt } from "react-icons/fa";
 import { TbCarSuv } from "react-icons/tb";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MdArrowForwardIos } from "react-icons/md";
 
 import { IoIosArrowDown } from "react-icons/io";
-
+import TICKET1 from "../../assets/TICKET1.png"
 const Dash = ({ activeLink ,open ,setopen}) => {
   const [openFinancial, setOpenFinancial] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
@@ -43,6 +46,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     { icon: <IconTrain />, iconactive: <IconTrain active />, text: "Train", href: "/Train" },
     { icon: <IconBooking />, iconactive: <IconBooking active />, text: "Bookings", href: "/Booking" },
     { icon: <IconTrips />, iconactive: <IconTrips active />, text: "Trips", href: "/Trips" },
+           { icon: <IconWalletRequests />, iconactive: <IconWalletRequests active />, text: "Trip Request", href: "/Request" },
+
     { icon: <FaCarAlt  className='text-white w-5 h-5'/>, iconactive: <FaCarAlt  className='w-5 h-5 text-one' active />, text: "Car", href: "/Car" },
     {
       icon: <IconFinancial />, iconactive: <IconFinancial active />, text: "Financial", options: [
@@ -52,7 +57,9 @@ const Dash = ({ activeLink ,open ,setopen}) => {
       ]  
     },
     // { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
-    { icon: <IconCurrency />, iconactive: <IconCurrency active />, text: "Currency", href: "/Currency" },
+    { icon: <IconCurrency />, iconactive: <IconCurrency  active />, text: "Currency", href: "/Currency" },
+    { icon: <IconPoint />, iconactive: <IconPoint  active />, text: "Point", href: "/Point" },
+    { icon: <IconPrivaterequest />, iconactive: <IconPrivaterequest  active />, text: "Private Request", href: "/PrivateRequest" },
     { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/Allpayot" },
     {
       icon: <IconSetting />, iconactive: <IconSetting active />, text: "Settings", settingsOptions:
@@ -80,8 +87,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
  className="hidden lg:block space-y-3 w-[300px] pt-6 text-center px-3 h-[calc(100vh-1px)]  overflow-y-scroll overflow-x-hidden">
      
           <div className='flex mx-auto justify-center gap-2 my-3'>
-            <span className='font-[400] text-white text-[32px]'>Ticket hub</span>
-            <img src={mainicon} className='rounded-full p-1 bg-three' alt="Main Icon" />
+            {/* <span className='font-[400] text-white text-[32px]'>Ticket hub</span> */}
+            <img src={TICKET1} className='rounded-full p-1 bg-three' alt="Main Icon" />
           </div>
 
           {/* Separator Line */}
@@ -217,8 +224,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
         <div className='flex-col w-[200px] sm:w-[300px]  h-screen bg-one text-center overflow-y-scroll overflow-x-hidden direction-ltr'>
         <div className='flex '>
           <div className='flex mx-auto justify-center gap-2 my-3'>
-            <span className='font-[400] text-white text-[16px]'>Ticket hub</span>
-            <img src={mainicon} className='rounded-full w-6 h-6 p-1 bg-three' alt="Main Icon" />
+            {/* <span className='font-[400] text-white text-[16px]'>Ticket hub</span> */}
+            <img src={TICKET1} className='rounded-full w-6 h-6 p-1 bg-three' alt="Main Icon" />
           </div>
           {open &&(
           

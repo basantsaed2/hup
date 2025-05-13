@@ -1,155 +1,115 @@
-import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import L from "leaflet";
+
+
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-const GetLocationLink = ({ onLocationChange, setnamegoogle, google, defaultLocation }) => {
-  const [showMap, setShowMap] = useState(true);
-  const [position, setPosition] = useState(defaultLocation || null);
-  const [placeName, setPlaceName] = useState("");
-  const [googleMapLink, setGoogleMapLink] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+// Fix default marker issue in React Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
+});
 
-  useEffect(() => {
-    if (google?.lat && google?.lng) {
-      setPosition({ lat: google.lat, lng: google.lng });
-      const fullLink = `https://maps.google.com/?q=${google.lat},${google.lng}`;
-      setGoogleMapLink(fullLink);
-      fetchPlaceName(google.lat, google.lng, fullLink);
-    } else if (defaultLocation?.lat && defaultLocation?.lng) {
-      setPosition({ lat: defaultLocation.lat, lng: defaultLocation.lng });
-      const fullLink = `https://maps.google.com/?q=${defaultLocation.lat},${defaultLocation.lng}`;
-      setGoogleMapLink(fullLink);
-      fetchPlaceName(defaultLocation.lat, defaultLocation.lng, fullLink);
+const GetLocationLink = ({ tourPickUp, setTourPickUp }) => {
+  const defaultPosition = [31.2001, 29.9187]; // Default to Alexandria, Egypt
+  const [position, setPosition] = useState(tourPickUp.lat && tourPickUp.lng ? [tourPickUp.lat, tourPickUp.lng] : defaultPosition);
+
+  // Function to validate and extract lat/lng from Google Maps URL
+  const extractLatLng = (url) => {
+    const match = url.match(/q=(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (match) {
+      return { lat: parseFloat(match[1]), lng: parseFloat(match[2]) };
     }
-  }, [google, defaultLocation]);
+    return null; // Invalid input
+  };
 
-  const MapClickHandler = () => {
-    useMapEvents({
-      click(e) {
-        const { lat, lng } = e.latlng;
-        const fullLink = `https://maps.google.com/?q=${lat},${lng}`;
-        setPosition({ lat, lng });
-        setGoogleMapLink(fullLink);
-        fetchPlaceName(lat, lng, fullLink);
-      },
-    });
+  // Function to geocode text address using Nominatim API
+const geocodeAddress = async (address) => {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
+    );
+    const data = await response.json();
+    if (data.length > 0) {
+      return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+    }
+  } catch (error) {
+    console.error("Geocoding error:", error);
+  }
+  return null;
+};
+
+
+  // Update position when pick_up_map changes
+  useEffect(() => {
+    const updatePosition = async () => {
+      const { pick_up_map } = tourPickUp;
+      if (!pick_up_map) return; // Ignore empty input
+
+      const googleCoords = extractLatLng(pick_up_map);
+      if (googleCoords) {
+        // If valid Google Maps URL
+        setPosition([googleCoords.lat, googleCoords.lng]);
+        setTourPickUp((prev) => ({
+          ...prev,
+          lat: googleCoords.lat,
+          lng: googleCoords.lng,
+        }));
+      } else {
+        // If text address, try geocoding
+        const geocodedCoords = await geocodeAddress(pick_up_map);
+        if (geocodedCoords) {
+          setPosition([geocodedCoords.lat, geocodedCoords.lng]);
+          setTourPickUp((prev) => ({
+            ...prev,
+            lat: geocodedCoords.lat,
+            lng: geocodedCoords.lng,
+          }));
+        } else {
+          console.warn("Invalid address, location not found.");
+        }
+      }
+    };
+    updatePosition();
+  }, [tourPickUp.pick_up_map, setTourPickUp]);
+
+  // Move map view when position changes
+  const ChangeView = ({ coords }) => {
+    const map = useMap();
+    useEffect(() => {
+      if (coords[0] !== undefined && coords[1] !== undefined) {
+        map.setView(coords, 13, { animate: true });
+      }
+    }, [coords, map]);
     return null;
   };
 
-  // Fetch the place name based on coordinates (reverse geocoding)
-  const fetchPlaceName = async (lat, lng, fullLink) => {
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
-      );
-      const data = await res.json();
-      const name = data.display_name || "اسم غير معروف";
-      setPlaceName(name);
-      onLocationChange?.({ lat, lng, name, url: fullLink });
-      setnamegoogle(fullLink);
-    } catch (err) {
-      console.error("Reverse geocoding error:", err);
-      setPlaceName("حدث خطأ أثناء جلب اسم المكان.");
-    }
+  // Handle map clicks to set new pickup location
+  const LocationMarker = () => {
+    useMapEvents({
+      click(e) {
+        const { lat, lng } = e.latlng;
+        setPosition([lat, lng]);
+        setTourPickUp((prev) => ({
+          ...prev,
+          lat,
+          lng,
+pick_up_map: `https://www.google.com/maps?q=${lat},${lng}`,
+        }));
+      },
+    });
+    return <Marker position={position} />;
   };
-
-  // Geocode the place name to get lat, lng (forward geocoding)
-  const handleSearch = async () => {
-    if (!searchQuery) return;
-
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${searchQuery}`
-      );
-      const data = await res.json();
-      if (data.length > 0) {
-        const { lat, lon, display_name } = data[0];
-        setPosition({ lat: parseFloat(lat), lng: parseFloat(lon) });
-        setPlaceName(display_name);
-        const fullLink = `https://maps.google.com/?q=${lat},${lon}`;
-        setGoogleMapLink(fullLink);
-        onLocationChange?.({ lat: parseFloat(lat), lng: parseFloat(lon), name: display_name, url: fullLink });
-        setnamegoogle(fullLink);
-      } else {
-        alert("Place not found");
-      }
-    } catch (err) {
-      console.error("Error searching for place:", err);
-      alert("Error fetching location.");
-    }
-  };
-
-  const customIcon = L.icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-  });
 
   return (
-    <div className="p-4 w-full h-fit">
-      <button
-        onClick={() => setShowMap(!showMap)}
-        className="w-full h-[48px] md:h-[72px] border-1 text-one font-bold border-two rounded-[8px] placeholder-seven"
-      >
-        تحديد الموقع
-      </button>
-
-      <div className="mt-4">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="ابحث عن مكان"
-          className="w-full p-2 border border-gray-300 rounded-md"
-        />
-        <button
-          onClick={handleSearch}
-          className="w-full mt-2 p-2 bg-blue-500 text-white rounded-md"
-        >
-          البحث
-        </button>
-      </div>
-
-      {showMap && (
-        <div className="w-full h-[300px] mt-4">
-          <MapContainer
-            center={position ? [position.lat, position.lng] : [30.033333, 31.233334]}
-            zoom={position ? 10 : 6}
-            style={{ height: "100%", width: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-            />
-            <MapClickHandler />
-            {position && (
-              <Marker position={[position.lat, position.lng]} icon={customIcon} />
-            )}
-          </MapContainer>
-        </div>
-      )}
-
-      {googleMapLink && (
-        <div className="mt-4">
-          <p className="mb-1 text-gray-700 font-semibold">📍 رابط خريطة جوجل:</p>
-          <a
-            href={googleMapLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 underline break-all"
-          >
-            {googleMapLink}
-          </a>
-        </div>
-      )}
-
-      {placeName && (
-        <div className="mt-2 text-sm text-gray-600">
-          <strong>📌 اسم المكان:</strong> {placeName}
-        </div>
-      )}
-    </div>
+    <MapContainer center={position} zoom={13} style={{ height: "300px", width: "500px" }}>
+      <ChangeView coords={position} />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <LocationMarker />
+      <Marker position={position} />
+    </MapContainer>
   );
 };
 

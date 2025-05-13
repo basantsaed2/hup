@@ -23,24 +23,33 @@ const customStyles = {
   }),
 };
 
-const Aminites = ({ selectedDays, setSelectedDays }) => {
+const Aminites = ({ selectedDays, setSelectedDays,name ,placeholder}) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get("https://bcknd.ticket-hub.net/api/admin/aminites", {
+    axios.get(`https://bcknd.ticket-hub.net/api/admin/${name}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     })
-    .then(response => {
-      const options = response.data.aminty.map(item => ({
-        label: item.name,
-        value: item.id
-      }));
-      setData(options);
-    })
-    .catch(error => {
+ .then(response => {
+  let options;
+
+  if (name === "aminites") {
+    options = response.data.aminty.map(item => ({
+      label: item.name,
+      value: item.id
+    }));
+  } else {
+    options = response.data.trainClasses.map(item => ({
+      label: item.name,
+      value: item.id
+    }));
+  }
+
+  setData(options);
+}).catch(error => {
       console.error("Error fetching amenities:", error);
     });
   }, []);
@@ -59,7 +68,7 @@ const Aminites = ({ selectedDays, setSelectedDays }) => {
       isMulti
       value={selectedValues}
       onChange={handleDayChange}
-      placeholder="ِAminites"
+      placeholder={placeholder}
       styles={customStyles}
       className="w-[200px] md:w-[300px]"
     />
