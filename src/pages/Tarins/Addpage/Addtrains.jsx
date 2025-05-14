@@ -162,7 +162,7 @@ const Addtrains = () => {
           value={name}
           onChange={handleChange}
         />
-        <div className="z-60">
+        <div >
           <InputArrow
             placeholder="Country"
             name="countries"
@@ -172,7 +172,7 @@ const Addtrains = () => {
           />
         </div>
 
-        <div className="z-50">
+        <div >
           <InputArrow
             placeholder="agaent"
             name="agents"
@@ -183,7 +183,7 @@ const Addtrains = () => {
         </div>
 
       
-          <div className="z-40">
+          <div >
 
         <InputArrow
           placeholder="class"
@@ -193,7 +193,7 @@ const Addtrains = () => {
           required
         />
         </div>
-                  <div className="z-30">
+                  <div >
 
         <Inputfiltter
           like
@@ -205,7 +205,7 @@ const Addtrains = () => {
         />
                 </div>
 
-          <div className="z-20">
+          <div >
           <InputArrow
             placeholder="type"
             name="trainTypes"
@@ -240,8 +240,8 @@ const Addtrains = () => {
             {" "}
             {edit ? "Eidt" : "Add"}
           </span>
-          <span className="absolute w-20 h-20 right-45 lg:right-60 z-10 bg-three top-0 transform transition rotate-45"></span>
           <span className="absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30"></span>
+          <span className="absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45"></span>
         </button>
       </div>
       <ToastContainer />

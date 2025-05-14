@@ -172,7 +172,7 @@ const labelMap = {
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Phone</th>
               {/* <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Points </th> */}
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Role </th>
-              <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Email </th>
+              <th className="w-[200px] h-[56px]  text-[16px]  border-b text-left">Email </th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Commission</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Image</th>
               <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
@@ -182,21 +182,21 @@ const labelMap = {
 
             {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                   <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                   <td className="w-[10px] h-[56px] lg:text-[10px] xl:text-[12px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                <td className="w-[143px] h-[56px]  text-[12px] px-2  ">{item?.name??"N//A"}</td>
-                <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.phone??"N//A"}</td>
+                <td className="w-[143px] h-[56px]  lg:text-[10px] xl:text-[12px] px-2  ">{item?.name??"N//A"}</td>
+                <td className="w-[143px] h-[56px] lg:text-[10px] xl:text-[12px]  ">{item?.phone??"N//A"}</td>
                 {/* <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.points??"N//A"}</td> */}
-                <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.role??"N//A"}</td>
-                <td className="w-[143px] h-[56px]  text-[12px]   ">{item?.email??"N//A"}</td>
-                <td className="w-[143px] h-[56px]  text-[12px]  underline  "><button
+                <td className="w-[143px] h-[56px]  lg:text-[10px] xl:text-[12px]  ">{item?.role??"N//A"}</td>
+                <td className="w-[200px] h-[56px] lg:text-[10px] xl:text-[12px]  ">{item?.email??"N//A"}</td>
+                <td className="w-[143px] h-[56px]  lg:text-[10px] xl:text-[12px]  underline  "><button
                 className='bg-three px-2  rounded-4xl py-1'
                 onClick={()=>show(item.commissions)}>commission</button></td>
-                <td className="w-[143px] h-[56px]  text-[16px]  "> 
+                <td className="w-[143px] h-[56px]  lg:text-[10px] xl:text-[12px]  "> 
                                    <img  className="w-5 h-5"src={item.image===null?`data:image/png;base64,${item.image}`:item.image}/>
                 </td>
-                <td className="w-[143px]  h-[56px]  text-[16px]  flex justify-start gap-2 items-center">
+                <td className="w-[143px]  h-[56px]  lg:text-[10px] xl:text-[12px] flex justify-start gap-2 items-center">
                   <img className='w-[24px] h-[24px]' src={pin}
                     onClick={() => handleEdit(item.id)} />
                   <img

@@ -181,7 +181,7 @@ const AddUser = () => {
 
   return (
     <div className="ml-6">
-      <AddAll navGo="/User" name={edit?"Eidt User":"AddUser"} />
+      <AddAll navGo="/User" name={edit?"Edit User":"AddUser"} />
       <div className="flex flex-wrap gap-6 mt-6">
         <InputField
           placeholder="User"

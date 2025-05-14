@@ -118,7 +118,7 @@ useEffect(()=>{
       setCancellationPayValue(sendData.cancellation_policy?.pay_value);
       setMinCost(sendData.min_cost);
 if (sendData && sendData.trip_type) {
-  if (sendData.trip_type === "mini_van") {
+  if (sendData.trip_type === "MiniVan") {
     setTripType("hiace");
     
   } else {
