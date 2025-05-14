@@ -10,7 +10,7 @@ import { CiSearch } from "react-icons/ci";
 import { ToastContainer,toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import Pagination from '@mui/material/Pagination';
-
+  
 const CARS = () => {
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
