@@ -164,13 +164,13 @@ const [currentPage, setCurrentPage] = useState(1);
                 S/N
               </th>
 
-                <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Destenation_from </th>
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Destenation_to</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Date </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Seats_count</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Code</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Action</th>
+                <th className="w-[158px] h-[56px]  text-[14px] border-b text-left pl-3">Destenation_from </th>
+                  <th className="w-[158px] h-[56px]  text-[14px] border-b text-left">Destenation_to</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Date </th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Seats_count</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Code</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Status</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Action</th>
 
                 </tr>
               </thead>
@@ -178,15 +178,15 @@ const [currentPage, setCurrentPage] = useState(1);
                
               {paginatedData.map((item,index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                    <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                    <td className="w-[10px] h-[56px] lg:text-[14px]  px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                    <td className="w-[143px] h-[56px]  text-[14px] px-2 ">{item?.destenation_from??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.destenation_to??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[14x]  ">{item?.date??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.seats_count??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[14px]  ">{item?.code??"N//A"}</td>
-                    <td className="w-[143px]  h-[56px]  text-[14px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
+                    <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.destenation_from??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.destenation_to??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.date??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.seats_count??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.code??"N//A"}</td>
+                    <td className="w-[143px]  h-[56px]  text-[12px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
                    
                     {item.status !=='canceled'?(  <td className="w-[143px]    flex gap-1 justify-center items-center h-12  ">
                       <button  className='bg-three py-1 px-2 rounded-[8px] text-white' onClick={()=>handelconfirm(item.id,item.destenation_from,item.destenation_to)}>confirm</button>

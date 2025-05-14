@@ -99,12 +99,12 @@ code:"code"
                 S/N
               </th>
 
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3">Destenation_from </th>
-                  <th className="w-[158px] h-[56px]  text-[16px] border-b text-left">Destenation_to</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Date </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Code </th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Seats_count</th>
-                  <th className="w-[158px] h-[56px]  text-[16px]  border-b text-left">Status</th>
+                  <th className="w-[158px] h-[56px]  text-[14px] border-b text-left pl-3">Destenation_from </th>
+                  <th className="w-[158px] h-[56px]  text-[14px] border-b text-left">Destenation_to</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Date </th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Code </th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Seats_count</th>
+                  <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,12 +114,12 @@ code:"code"
                   <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  px-1 ">{item?.destenation_from??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.destenation_to??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.date??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.code??"N//A"}</td>
-                    <td className="w-[143px] h-[56px]  text-[16px]  ">{item?.seats_count??"N//A"}</td>
-                    <td className="w-[143px]  h-[56px]  text-[16px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  px-1 ">{item?.destenation_from??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.destenation_to??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.date??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.code??"N//A"}</td>
+                    <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.seats_count??"N//A"}</td>
+                    <td className="w-[143px]  h-[56px]  text-[12px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
                 
                   </tr>
                 ))}

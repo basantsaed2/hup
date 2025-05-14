@@ -82,7 +82,7 @@ const Trips = () => {
     }
     return false;
   });
-const cheose = ["Filter","name", "trip_type", "date", "departure_time", "arrival_time", "price", "currency","status"]
+const cheose = ["Filter","name", "trip_type", "date", "departure_time", "arrival_time", "price", "currency","status","agent_name"]
 const labelMap = {
   Filter: "Filter",
   name: "name",
@@ -91,7 +91,8 @@ const labelMap = {
   departure_time:"departure",
   price:"price",
   currency:"currency",
-  arrival_time:"arrival"
+  arrival_time:"arrival",
+  agent_name:"agant"
 };
   const [currentPage, setCurrentPage] = useState(1);
    const rowsPerPage = 10;
@@ -133,10 +134,11 @@ const labelMap = {
             <table className="w-full border-y border-x border-black ">
             <thead  className="w-full">
                       <tr className='bg-four w-[1012px] h-[56px]' >
-                      <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+                      <th className="w-[10px] h-[56px] text-[12px] border-b text-left px-1">
                 S/N
               </th>
                         <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3">Name</th>
+                        <th className="w-[158px] h-[56px]  text-[12px] border-b text-left ">Agent</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Type</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Date</th>
                         <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Departure Time</th>
@@ -154,15 +156,16 @@ const labelMap = {
                        <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                             <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.name??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.trip_type??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px] ">{item?.date??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.departure_time??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.arrival_time??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.price??"N//A"}</td>
-                          <td className="w-[143px] h-[56px]  text-[12px]  ">{item?.currency_name??"N//A"}</td>
-                          <td className="w-[143px]  h-[56px]  text-[12px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
-                          <td className="w-[143px]  h-[56px]  text-[12px]  flex justify-start gap-2 items-center">
+                             <td className="w-[143px] h-[56px]  text-[10px] px-2 ">{item?.name??"N//A"}</td>
+                             <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.agent_name??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.trip_type??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px] ">{item?.date??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.departure_time??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.arrival_time??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.price??"N//A"}</td>
+                          <td className="w-[143px] h-[56px]  text-[10px]  ">{item?.currency_name??"N//A"}</td>
+                          <td className="w-[143px]  h-[56px]  text-[10px]  text-nine  "><span className="bg-eight font-normal p-2 rounded-[8px]">{item.status }</span></td>
+                          <td className="w-[143px]  h-[56px]  text-[10px]  flex justify-start gap-2 items-center">
                       <img className='w-[24px] h-[24px]' src={pin} 
                                    onClick={()=>handleEdit(item.id)}/>
                                    <img
@@ -189,6 +192,10 @@ const labelMap = {
                         <div className="flex gap-4">
                           <strong>Name:</strong>
                           <span>{item?.name??"N//A"}</span>
+                        </div>
+                        <div className="flex gap-4">
+                          <strong>Agent:</strong>
+                          <span>{item?.agent_name??"N//A"}</span>
                         </div>
                         <div className="flex gap-4">
                           <strong>Type:</strong>
