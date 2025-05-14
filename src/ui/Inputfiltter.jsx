@@ -20,7 +20,7 @@ const Inputfiltter = ({ placeholder, value, like, onChange, name, shara }) => {
         } else if (name === 'three') {
           setOptions([
             { value: 'bus', label: 'bus' },
-            { value: 'hiace', label: 'hiace' },
+            { value: 'hiace', label: 'Minivan' },
             { value: 'train', label: 'train' }
           ]);
         } else if (name === 'two') {
@@ -54,11 +54,17 @@ const Inputfiltter = ({ placeholder, value, like, onChange, name, shara }) => {
               .filter(item => item.city_id == shara)
               .map(item => ({ value: item.id, label: item.name }));
           } else if (name === 'stations') {
-            if (placeholder === "Pickup Station") {
-              data = res.data.pickup.map(item => ({ value: item.id, label: item.name }));
-            } else {
-              data = res.data.dropoff.map(item => ({ value: item.id, label: item.name }));
-            }
+  if (placeholder === "Pickup Station") {
+    data = res.data.pickup
+      .filter(item => item.zone_id === shara) // ← فلترة حسب الشارع (zone_id)
+      .map(item => ({ value: item.id, label: item.name }));
+  } else {
+    data = res.data.dropoff
+      .filter(item => item.zone_id === shara)
+      .map(item => ({ value: item.id, label: item.name }));
+  }
+
+
           } else if (name === 'countries') {
             data = res.data.countries.map(item => ({ value: item.id, label: item.name }));
           } else if (name === 'bus_types') {

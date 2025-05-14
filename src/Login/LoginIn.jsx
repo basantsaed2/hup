@@ -94,7 +94,7 @@ function LoginIn({ setIsLoggedIn }) {
       </button>
 </div>
 
-          <button className=' bg-one mt-5 w-full h-[72px] border border-one rounded-[8px] relative overflow-hidden ' onClick={handleLogin}>
+          <button className='hover:scale-90 transform transition delay-100 bg-one mt-5 w-full h-[72px] border border-one rounded-[8px] relative overflow-hidden ' onClick={handleLogin}>
               <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > Login</span>
                <span className='absolute w-20 h-20 right-55 lg:right-75 z-2 bg-three top-0 transform transition rotate-45'></span>
                <span className='absolute w-25 h-25 right-50 lg:right-70 bg-white top-0 transform transition rotate-30'></span>

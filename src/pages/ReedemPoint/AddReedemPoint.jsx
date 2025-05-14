@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import picdone from '../../assets/picdone.svg';
 import AddAll from '../../ui/AddAll';
 import InputField from '../../ui/InputField';
 import InputArrow from '../../ui/InputArrow';
@@ -7,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-const AddPoint = () => {
+const AddReedemPoint = () => {
      const navigate = useNavigate();
       const location = useLocation();
      const [currency_id, Setcurrency_id] = useState('');
@@ -40,7 +41,7 @@ const AddPoint = () => {
     const { name, value } = e.target;
     if (name === 'points') Setpoints(value);
     if (name === 'currencies') Setcurrencies(value);
-    if (name === 'currency_point') Setcurrency_id(value);
+    if (name === 'point') Setcurrency_id(value);
   };
 
 
@@ -85,15 +86,15 @@ const AddPoint = () => {
 
     if (edit) {
       const { sendData } = location.state || {};
-      axios.put(`https://bcknd.ticket-hub.net/api/admin/currency_point/update/${sendData.id}`, newUser, {
+      axios.put(`https://bcknd.ticket-hub.net/api/admin/point/update/${sendData.id}`, newUser, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
         .then(() => {
-          toast.success(' Point updated successfully'); 
+          toast.success('Reedem Point updated successfully'); 
           setTimeout(() => {
-            navigate('/Point');
+            navigate('/ReedemPoint');
           }, 2000);
         })
         .catch(() => {
@@ -102,15 +103,15 @@ const AddPoint = () => {
       return;
     }
 
-    axios.post('https://bcknd.ticket-hub.net/api/admin/currency_point/add', newUser, {
+    axios.post('https://bcknd.ticket-hub.net/api/admin/point/add', newUser, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then(() => {
-        toast.success(' Point added successfully'); 
+        toast.success('Reedem Point added successfully'); 
         setTimeout(() => {
-          navigate('/Point');
+          navigate('/ReedemPoint');
         }, 2000);
       })
       .catch(() => {
@@ -133,7 +134,7 @@ const AddPoint = () => {
   return (
   <div className='ml-6 flex flex-col  mt-6 gap-6'>
 
-      <AddAll navGo='/Point' name={edit?"Edit Point":"Add Point"} />
+      <AddAll navGo='/ReedemPoint' name={edit?"Edit Point":"Add Point"} />
       <div className='flex flex-wrap gap-6  mt-6'>
         <InputField 
         placeholder="points"
@@ -152,16 +153,14 @@ const AddPoint = () => {
           email='number'
           />
           {!edit&&(
-
-            <InputArrow
-            placeholder="currency"
-            name="currency_point"
-            value={currency_id}
-            onChange={handleChange}
-            required
-            />
+  <InputArrow
+          placeholder="currency"
+          name="point"
+          value={currency_id}
+          onChange={handleChange}
+          required
+        />
           )}
-          
             
       </div>
 
@@ -181,4 +180,4 @@ const AddPoint = () => {
     </div>  )
 }
 
-export default AddPoint
+export default AddReedemPoint

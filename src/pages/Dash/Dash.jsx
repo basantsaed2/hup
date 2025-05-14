@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import mainicon from "../../assets/mainicon.svg";
+// import mainicon from "../../assets/mainicon.svg";
 import ro from "../../assets/ro.svg";
+import IconWallet from'../../IconsImprot/IconWallet';
 import IconHome from '../../IconsImprot/IconHome';
 import IconUser from '../../IconsImprot/IconUser';
 import IconLocation from '../../IconsImprot/IconLocation';
+import IconUsersupplier from '../../IconsImprot/IconUsersupplier';
 import IconBuses from '../../IconsImprot/IconBuses';
 import IconTrips from '../../IconsImprot/IconTrips';
 import IconBooking from '../../IconsImprot/IconBooking';
@@ -23,7 +25,7 @@ import { FaCarAlt } from "react-icons/fa";
 import { TbCarSuv } from "react-icons/tb";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MdArrowForwardIos } from "react-icons/md";
-
+import Reedem from "../../IconsImprot/Reedem"
 import { IoIosArrowDown } from "react-icons/io";
 import TICKET1 from "../../assets/TICKET1.png"
 const Dash = ({ activeLink ,open ,setopen}) => {
@@ -33,15 +35,15 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     setopen(!open);
 
 }
-  
   const menuItems = [
     { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Homes" },
     { icon: <IconUser />, iconactive: <IconUser active />, text: "User", href: "/User" },
+    { icon: <IconUsersupplier />, iconactive: <IconUsersupplier active />, text: "User Supplier", href: "/Usersupplier" },
         { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operators", href: "/Agents" },
 
     { icon: <IconLocation />, iconactive: <IconLocation active />, text: "Location", href: "/Location" },
     { icon: <IconBuses />, iconactive: <IconBuses active />, text: "Buses", href: "/Buses" },
-    { icon: <TbCarSuv  className='text-white w-5 h-5'/>, iconactive: <TbCarSuv  className='w-5 h-5 text-one' active />, text: "Mini van ", href: "/Minivan" },
+    { icon: <TbCarSuv  className='text-white w-5 h-5'/>, iconactive: <TbCarSuv  className='w-5 h-5 text-one' active />, text: "Mini Van ", href: "/Minivan" },
 
     { icon: <IconTrain />, iconactive: <IconTrain active />, text: "Train", href: "/Train" },
     { icon: <IconBooking />, iconactive: <IconBooking active />, text: "Bookings", href: "/Booking" },
@@ -57,7 +59,9 @@ const Dash = ({ activeLink ,open ,setopen}) => {
       ]  
     },
     // { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
+    { icon: <IconWallet />, iconactive: <IconWallet  active />, text: "Wallet", href: "/Wallet" },
     { icon: <IconCurrency />, iconactive: <IconCurrency  active />, text: "Currency", href: "/Currency" },
+    { icon: <Reedem />, iconactive: <Reedem  active />, text: "Reedem Point", href: "/ReedemPoint" },
     { icon: <IconPoint />, iconactive: <IconPoint  active />, text: "Point", href: "/Point" },
     { icon: <IconPrivaterequest />, iconactive: <IconPrivaterequest  active />, text: "Private Request", href: "/PrivateRequest" },
     { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/Allpayot" },
@@ -225,7 +229,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
         <div className='flex '>
           <div className='flex mx-auto justify-center gap-2 my-3'>
             {/* <span className='font-[400] text-white text-[16px]'>Ticket hub</span> */}
-            <img src={TICKET1} className='rounded-full w-6 h-6 p-1 bg-three' alt="Main Icon" />
+            <img src={TICKET1} className='rounded-full w-36 h-12  p-1 bg-three' alt="Main Icon" />
           </div>
           {open &&(
           

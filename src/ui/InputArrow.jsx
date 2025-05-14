@@ -36,6 +36,8 @@ const InputArrow = ({ placeholder, value, onChange, name ,like}) => {
       else if (name === "trainRoutes") data = response.data.routes;
       else if (name === "trainclasses") data = response.data.trainClasses;
       else if (name === "agents") data = response.data.agents;
+      else if (name === "point") data = response.data.currencies;
+      else if (name === "currency_point") data = response.data.currencies;
 
       setOptions(mapDataToOptions(data));
     })

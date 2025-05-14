@@ -122,9 +122,18 @@ const AddUser = () => {
             navigate('/User');
           }, 2000);
         })
-        .catch(() => {
-          toast.error("Failed network");
-        });
+    .catch((error) => {
+     const errors = error?.response?.data?.message;
+   
+     // استخراج أول رسالة من أول مفتاح
+     if (errors && typeof errors === 'object') {
+       const firstKey = Object.keys(errors)[0];
+       const firstMessage = errors[firstKey][0];
+       toast.error(firstMessage);
+     } else {
+       toast.error("Something went wrong.");
+     }
+   });
       return;
     }
 
@@ -139,9 +148,18 @@ const AddUser = () => {
           navigate('/User');
         }, 2000);
       })
-      .catch(() => {
-        toast.error("Failed network");
-      });
+     .catch((error) => {
+      const errors = error?.response?.data?.message;
+    
+      // استخراج أول رسالة من أول مفتاح
+      if (errors && typeof errors === 'object') {
+        const firstKey = Object.keys(errors)[0];
+        const firstMessage = errors[firstKey][0];
+        toast.error(firstMessage);
+      } else {
+        toast.error("Something went wrong.");
+      }
+    });
 
     setName('');
     setPhone('');
@@ -222,7 +240,7 @@ const AddUser = () => {
       <div className="flex gap-3">
      
         <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>
-              <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Eidt":"Add"}</span>
+              <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Edit":"Add"}</span>
                <span className='absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30'></span>
                <span className='absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45'></span>
 

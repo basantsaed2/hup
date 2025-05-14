@@ -122,7 +122,7 @@ const Commissions = () => {
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
                     <td className="w-[143px] h-[56px]  text-[16px] px-2">{item?.amount??"N//A"}</td>
- <td className="w-[143px] h-[56px] text-[16px]">
+   <td className="w-[143px] h-[56px] text-[16px]">
             <img
               className="w-10 h-10 cursor-pointer"
               src={item.receipt_image === null ? `data:image/png;base64,${item.receipt_image}` : item.receipt_image}

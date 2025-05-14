@@ -34,9 +34,17 @@ import Cancelpayout from '../pages/Payout/Cancelpayout.jsx';
 import PrivateRequest from '../pages/PrivateRequest/PrivateRequest.jsx'
 //
 import Request from '../pages/Request/Request.jsx'
-import Point from '../pages/Point/Point.jsx'
-import AddPoint from '../pages/Point/AddPoint.jsx'
+import ReedemPoint from '../pages/ReedemPoint/ReedemPoint.jsx'
+import AddReedemPoint from '../pages/ReedemPoint/AddReedemPoint.jsx'
+
 //
+import Point from '../pages/Point/Point.jsx';
+import AddPoint from '../pages/Point/AddPoint.jsx';
+//
+import Usersupplier from "../pages/Usersupplier/Usersupplier.jsx"
+  //
+import Wallet from '../pages/Walllet/Wallet.jsx';
+  //
 import Financial from '../pages/Financial/Financial.jsx';
 import Settings from '../pages/Settings/Settings.jsx';
 import Car from '../pages/Car/Car.jsx';
@@ -118,6 +126,10 @@ const Togo = ({ setIsLoggedIn }) => {
     else if (location.pathname === '/MinivanAdd') {
       setActiveLink('/Minivan');
     }
+    else if (location.pathname === '/AddReedemPoint' ) {
+      setActiveLink('/ReedemPoint');
+    }
+  
     else if (location.pathname === '/AddPoint' ) {
       setActiveLink('/Point');
     }
@@ -163,9 +175,20 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/MinivanAdd' element={<Addhiace/>} />
           <Route path='/Request' element={<Request/>} />
           <Route path='/Request' element={<Request/>} />
+          {/*  */}
+          <Route path='/ReedemPoint' element={<ReedemPoint/>} />
+          <Route path='/AddReedemPoint' element={<AddReedemPoint/>} />
+{/*  */}
           <Route path='/Point' element={<Point/>} />
           <Route path='/AddPoint' element={<AddPoint/>} />
 
+{/*  */}
+
+          <Route path='/Usersupplier' element={<Usersupplier/>} />
+{/*  */}
+          <Route path='/Wallet' element={<Wallet/>} />
+
+{/*  */}
           <Route path='/PrivateRequest' element={<PrivateRequest />} />
           <Route path='/Commission' element={<CommissionSetup />} />
           <Route path='/AddCommission' element={<AddCommissionSetup />} />

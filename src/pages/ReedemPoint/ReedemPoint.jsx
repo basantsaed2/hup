@@ -9,7 +9,7 @@ import { CiSearch } from "react-icons/ci"; // Importing search icon
 import pin from '../../assets/pin.svg';
 import Swal from 'sweetalert2';
 import ThreeThing from '../../component/ThreeThing'
-const Point = () => {
+const ReedemPoint = () => {
   const token = localStorage.getItem('token');
 
      const [data, setData] = useState([]);
@@ -21,11 +21,12 @@ const Point = () => {
              useEffect(() => {
     const token = localStorage.getItem('token');
     
-    axios.get("https://bcknd.ticket-hub.net/api/admin/currency_point", {
+    axios.get("https://bcknd.ticket-hub.net/api/admin/point", {
       headers: {
         Authorization: `Bearer ${token}`,
       }
-    }).then(response => {
+    })
+      .then(response => {
         setData(response.data.redeem_points);
       })
        .catch(() => {
@@ -46,7 +47,7 @@ const Point = () => {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://bcknd.ticket-hub.net/api/admin/currency_point/delete/${index}`, {
+        axios.delete(`https://bcknd.ticket-hub.net/api/admin/point/delete/${index}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +67,7 @@ const Point = () => {
 
   const handleEdit = (index) => {
     const sendData = data.find((item) => item.id === index);
-    navigate('/AddPoint', { state: { sendData } });
+    navigate('/AddReedemPoint', { state: { sendData } });
   };
     const filteredData = data.filter((item) => {
   const query = searchQuery.toLowerCase();
@@ -117,7 +118,7 @@ const cheose = ["Filter","points","currencies","currency"]
           />
           <CiSearch className='w-4 h-4 md:w-6 text-black font-medium absolute left-2 md:h-6' />
         </div>
-        <ThreeThing navGo="/AddPoint" 
+        <ThreeThing navGo="/AddReedemPoint" 
         labelMap={labelMap}
           cheose={cheose} // Pass the cheose array to ThreeThing component
           selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component
@@ -221,4 +222,4 @@ const cheose = ["Filter","points","currencies","currency"]
   )
 }
 
-export default Point
+export default ReedemPoint

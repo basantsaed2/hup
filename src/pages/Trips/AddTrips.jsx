@@ -117,7 +117,16 @@ useEffect(()=>{
       setCancellationPayAmount(sendData.cancellation_policy?.pay_amount);
       setCancellationPayValue(sendData.cancellation_policy?.pay_value);
       setMinCost(sendData.min_cost);
-      setTripType(sendData.trip_type);
+if (sendData && sendData.trip_type) {
+  if (sendData.trip_type === "mini_van") {
+    setTripType("hiace");
+    
+  } else {
+    setTripType(sendData.trip_type);
+  }
+}
+
+
       setCurrencyId(sendData.currency_id);
       setSelectedDays(() => {
         const selected = sendData.days.map(day => day);
@@ -168,7 +177,7 @@ useEffect(()=>{
     let formErrors = {};
     if (!tripName) formErrors.tripName = 'Trip name is required';
     if(tripType==="bus" && !busId) formErrors.busId = 'Bus ID is required';
-    if(tripType==="hiace" && !busId) formErrors.busId = 'hiace ID is required';
+    if(tripType==="hiaces" && !busId) formErrors.busId = 'mini van ID is required';
     if(tripType==="train" && !train_id) formErrors.busId = 'train ID is required';
     if (!pickupStationId) formErrors.pickupStationId = 'Pickup station ID is required';
     if (!dropoffStationId) formErrors.dropoffStationId = 'Dropoff station ID is required';
@@ -439,7 +448,7 @@ newTrip.day=selectedDays,
       )}
       {tripType==="hiace"&&(
           <Inputfiltter
-          placeholder="hiaces"
+          placeholder="MiniVan"
           name="hiaces"
           value={busId}
           onChange={handleChange}
@@ -767,8 +776,8 @@ newTrip.day=selectedDays,
      
         <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>
               <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Eidt":"Add"}</span>
-               <span className='absolute w-20 h-20 right-45 lg:right-60 z-2 bg-three top-0 transform transition rotate-45'></span>
                <span className='absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30'></span>
+               <span className='absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45'></span>
 
 
           </button>
