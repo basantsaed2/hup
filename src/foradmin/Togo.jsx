@@ -93,19 +93,19 @@ const Togo = ({ setIsLoggedIn }) => {
     ) {
       setActiveLink('/Train');
 
-    } else if (location.pathname === '/Agents' || location.pathname === '/AddAgents') {
-      setActiveLink('/Agents');
+    } else if (location.pathname === '/Operators' || location.pathname === '/AddAgents') {
+      setActiveLink('/Operators');
     } else if (location.pathname === '/Complaints' || location.pathname === '/AddComplaints') {
       setActiveLink('/Complaints');
     } else if (location.pathname === '/Commission' || location.pathname === '/AddCommission') {
       setActiveLink('/Commission');
     } else if (location.pathname === '/Currency' || location.pathname === '/AddCurrency') {
       setActiveLink('/Currency');
-    } else if (location.pathname === '/Allpayot' ||
+    } else if (location.pathname === '/PayoutAccount' ||
       location.pathname === '/HistoryPayout' ||
       location.pathname === '/Cancelpayout'
     ) {
-      setActiveLink('/Allpayot');
+      setActiveLink('/PayoutAccount');
     } else if (location.pathname === '/Financial') {
       setActiveLink('/Financial');
     } else if (location.pathname === '/PaymentMethods' || location.pathname === '/CancellationPolicy') {
@@ -162,8 +162,8 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/Bookingdetailsmore' element={<Bookingdetailsmore />} />
           <Route path='/Trips' element={<Trips />} />
           <Route path='/AddTrips' element={<AddTrips />} />
-          <Route path='/Agents' element={<Agents />} />
-          <Route path='/AddAgents' element={<AddAgents />} />
+          <Route path='/Operators' element={<Agents />} />
+          <Route path='/AddOperators' element={<AddAgents />} />
           <Route path='/Complaints' element={<Complaints />} />
           <Route path='/AddComplaints' element={<AddComplaints />} />
           {/*  */}
@@ -194,7 +194,7 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/AddCommission' element={<AddCommissionSetup />} />
           <Route path='/Currency' element={<Currency />} />
           <Route path='/AddCurrency' element={<AddCurrency />} />
-          <Route path='/Allpayot' element={<Allpayot />} />
+          <Route path='/PayoutAccount' element={<Allpayot />} />
           <Route path='/HistoryPayout' element={<HistoryPayout />} />
           <Route path='/Cancelpayout' element={<Cancelpayout />} />
           <Route path='/Financial/*' element={<Financial />} />

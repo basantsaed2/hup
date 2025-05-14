@@ -196,6 +196,14 @@ const Wallet = () => {
                   <span>{item?.amount??"N//A"}</span>
                     </div>
                     <div className="flex gap-4">
+                      <strong>Image:</strong>
+  <img
+              className="w-10 h-10 cursor-pointer"
+              src={item.image_link === null ? `data:image/png;base64,${item.image_link}` : item.image_link}
+              alt="Receipt"
+              onClick={() => openModal(item.image_link === null ? `data:image/png;base64,${item.image_link}` : item.image_link)}
+            />                    </div>
+                    <div className="flex gap-4">
                       <strong>Status :</strong>
                       <span className='text-nine'>{item?.status??"N//A"}</span>
                     </div>

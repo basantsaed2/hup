@@ -25,7 +25,7 @@ Buses
           Type Buses
         </NavLink>
         <NavLink 
-          to="/Buses/BusesHistory"
+          to="/Buses/Aminites"
           className={({ isActive }) => 
             `text-center py-3 px-4 text-gray-800 font-semibold border border-transparent transition-colors 
             ${isActive ? 'border-b-1 border-b-three' : ''}`

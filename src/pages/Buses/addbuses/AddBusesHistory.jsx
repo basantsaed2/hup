@@ -88,7 +88,7 @@ const AddBusesHistory = () => {
           toast.success('Aminit updated  successfully');
 
           setTimeout(() => {
-            navigate('/Buses/BusesHistory');
+            navigate('/Buses/Aminites');
           }, 2000);
         })
         .catch(error => {
@@ -110,7 +110,7 @@ const AddBusesHistory = () => {
           toast.success('Aminit added  successfully');
 
           setTimeout(() => {
-            navigate('/Buses/BusesHistory');
+            navigate('/Buses/Aminites');
           }, 2000);
         })
         .catch(error => {
@@ -140,7 +140,7 @@ const AddBusesHistory = () => {
   }
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
-      <AddAll navGo='/Buses/BusesHistory' name={edit?"Edit Aminit":"Add Aminit"} />
+      <AddAll navGo='/Buses/Aminites' name={edit?"Edit Aminit":"Add Aminit"} />
       <InputField
         placeholder="Aminites"
         name="name"

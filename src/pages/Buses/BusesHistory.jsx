@@ -64,7 +64,7 @@ const BusesHistory = () => {
 
   const handleEdit = (id) => {
     const sendData = data.find((item) => item.id === id);
-    navigate('/Buses/AddBusesHistory', { state: { sendData } });
+    navigate('/Buses/AddAminites', { state: { sendData } });
   };
 
   const filteredData = data.filter((item) => {
@@ -114,7 +114,7 @@ const cheose = ["Filter","name","status"
           />
           <CiSearch className='w-4 h-4 md:w-6 text-black font-medium absolute left-2 md:h-6' />
         </div>
-      <ThreeThing navGo='/Buses/AddBusesHistory' liked
+      <ThreeThing navGo='/Buses/AddAminites' liked
         labelMap={labelMap}
         cheose={cheose} // Pass the cheose array to ThreeThing component
         selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component

@@ -213,7 +213,7 @@ setEnableprivate(commission?.privateRequest != null);
       })
         .then(() => {
           toast.success('Operator updated successfully');
-          setTimeout(() => navigate('/Agents'), 2000);
+          setTimeout(() => navigate('/Operators'), 2000);
         })
       .catch((error) => {
   const errors = error?.response?.data?.message;
@@ -235,7 +235,7 @@ setEnableprivate(commission?.privateRequest != null);
     })
       .then(() => {
         toast.success('Operator added successfully');
-        setTimeout(() => navigate('/Agents'), 2000);
+        setTimeout(() => navigate('/Operators'), 2000);
           setDescription('');
     setName('');
     setEmail('');
@@ -335,7 +335,7 @@ if (loading) {
 
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
-      <AddAll navGo='/Agents' name= {edit?"Edit operator":"Add operator"}  />
+      <AddAll navGo='/Operators' name= {edit?"Edit operator":"Add operator"}  />
       <div className="flex flex-wrap gap-6 mt-6">
         <InputField placeholder="Name" name="name" value={name} onChange={handleChange} required />
         <InputField placeholder="Description" name="description" value={description} onChange={handleChange} required />

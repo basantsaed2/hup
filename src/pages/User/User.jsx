@@ -142,34 +142,34 @@
           <table className="w-full border-y border-x border-black ">
             <thead className="w-full ">
               <tr className='bg-four w-[1012px] h-[56px]'>
-                <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">S/N</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left ">User</th>
-                <th className="w-[170px] h-[56px] text-[16px] border-b text-left">Gmail</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Country</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Cities</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Zones</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Booking</th>
-                <th className="w-[158px] h-[56px] text-[16px] border-b text-left">Action</th>
+                <th className="w-[10px] h-[56px] text-[14px] border-b text-left px-1">S/N</th>
+                <th className="w-[200px] h-[56px] text-[14px] border-b text-left ">User</th>
+                <th className="w-[200px] h-[56px] text-[14px] border-b   lg:text-center xl:text-start">Gmail</th>
+                <th className="w-[158px] h-[56px] text-[14px] border-b text-left">Country</th>
+                <th className="w-[158px] h-[56px] text-[14px] border-b text-left">Cities</th>
+                <th className="w-[158px] h-[56px] text-[14px] border-b text-left">Zones</th>
+                <th className="w-[158px] h-[56px] text-[14px] border-b text-left">Booking</th>
+                <th className="w-[158px] h-[56px] text-[14px] border-b text-left">Action</th>
               </tr>
             </thead>
             <tbody>
               {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                  <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">   
+                  <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[14px] px-1">   
                            {(currentPage - 1) * rowsPerPage + index + 1}
                   </td>
-                  <td className="flex flex-col w-[170px] h-[56px] absolute top-1 gap-1 items-start justify-start">
-                    <span className="  text-[12px]  font-normal text-five px-1">{item?.name??"N//A"}</span>
-                    <span className="  text-[12px]  font-normal text-five px-1">{item?.phone??"N//A"}</span>
+                  <td className="flex flex-col w-[200px] h-[56px] absolute top-1 gap-1 items-start justify-start">
+                    <span className=" lg:text-[10px] xl:text-[12px]   font-normal text-five px-1">{item?.name??"N//A"}</span>
+                    <span className="  lg:text-[10px] xl:text-[12px]   font-normal text-five px-1">{item?.phone??"N//A"}</span>
                   </td> 
-                  <td className="w-[170px]   h-[56px] text-[10px]  px-1  lg:text-right xl:text-start">{item?.email??"N//A"}</td>
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.country??"N//A"}</td>
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.city??"N//A"}</td>
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">{item?.zone??"N//A"}</td>
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                  <td className="w-[200px]   h-[56px] text-[10px]  px-1 ">{item?.email??"N//A"}</td>
+                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[14px] px-1">{item?.country??"N//A"}</td>
+                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[14px] px-1">{item?.city??"N//A"}</td>
+                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[14px] px-1">{item?.zone??"N//A"}</td>
+                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[14px] px-1">
                     <button className='underline' onClick={() => Details(item.id)}>Details</button>
                   </td>
-                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[16px] flex justify-start items-center">
+                  <td className="w-[143px] h-[56px] lg:text-[12px] xl:text-[14px] flex justify-start items-center">
                     <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
                     <img
                       className='w-[24px] h-[24px] ml-2 cursor-pointer'

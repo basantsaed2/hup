@@ -39,7 +39,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     { icon: <IconHome />, iconactive: <IconHome active />, text: "Home", href: "/Homes" },
     { icon: <IconUser />, iconactive: <IconUser active />, text: "User", href: "/User" },
     { icon: <IconUsersupplier />, iconactive: <IconUsersupplier active />, text: "User Supplier", href: "/Usersupplier" },
-        { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operators", href: "/Agents" },
+        { icon: <IconAgents />, iconactive: <IconAgents active />, text: "Operators", href: "/Operators" },
 
     { icon: <IconLocation />, iconactive: <IconLocation active />, text: "Location", href: "/Location" },
     { icon: <IconBuses />, iconactive: <IconBuses active />, text: "Buses", href: "/Buses" },
@@ -53,9 +53,9 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     { icon: <FaCarAlt  className='text-white w-5 h-5'/>, iconactive: <FaCarAlt  className='w-5 h-5 text-one' active />, text: "Car", href: "/Car" },
     {
       icon: <IconFinancial />, iconactive: <IconFinancial active />, text: "Financial", options: [
-        { text: "● pending payments  ", href: "/Financial/Payments" },
-        { text: "● confirmed payments", href: "/Financial/Commissions" },
-        { text: "● canceled payments   ", href: "/Financial/PendingPayments" }
+        { text: "● Pending payments  ", href: "/Financial/Payments" },
+        { text: "● Confirmed payments", href: "/Financial/Confirmed" },
+        { text: "● Canceled payments   ", href: "/Financial/Canceled" }
       ]  
     },
     // { icon: <IconComplaints />, iconactive: <IconComplaints active />, text: "Complaints", href: "/Complaints" },
@@ -64,7 +64,7 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     { icon: <Reedem />, iconactive: <Reedem  active />, text: "Reedem Point", href: "/ReedemPoint" },
     { icon: <IconPoint />, iconactive: <IconPoint  active />, text: "Point", href: "/Point" },
     { icon: <IconPrivaterequest />, iconactive: <IconPrivaterequest  active />, text: "Private Request", href: "/PrivateRequest" },
-    { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/Allpayot" },
+    { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/PayoutAccount" },
     {
       icon: <IconSetting />, iconactive: <IconSetting active />, text: "Settings", settingsOptions:
         [

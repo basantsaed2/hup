@@ -160,10 +160,10 @@ const PayoutAccount = () => {
           <table className="w-full border-y border-x border-black ">
             <thead className="w-full">
               <tr className='bg-four w-[1012px] h-[56px]' >
-              <th className="w-[10px] h-[56px] text-[16px] border-b text-left px-1">
+              <th className="w-[10px] h-[56px] text-[12px] border-b text-left px-1">
                 S/N
               </th>
-              <th className="w-[158px] h-[56px]  text-[16px] border-b text-left pl-3"> Name</th>
+              <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3"> Name</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left pl-3"> Date</th>
                 <th className="w-[158px] h-[56px]  text-[12px] border-b text-left"> Amount</th>
                 <th className="w-[158px] h-[56px]  text-[12px]  border-b text-left">Currency</th>
@@ -176,17 +176,17 @@ const PayoutAccount = () => {
             <tbody>
               {paginatedData.map((item, index) => (
                 <tr key={index} className='border-y hover:border-3 relative hover:bg-six'>
-                   <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[16px] px-1">
+                   <td className="w-[10px] h-[56px] lg:text-[12px] xl:text-[12px] px-1">
                   {(currentPage - 1) * rowsPerPage + index + 1}
                 </td>
-                  <td className="w-[143px] h-[56px]  text-[16px] px-1">{item?.agent?.name?? "N//A"}</td>
+                  <td className="w-[143px] h-[56px]  text-[12px] px-1">{item?.agent?.name?? "N//A"}</td>
                   <td className="w-[143px] h-[56px]  text-[12px] px-2 ">{item?.date ?? "N//A"}</td>
                   <td className="w-[158px]   h-[56px]  text-[12px]  ">{item?.amount ?? "N//A"}</td>
                   <td className="w-[158px]  h-[56px]  text-[12px]  ">{item?.currency?.name ?? "N//A"}{item?.currency?.symbol ?? "N//A"}</td>
                   {/* <td className="w-[158px]   h-[56px]  text-[12px] ">{item?.agent ?? ''}</td> */}
                   <td className="w-[158px]   h-[56px]  text-[12px] ">{item?.payment_method?.name ??"N//A"}
                     <img src={item?.payment_method?.image_link ?? ''} className='w-5 h-5' /></td>
-                  <td className=" w-[158px]    h-[56px]  text-[16px]  text-nine  font-normal  rounded-[8px]">{item?.status ??"N//A"}</td>
+                  <td className=" w-[158px]    h-[56px]  text-[12px]  text-nine  font-normal  rounded-[8px]">{item?.status ??"N//A"}</td>
                   {item.status !== 'canceled' ? (
                     <td className="w-[158px]    flex gap-1 justify-center items-center h-12  ">
                       <button onClick={() => handlecancel(item.id, item.amount)} className='bg-three py-1 px-2 rounded-[8px] text-white'>

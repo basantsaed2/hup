@@ -134,7 +134,7 @@ const labelMap = {
   const handleEdit = (index) => {
     const sendData = data.find((item) => item.id === index);
 
-    navigate('/AddAgents', { state: { sendData } });
+    navigate('/AddOperators', { state: { sendData } });
   }
   return (
     <div>
@@ -152,7 +152,7 @@ const labelMap = {
  
         </div>
         <ThreeThing 
-          navGo='/AddAgents' 
+          navGo='/AddOperators' 
           liked 
           labelMap={labelMap}
           cheose={cheose} // Pass the cheose array to ThreeThing component

@@ -9,8 +9,8 @@ const Financial = () => {
     <div>
       <Routes>
         <Route path="/Payments" element={<Payments />} />
-        <Route path="/Commissions" element={<Commissions />} />
-        <Route path="/PendingPayments" element={<PendingPayments />} />
+        <Route path="/Confirmed" element={<Commissions />} />
+        <Route path="/Canceled" element={<PendingPayments />} />
       </Routes>
     </div>
   );

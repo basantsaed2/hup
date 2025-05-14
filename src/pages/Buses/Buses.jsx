@@ -13,10 +13,10 @@ const Buses = () => {
         
         <Route path="/" element={<BusesBuses/>} />
         <Route path="/TypeBuses" element={<TypeBuses />} />
-        <Route path="/BusesHistory" element={<BusesHistory />} />
+        <Route path="/Aminites" element={<BusesHistory />} />
         <Route path="/AddBuses" element={<AddBuses />} />
         <Route path="/AddTypeBuses" element={<AddTypeBuses />} />
-        <Route path="/AddBusesHistory" element={<AddBusesHistory />} />
+        <Route path="/AddAminites" element={<AddBusesHistory />} />
    
       </Routes>
     </div>

@@ -7,7 +7,7 @@ const NavPayoutAccount= () => {
         <div>
           <nav className="grid grid-cols-3 gap-6 p-5">
           <NavLink 
-      to="/Allpayot" 
+      to="/PayoutAccount" 
       end
       className={({ isActive }) => 
         `text-center py-3 px-4 text-gray-800 font-semibold border border-transparent transition-colors 
