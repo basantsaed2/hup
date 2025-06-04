@@ -161,43 +161,42 @@ const cheose = ["Filter","points","currencies","currency"]
              </tbody>
            </table>
          </div>
-         
-         <div className="mt-10 ml-5 lg:hidden">
-           <div className='w-[95%] bg-six'>
-           {filteredData.length !== 0 && filteredData.map((item, index) => (
-               <div key={index} className='flex flex-col gap-4 p-3'>
-                   <div className="flex gap-4">
-                         <strong>S/N :</strong>
-                         <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
-                       </div>
-                 <div className="flex gap-4">
-                   <strong>Points :</strong>
-                   <span>{item?.train_fees??"N//A"}</span>
-                 </div>
-                 <div className="flex gap-4">
-                   <strong>currencies :</strong>
-                   <span>{item?.bus_fees??"N//A"}</span>
-                 </div>
-                 <div className="flex gap-4">
-                   <strong>currency:</strong>
-                   <span>{item?.hiace_fees??"N//A"}</span>
-                 </div>
-               
-                
-                 <div className='flex'>
-                   <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
-                   <img
-                     className='w-[24px] h-[24px] ml-2 cursor-pointer'
-                     src={delet}
-                     onClick={() => handleDelete(item.id,)}   
-                     alt="delete"
-                   />
-                 </div>
-                 <div className='w-full bg-white h-2'></div>
-               </div>
-             ))}
-           </div>
-         </div>
+            <div className="mt-10 ml-5 lg:hidden">
+                    <div className='w-[95%] bg-six'>
+                    {filteredData.length !== 0 && filteredData.map((item, index) => (
+                        <div key={index} className='flex flex-col gap-4 p-3'>
+                            <div className="flex gap-4">
+                                  <strong>S/N :</strong>
+                                  <span> {(currentPage - 1) * rowsPerPage + index + 1} </span>
+                                </div>
+                          <div className="flex gap-4">
+                            <strong>Points :</strong>
+                            <span>{item?.points??"N//A"}</span>
+                          </div>
+                          <div className="flex gap-4">
+                            <strong>currencies :</strong>
+                            <span>{item?.currencies??"N//A"}</span>
+                          </div>
+                          <div className="flex gap-4">
+                            <strong>currency:</strong>
+                            <span>{item?.currency.name??"N//A"}{item?.currency.symbol??"N//A"}</span>
+                          </div>
+                        
+                         
+                          <div className='flex'>
+                            <img className='w-[24px] h-[24px]' src={pin} onClick={() => handleEdit(item.id)} />
+                            <img
+                              className='w-[24px] h-[24px] ml-2 cursor-pointer'
+                              src={delet}
+                              onClick={() => handleDelete(item.id,)}   
+                              alt="delete"
+                            />
+                          </div>
+                          <div className='w-full bg-white h-2'></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
          <div className='flex justify-center mt-5'>
 
   <Pagination

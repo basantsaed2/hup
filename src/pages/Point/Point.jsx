@@ -171,15 +171,15 @@ const cheose = ["Filter","points","currencies","currency"]
                        </div>
                  <div className="flex gap-4">
                    <strong>Points :</strong>
-                   <span>{item?.train_fees??"N//A"}</span>
+                   <span>{item?.points??"N//A"}</span>
                  </div>
                  <div className="flex gap-4">
                    <strong>currencies :</strong>
-                   <span>{item?.bus_fees??"N//A"}</span>
+                   <span>{item?.currencies??"N//A"}</span>
                  </div>
                  <div className="flex gap-4">
                    <strong>currency:</strong>
-                   <span>{item?.hiace_fees??"N//A"}</span>
+                   <span>{item?.currency.name??"N//A"}{item?.currency.symbol??"N//A"}</span>
                  </div>
                
                 

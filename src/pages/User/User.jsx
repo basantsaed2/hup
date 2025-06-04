@@ -100,8 +100,8 @@
     zone:"Zone"
   };
 
-    const names = ["User", "email", "Country", "Cities", "Zones", "Action"];
-    const fieldsToShow = ["name", "email", "country", "city", "zone",];
+    const names = ["User","phone", "email", "Country", "Cities", "Zones", "Action"];
+    const fieldsToShow = ["name","phone", "email", "country", "city", "zone",];
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
     const pageCount = Math.ceil(filteredData.length / rowsPerPage);
