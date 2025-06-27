@@ -28,6 +28,8 @@ import { MdArrowForwardIos } from "react-icons/md";
 import Reedem from "../../IconsImprot/Reedem"
 import { IoIosArrowDown } from "react-icons/io";
 import TICKET1 from "../../assets/TICKET1.png"
+import IconAdminRoles from '../../IconsImprot/IconAdminRoles'
+import IconAdmin from '../../IconsImprot/IconAdmin'
 const Dash = ({ activeLink ,open ,setopen}) => {
   const [openFinancial, setOpenFinancial] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
@@ -65,6 +67,8 @@ const Dash = ({ activeLink ,open ,setopen}) => {
     { icon: <IconPoint />, iconactive: <IconPoint  active />, text: "Point", href: "/Point" },
     { icon: <IconPrivaterequest />, iconactive: <IconPrivaterequest  active />, text: "Private Request", href: "/PrivateRequest" },
     { icon: <IconPayoutAccount />, iconactive: <IconPayoutAccount active />, text: "Payout Account", href: "/PayoutAccount" },
+    { icon: <IconAdminRoles />, iconactive: <IconAdminRoles active />, text: "Admin Roles", href: "/AdminRoles" },
+    { icon: <IconAdmin />, iconactive: <IconAdmin active />, text: "Admin", href: "/Admins" },
     {
       icon: <IconSetting />, iconactive: <IconSetting active />, text: "Settings", settingsOptions:
         [

@@ -7,9 +7,11 @@ function App() {
     const stored = sessionStorage.getItem('isLoggedIn');
     return stored === 'true'; // نحولها من string لـ boolean
   });
+
 useEffect(() => {
   if(isLoggedIn){
     sessionStorage.setItem('isLoggedIn', 'true');
+    
     }
 
   

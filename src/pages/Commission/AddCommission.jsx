@@ -22,6 +22,30 @@ const AddCommission = () => {
     bus: '',
     hiace: ''
   })
+  
+  const [actions, setActions] = useState([]);
+    useEffect(() => {
+      const storedPosition = localStorage.getItem("role");
+      let roles = [];
+      if (storedPosition) {
+        try {
+          const position = JSON.parse(storedPosition);
+          if (position && Array.isArray(position.roles)) {
+            roles = position.roles;
+          } else {
+            console.warn("Position.roles is not an array or missing", position);
+          }
+        } catch (error) {
+          console.error("Error parsing position from localStorage", error);
+        }
+      } else {
+        console.warn("No position found in localStorage");
+      }
+      const paymentActions = roles
+        .filter((role) => role.module === "Commission")
+        .map((role) => role.action);
+      setActions(paymentActions);
+    }, []);
   useEffect(() => {
 
     const token = localStorage.getItem('token');
@@ -95,7 +119,8 @@ const AddCommission = () => {
             navigate('/Commission');
           }, 2000);
         })
-        .catch(() => {
+        .catch(() => {                         toast.error("failed");
+        
         });
       } else {
 
@@ -110,7 +135,8 @@ const AddCommission = () => {
           navigate('/Commission');
         }, 2000);
       })
-      .catch(() => {
+      .catch(() => {                         toast.error("failed");
+      
       });
       }
     settrain('');
@@ -130,6 +156,8 @@ const AddCommission = () => {
     <div className='ml-6 flex flex-col  mt-6 gap-6'>
 
       <AddAll navGo='/Commission' name={edit?"Edit Commission":" Add Commission"} />
+      {(actions.includes('add') || actions.includes("edit")) && (
+<>
       <div className='flex flex-wrap gap-6  mt-6'>
 
         <InputField name="train" placeholder="train" value={train}
@@ -149,7 +177,8 @@ const AddCommission = () => {
 
 
           </button>
-      </div>         <ToastContainer />
+      </div>      </>
+      )}   <ToastContainer />
 
     </div>
   )

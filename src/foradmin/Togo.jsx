@@ -15,6 +15,12 @@ import Trips from '../pages/Trips/Trips.jsx';
 import AddTrips from '../pages/Trips/AddTrips.jsx';
 import Hiace from '../pages/hies/Minivan.jsx';
 import Addhiace from '../pages/hies/MinivanAdd.jsx';
+import  ErrorPage from '../ErrorPage.jsx'
+import AdminRoles from '../pages/Adminroles/AdminRoles.jsx'
+import AddAdminRoles from '../pages/Adminroles/AddAdminRoles.jsx'
+
+import Admins from '../pages/Admins/Admins.jsx'
+import AddAdmins from '../pages/Admins/AddAdmins.jsx'
 
 import Agents from '../pages/Agents/Agents.jsx';
 import AddAgents from '../pages/Agents/AddAgents.jsx'
@@ -50,6 +56,9 @@ import Settings from '../pages/Settings/Settings.jsx';
 import Car from '../pages/Car/Car.jsx';
 import Homes from '../pages/Dashbrod/Homes.jsx'
 import Train from '../pages/Tarins/Tarin.jsx'
+
+// import useModuleActions from '../Hooks/useModuleActions.jsx';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.jsx';
 const Togo = ({ setIsLoggedIn }) => {
   const [activeLink, setActiveLink] = useState('/');
   const [open, setopen] = useState(false);
@@ -67,9 +76,9 @@ const Togo = ({ setIsLoggedIn }) => {
     } else if (location.pathname === '/Location/Cities' || location.pathname === '/Location/Zones' || location.pathname === '/Location/Stations' || location.pathname === '/Location/Addcountries' || location.pathname === '/Location/Addcities' || location.pathname === '/Location/Addzones' || location.pathname === '/Location/AddOffStation') {
       setActiveLink('/Location');
     } 
-    else if (location.pathname === '/Buses/TypeBuses' || location.pathname === '/Buses/AddBusesHistory' 
+    else if (location.pathname === '/Buses/TypeBuses' || location.pathname === '/Buses/Aminites' 
       || location.pathname === '/Buses/Operation'
-      || location.pathname === '/Buses/BusesHistory'
+      || location.pathname === '/Buses/AddAminites'
        || location.pathname === '/Buses/AddBuses' || location.pathname === '/Buses/AddTypeBuses') {
       setActiveLink('/Buses');
     }
@@ -93,7 +102,7 @@ const Togo = ({ setIsLoggedIn }) => {
     ) {
       setActiveLink('/Train');
 
-    } else if (location.pathname === '/Operators' || location.pathname === '/AddAgents') {
+    } else if (location.pathname === '/Operators' || location.pathname === '/AddOperators') {
       setActiveLink('/Operators');
     } else if (location.pathname === '/Complaints' || location.pathname === '/AddComplaints') {
       setActiveLink('/Complaints');
@@ -135,30 +144,353 @@ const Togo = ({ setIsLoggedIn }) => {
     }
      else if (location.pathname === '/Tarins/Tarin') {
       setActiveLink('/Tarins/Tarin');
+    }
+     else if (location.pathname === '/AddAdminRoles') {
+      setActiveLink('/AdminRoles');
+    }
+     else if (location.pathname === '/AddAdmins') {
+      setActiveLink('/Admins');
     } else {
       setActiveLink(location.pathname);
     }
   }, [location.pathname]);
 
   return (
-    <div className='flex overflow-hidden relative'>
-      <div className='bg-one  '>
+    <div className='flex overflow-hidden h-screen relative'>
+      <div className='bg-one   '>
         <Dash activeLink={activeLink}  setopen={setopen} open={open} />
       </div>
-      <div className='w-full '>
+      <div className='w-full overflow-auto '>
         <Home setIsLoggedIn={setIsLoggedIn} setopen={setopen} open={open} />
         <Routes >
+          
           <Route path='/login' element={<Navigate to="/Homes"/>} />
-          {/* <Route path='/login' element={<Navigate to="/Home"/>} /> */}
           <Route path='/Homes' element={<Homes/>} />
-          <Route path='/User' element={<User />} />
+          {/* <Route path='/User' element={<User />} /> */}
+             <Route
+            path='/User'
+            element={
+              <ProtectedRoute moduleName='user' requiredAction='view'>
+                <User />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+  path='/AddUser'
+  element={
+    <ProtectedRoute moduleName='user' requiredAction='add'>
+      <AddUser />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/UserDetails'
+  element={
+    <ProtectedRoute moduleName='user' requiredAction='view'>
+      <UserDetails />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Userbookingdetails'
+  element={
+    <ProtectedRoute moduleName='user' requiredAction='view'>
+      <Userbookingdetails />
+    </ProtectedRoute>
+  }
+/>
+          <Route path='/Location/*' element={<Location />} />
+
+          <Route path='/Buses/*' element={<Buses />} />
+
+
+          <Route path='/Car/*' element={<Car />} />
+
+<Route
+  path='/Booking/*'
+  element={
+    <ProtectedRoute moduleName='booking' requiredAction='view'>
+      <Booking />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Bookingdetailsmore'
+  element={
+    <ProtectedRoute moduleName='booking' requiredAction='view'>
+      <Bookingdetailsmore />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Trips'
+  element={
+    <ProtectedRoute moduleName='trips' requiredAction='view'>
+      <Trips />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddTrips'
+  element={
+    <ProtectedRoute moduleName='trips' requiredAction='add'>
+      <AddTrips />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Minivan'
+  element={
+    <ProtectedRoute moduleName='hiaces' requiredAction='view'>
+      <Hiace />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/MinivanAdd'
+  element={
+    <ProtectedRoute moduleName='hiaces' requiredAction='add'>
+      <Addhiace />
+    </ProtectedRoute>
+  }
+/>
+
+
+          <Route path='/Train/*' element={<Train />} />
+
+
+<Route
+  path='/Operators'
+  element={
+    <ProtectedRoute moduleName='operators' requiredAction='view'>
+      <Agents />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddOperators'
+  element={
+    <ProtectedRoute moduleName='operators' requiredAction='add'>
+      <AddAgents />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Complaints'
+  element={
+    <ProtectedRoute moduleName='complaints' requiredAction='view'>
+      <Complaints />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddComplaints'
+  element={
+    <ProtectedRoute moduleName='complaints' requiredAction='add'>
+      <AddComplaints />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Commission'
+  element={
+    <ProtectedRoute moduleName='Commission' requiredAction='view'>
+      <CommissionSetup />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddCommission'
+  element={
+    <ProtectedRoute moduleName='Commission' requiredAction='add'>
+      <AddCommissionSetup />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Currency'
+  element={
+    <ProtectedRoute moduleName='currencies' requiredAction='view'>
+      <Currency />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddCurrency'
+  element={
+    <ProtectedRoute moduleName='currencies' requiredAction='add'>
+      <AddCurrency />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/PayoutAccount'
+  element={
+    <ProtectedRoute moduleName='payoutRequest' requiredAction='view'>
+      <Allpayot />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/HistoryPayout'
+  element={
+    <ProtectedRoute moduleName='payoutRequest' requiredAction='add'>
+      <HistoryPayout />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Cancelpayout'
+  element={
+    <ProtectedRoute moduleName='payoutRequest' requiredAction='view'>
+      <Cancelpayout />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/PrivateRequest'
+  element={
+    <ProtectedRoute moduleName='private_request' requiredAction='view'>
+      <PrivateRequest />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Request'
+  element={
+    <ProtectedRoute moduleName='payoutRequest' requiredAction='view'>
+      <Request />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/ReedemPoint'
+  element={
+    <ProtectedRoute moduleName='redeem_point' requiredAction='view'>
+      <ReedemPoint />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddReedemPoint'
+  element={
+    <ProtectedRoute moduleName='redeem_point' requiredAction='add'>
+      <AddReedemPoint />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Point'
+  element={
+    <ProtectedRoute moduleName='point' requiredAction='view'>
+      <Point />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddPoint'
+  element={
+    <ProtectedRoute moduleName='point' requiredAction='add'>
+      <AddPoint />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Usersupplier'
+  element={
+    <ProtectedRoute moduleName='user_request' requiredAction='view'>
+      <Usersupplier />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Wallet'
+  element={
+    <ProtectedRoute moduleName='wallet_request' requiredAction='view'>
+      <Wallet />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AdminRoles'
+  element={
+    <ProtectedRoute moduleName='admin_role' requiredAction='view'>
+      <AdminRoles />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddAdminRoles'
+  element={
+    <ProtectedRoute moduleName='admin_role' requiredAction='add'>
+      <AddAdminRoles />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Admins'
+  element={
+    <ProtectedRoute moduleName='admin' requiredAction='view'>
+      <Admins />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/AddAdmins'
+  element={
+    <ProtectedRoute moduleName='admin' requiredAction='add'>
+      <AddAdmins />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path='/Financial/*'
+  element={
+    <ProtectedRoute moduleName='payment' requiredAction='view'>
+      <Financial />
+    </ProtectedRoute>
+  }
+/>
+          <Route path='/Settings/*' element={<Settings />} /> *
+          <Route path='/*' element={<ErrorPage />} />
+
+{/* 
           <Route path='/Userbookingdetails' element={<Userbookingdetails />} />
           <Route path='/AddUser' element={<AddUser />} />
           <Route path='/UserDetails' element={<UserDetails />} />
           <Route path='/Buses/*' element={<Buses />} />
           <Route path='/Location/*' element={<Location />} />
           <Route path='/Booking/*' element={<Booking />} />
-          {/* <Route path='/Bookingdetails' element={<Bookingdetails />} /> */}
           <Route path='/Bookingdetailsmore' element={<Bookingdetailsmore />} />
           <Route path='/Trips' element={<Trips />} />
           <Route path='/AddTrips' element={<AddTrips />} />
@@ -166,29 +498,18 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/AddOperators' element={<AddAgents />} />
           <Route path='/Complaints' element={<Complaints />} />
           <Route path='/AddComplaints' element={<AddComplaints />} />
-          {/*  */}
           <Route path='/Car/*' element={<Car />} />
           <Route path='/Train/*' element={<Train />} />
-          {/*  */}
-
           <Route path='/Minivan' element={<Hiace />} />
           <Route path='/MinivanAdd' element={<Addhiace/>} />
           <Route path='/Request' element={<Request/>} />
           <Route path='/Request' element={<Request/>} />
-          {/*  */}
           <Route path='/ReedemPoint' element={<ReedemPoint/>} />
           <Route path='/AddReedemPoint' element={<AddReedemPoint/>} />
-{/*  */}
           <Route path='/Point' element={<Point/>} />
           <Route path='/AddPoint' element={<AddPoint/>} />
-
-{/*  */}
-
           <Route path='/Usersupplier' element={<Usersupplier/>} />
-{/*  */}
           <Route path='/Wallet' element={<Wallet/>} />
-
-{/*  */}
           <Route path='/PrivateRequest' element={<PrivateRequest />} />
           <Route path='/Commission' element={<CommissionSetup />} />
           <Route path='/AddCommission' element={<AddCommissionSetup />} />
@@ -197,8 +518,13 @@ const Togo = ({ setIsLoggedIn }) => {
           <Route path='/PayoutAccount' element={<Allpayot />} />
           <Route path='/HistoryPayout' element={<HistoryPayout />} />
           <Route path='/Cancelpayout' element={<Cancelpayout />} />
+          <Route path='/AdminRoles' element={<AdminRoles />} />
+          <Route path='/AddAdminRoles' element={<AddAdminRoles />} />
+          <Route path='/Admins' element={<Admins />} />
+          <Route path='/AddAdmins' element={<AddAdmins />} />
           <Route path='/Financial/*' element={<Financial />} />
-          <Route path='/Settings/*' element={<Settings />} />
+          <Route path='/Settings/*' element={<Settings />} /> */}
+          {/* <Route path='/Bookingdetails' element={<Bookingdetails />} /> */}
         </Routes>
       </div>
     </div>

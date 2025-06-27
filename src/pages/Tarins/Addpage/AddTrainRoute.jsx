@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import AddAll from '../../../ui/AddAll';
-import picdone from '../../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';

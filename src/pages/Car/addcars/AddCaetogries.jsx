@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import AddAll from '../../../ui/AddAll';
-import picdone from '../../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -18,6 +17,29 @@ const AddCaetogries = () => {
         const [valuee, setValue] = useState("inactive");
           const [loading, setLoading] = useState(true);
         
+        const [actions, setActions] = useState([]);
+          useEffect(() => {
+            const storedPosition = localStorage.getItem("role");
+            let roles = [];
+            if (storedPosition) {
+              try {
+                const position = JSON.parse(storedPosition);
+                if (position && Array.isArray(position.roles)) {
+                  roles = position.roles;
+                } else {
+                  console.warn("Position.roles is not an array or missing", position);
+                }
+              } catch (error) {
+                console.error("Error parsing position from localStorage", error);
+              }
+            } else {
+              console.warn("No position found in localStorage");
+            }
+            const paymentActions = roles
+              .filter((role) => role.module === "car_categories")
+              .map((role) => role.action);
+            setActions(paymentActions);
+          }, []);
     const handleFileChange = (file) => {
         if (file) {
             setFlag(file);
@@ -98,7 +120,7 @@ const AddCaetogries = () => {
                                 }, 2000);
                             })
                             .catch(() => {
-                                toast.error("network");
+                         toast.error("failed");
 
                             });
                         return;
@@ -117,7 +139,7 @@ const AddCaetogries = () => {
                             }, 2000);
                         })
                         .catch(() => {
-                            toast.error("network");
+                         toast.error("failed");
 
                         });
             
@@ -140,6 +162,8 @@ const AddCaetogries = () => {
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
     <AddAll navGo='/Car' name={edit?"Edit Caetogries":"Add Caetogries"} />
+    {(actions.includes('add') || actions.includes("edit")) && (
+<>
     <InputField
         placeholder=" Name"
         name="name"
@@ -163,6 +187,8 @@ const AddCaetogries = () => {
 
           </button>
       </div>
+      </>
+      )}
     <ToastContainer />
 </div>
   )

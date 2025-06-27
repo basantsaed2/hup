@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ThreeThing from '../../component/ThreeThing.jsx';
 import NavLocation from './NavLocation';
-import delet from '../../assets/delete.svg';
+// import delet from '../../assets/delete.svg';
 import pin from '../../assets/pin.svg';
 import Swal from 'sweetalert2';
 import { CiSearch } from "react-icons/ci"; // Import search icon for UI
@@ -18,7 +18,30 @@ const Countries = () => {
     const [selectedFilter, setSelectedFilter] = useState(''); // Track selected filter option
   
   const navigate = useNavigate();
-
+ const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "countries")
+      .map((role) => role.action);
+    setActions(paymentActions);
+   
+  }, []);
   useEffect(() => {
     const token = localStorage.getItem('token');
     axios.get("https://bcknd.ticket-hub.net/api/admin/countries", {
@@ -113,6 +136,8 @@ const Countries = () => {
           />
           <CiSearch className="w-4 h-4 md:w-6 text-black font-medium absolute left-2 md:h-6" />
         </div>
+                {actions.includes("add") ? (
+
         <ThreeThing
           navGo="/Location/Addcountries"
           liked
@@ -121,6 +146,17 @@ const Countries = () => {
           selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component
           setSelectedFilter={setSelectedFilter} // Function to update selectedFilter
         />
+                ) : (
+   <ThreeThing
+          navGo="/Location/Addcountries"
+          liked 
+          like
+          labelMap={labelMap}
+          cheose={cheose} // Pass the cheose array to ThreeThing component
+          selectedFilter={selectedFilter} // Pass selectedFilter to TheeThing component
+          setSelectedFilter={setSelectedFilter} // Function to update selectedFilter
+        />
+        )}
       </div>
 
       <div className="mt-10 ml-5 hidden lg:block">
@@ -142,6 +178,8 @@ const Countries = () => {
               </th>
             </tr>
           </thead>
+          {actions.includes("view") && (
+
           <tbody>
             {paginatedData.map((item, index) => (
               <tr
@@ -186,9 +224,14 @@ const Countries = () => {
               </tr>
             ))}
           </tbody>
+          )}
+
         </table>
       </div>
-      {/* Mobile view */}
+
+      {actions.includes("view") && (
+        <>
+
       <div className="mt-10 ml-5 lg:hidden">
         <div className="w-[95%] bg-six">
           {paginatedData.map((item, index) => (
@@ -257,6 +300,8 @@ const Countries = () => {
           shape="rounded"
         />
       </div>
+         </>
+      )}
       <ToastContainer />
     </div>
   );

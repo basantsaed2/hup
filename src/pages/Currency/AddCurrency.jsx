@@ -1,27 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
-import AddAll from '../../ui/AddAll'
-import InputField from '../../ui/InputField'
-import picdone from '../../assets/picdone.svg'
-import SwitchButton from '../../ui/SwitchButton';
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import AddAll from "../../ui/AddAll";
+import InputField from "../../ui/InputField";
+import picdone from "../../assets/picdone.svg";
+import SwitchButton from "../../ui/SwitchButton";
 
 const AddCurrency = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [edit, setEdit] = useState(false);
   const [status, setstatus] = useState("0");
-  const [symbol, setsymbol] = useState('');
+  const [symbol, setsymbol] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [errors, setErrors] = useState({
     symbol: "",
-    name: '',
-    status: '',
+    name: "",
+    status: "",
   });
+
+  const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "currencies")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
   useEffect(() => {
     const { sendData } = location.state || {};
     if (sendData) {
@@ -38,14 +62,14 @@ const AddCurrency = () => {
   }, [location.state]);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'symbol') setsymbol(value);
-    if (name === 'name') setName(value);
+    if (name === "symbol") setsymbol(value);
+    if (name === "name") setName(value);
   };
 
   const validateForm = () => {
     let formErrors = {};
-    if (!symbol) formErrors.symbol = 'symbol is required';
-    if (!name) formErrors.name = 'name is required';
+    if (!symbol) formErrors.symbol = "symbol is required";
+    if (!name) formErrors.name = "name is required";
     setErrors(formErrors);
     Object.values(formErrors).forEach((error) => {
       toast.error(error);
@@ -53,60 +77,62 @@ const AddCurrency = () => {
     return Object.keys(formErrors).length === 0;
   };
 
-
   const handleSave = () => {
     if (!validateForm()) {
       return;
     }
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     const newUser = {
       name: name,
       symbol: symbol,
       status: status,
-
     };
 
     console.log("Data to be sent:", newUser);
 
     if (edit) {
       const { sendData } = location.state || {};
-      axios.put(`https://bcknd.ticket-hub.net/api/admin/currency/update/${sendData.id}`, newUser, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      axios
+        .put(
+          `https://bcknd.ticket-hub.net/api/admin/currency/update/${sendData.id}`,
+          newUser,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then(() => {
-          toast.success('Currency updated successfully');
+          toast.success("Currency updated successfully");
           setTimeout(() => {
-            navigate('/Currency');
+            navigate("/Currency");
           }, 2000);
         })
-        .catch(error => {
-          console.error('Error updating country:', error);
+        .catch((error) => {
+          console.error("Error updating country:", error);
         });
       return;
     }
 
-    axios.post('https://bcknd.ticket-hub.net/api/admin/currency/add', newUser, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    axios
+      .post("https://bcknd.ticket-hub.net/api/admin/currency/add", newUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
-        toast.success('Currency added successfully');
+        toast.success("Currency added successfully");
 
         setTimeout(() => {
-          navigate('/Currency');
+          navigate("/Currency");
         }, 2000);
       })
-      .catch(() => {
-      });
+      .catch(() => {});
 
-
-    setsymbol('');
-    setName('');
-    setstatus('')
+    setsymbol("");
+    setName("");
+    setstatus("");
     setEdit(false);
   };
   if (loading) {
@@ -118,39 +144,55 @@ const AddCurrency = () => {
   }
 
   return (
-    <div className='ml-6 flex flex-col  mt-6 gap-6'>
+    <div className="ml-6 flex flex-col  mt-6 gap-6">
+      <AddAll
+        navGo="/Currency"
+        name={edit ? "Edit Currency" : "Add Currency"}
+      />
+      {(actions.includes("add") || actions.includes("edit")) && (
+        <>
+          <div className="flex flex-col gap-6  mt-6">
+            <InputField
+              placeholder="Currency"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              placeholder="symbol"
+              name="symbol"
+              value={symbol}
+              onChange={handleChange}
+              required
+            />
 
-      <AddAll navGo='/Currency' name={edit?"Edit Currency":"Add Currency"} />
-      <div className='flex flex-col gap-6  mt-6'>
-        <InputField placeholder="Currency"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          required />
-        <InputField placeholder="symbol"
-          name="symbol"
-          value={symbol}
-          onChange={handleChange}
-          required />
+            <SwitchButton
+              value={status}
+              num
+              title="stutes"
+              setValue={setstatus}
+            />
+          </div>
 
-        <SwitchButton value={status} num title="stutes" setValue={setstatus} />
-      </div>
-
-
-        <div className="flex gap-3">
-     
-        <button className=' bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden 'onClick={handleSave}>
-              <span className=' h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95'  > {edit?"Edit":"Add"}</span>
-               <span className='absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30'></span>
-               <span className='absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45'></span>
-
-
-          </button>
-      </div>
+          <div className="flex gap-3">
+            <button
+              className=" bg-one mt-5 w-[200px] lg:w-[300px] h-[72px] border border-one rounded-[8px] relative overflow-hidden "
+              onClick={handleSave}
+            >
+              <span className=" h-[56px] mx-auto lg:h-[72px] w-[400px]   text-white text-2xl rounded-[8px] mt-2 lg:mt-5  transform transition hover:scale-95">
+                {" "}
+                {edit ? "Edit" : "Add"}
+              </span>
+              <span className="absolute w-25 h-25 right-40 lg:right-55 bg-white top-0 transform transition rotate-30"></span>
+              <span className="absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45"></span>
+            </button>
+          </div>
+        </>
+      )}
       <ToastContainer />
-
     </div>
-  )
-}
+  );
+};
 
-export default AddCurrency
+export default AddCurrency;

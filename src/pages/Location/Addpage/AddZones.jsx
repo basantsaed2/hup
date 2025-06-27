@@ -1,6 +1,5 @@
 import React, {  useEffect, useState } from 'react';
 import AddAll from '../../../ui/AddAll';
-import picdone from '../../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -27,6 +26,29 @@ const Addzones= () => {
       });
 
 
+const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "zones")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
  useEffect(() => {
     const { sendData } = location.state || {};
     if (sendData) {
@@ -91,8 +113,10 @@ const Addzones= () => {
                       navigate('/Location/Zones');
                     }, 2000);
           })
-          .catch(() => {
-          });
+         .catch(() => {
+                         toast.error("failed");
+                 
+               });
         return;
       }
   
@@ -108,8 +132,10 @@ const Addzones= () => {
                     navigate('/Location/Zones');
                   }, 2000);
         })
-        .catch(() => {
-        });
+      .catch(() => {
+                      toast.error("failed");
+              
+            });
   
       setCountry('');
       setName('');
@@ -126,6 +152,8 @@ const Addzones= () => {
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
     <AddAll navGo='/Location/Zones' name={edit?"Edit Zone":"Add Zone"} />
+    {(actions.includes('add') || actions.includes("edit")) && (
+<>
     <InputArrow like
       placeholder="Country"
       name="countries"
@@ -162,7 +190,8 @@ const Addzones= () => {
 
           </button>
       </div>
-  
+  </>
+      )}
     <ToastContainer />
   </div>
      

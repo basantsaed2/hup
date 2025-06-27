@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import AddAll from '../../../ui/AddAll';
-import picdone from '../../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -16,6 +15,30 @@ const AddSubjectComplaints = () => {
     const [errors, setErrors] = useState({
         name: '',
     });
+    
+    const [actions, setActions] = useState([]);
+      useEffect(() => {
+        const storedPosition = localStorage.getItem("role");
+        let roles = [];
+        if (storedPosition) {
+          try {
+            const position = JSON.parse(storedPosition);
+            if (position && Array.isArray(position.roles)) {
+              roles = position.roles;
+            } else {
+              console.warn("Position.roles is not an array or missing", position);
+            }
+          } catch (error) {
+            console.error("Error parsing position from localStorage", error);
+          }
+        } else {
+          console.warn("No position found in localStorage");
+        }
+        const paymentActions = roles
+          .filter((role) => role.module === "complaint_subjects")
+          .map((role) => role.action);
+        setActions(paymentActions);
+      }, []);
     useEffect(() => {
         const { sendData } = location.state || {};
         if (sendData) {
@@ -69,7 +92,8 @@ const AddSubjectComplaints = () => {
                         navigate('/Settings/SubjectComplaints');
                     }, 2000);
                 })
-                .catch(() => {
+                .catch(() => {                         toast.error("failed");
+                
                 });
             return;
         }
@@ -85,7 +109,8 @@ const AddSubjectComplaints = () => {
                     navigate('/Settings/SubjectComplaints');
                 }, 2000);
             })
-            .catch(() => {
+            .catch(() => {                         toast.error("failed");
+            
             });
 
         setname('');
@@ -102,7 +127,8 @@ const AddSubjectComplaints = () => {
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
   <AddAll navGo='/Settings/SubjectComplaints' name={edit?"Edit Subject Complaints": "Add Subject Complaints"} />
-        <InputField
+    {(actions.includes('add') || actions.includes("edit")) && (
+<>    <InputField
             placeholder=" Subject Complaints"
             name="name"
             value={name}
@@ -117,7 +143,9 @@ const AddSubjectComplaints = () => {
 
 
           </button>
-      </div>
+      </div></>
+      )}
+   
                 <ToastContainer />
         </div>
   )

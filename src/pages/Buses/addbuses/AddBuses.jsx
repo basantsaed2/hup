@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import AddAll from '../../../ui/AddAll';
-import picdone from '../../../assets/picdone.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -33,7 +32,29 @@ const AddBuses = () => {
     agent: "",
     type: "",
   });
- 
+ const [actions, setActions] = useState([]);
+   useEffect(() => {
+     const storedPosition = localStorage.getItem("role");
+     let roles = [];
+     if (storedPosition) {
+       try {
+         const position = JSON.parse(storedPosition);
+         if (position && Array.isArray(position.roles)) {
+           roles = position.roles;
+         } else {
+           console.warn("Position.roles is not an array or missing", position);
+         }
+       } catch (error) {
+         console.error("Error parsing position from localStorage", error);
+       }
+     } else {
+       console.warn("No position found in localStorage");
+     }
+     const paymentActions = roles
+       .filter((role) => role.module === "bus")
+       .map((role) => role.action);
+     setActions(paymentActions);
+   }, []);
 
   const handleFileChange = (file) => {
     if (file) {
@@ -143,8 +164,8 @@ const AddBuses = () => {
           }, 2000);
           resetForm();
         })
-        .catch(error => {
-          console.error('Error updating bus:', error);
+        .catch(() => {
+                         toast.error("failed");
         });
     } else {
       // Add Bus logic
@@ -162,8 +183,8 @@ const AddBuses = () => {
           }, 2000);
           resetForm();
         })
-        .catch(error => {
-          console.error('Error adding bus:', error);
+        .catch(() => {
+                         toast.error("failed");
         });
     }
   };
@@ -189,6 +210,8 @@ const AddBuses = () => {
 <div>
 
       <AddAll navGo='/Buses' name={edit?"Edit Bus":"Add Bus"} />
+      {(actions.includes('add') || actions.includes("edit")) && (
+<>
       <div className='ml-6 flex flex-wrap mt-6 gap-6'>
 
         <InputField
@@ -248,7 +271,8 @@ const AddBuses = () => {
 
           </button>
       </div>
-        
+        </>
+      )}
       </div>
 
   );

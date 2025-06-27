@@ -25,6 +25,29 @@ const AddCARS = () => {
     const [originalFlag, setOriginalFlag] = useState(null);
     const [edit, setEdit] = useState(false);
     const [valuee, setValue] = useState("busy");
+    const [actions, setActions] = useState([]);
+      useEffect(() => {
+        const storedPosition = localStorage.getItem("role");
+        let roles = [];
+        if (storedPosition) {
+          try {
+            const position = JSON.parse(storedPosition);
+            if (position && Array.isArray(position.roles)) {
+              roles = position.roles;
+            } else {
+              console.warn("Position.roles is not an array or missing", position);
+            }
+          } catch (error) {
+            console.error("Error parsing position from localStorage", error);
+          }
+        } else {
+          console.warn("No position found in localStorage");
+        }
+        const paymentActions = roles
+          .filter((role) => role.module === "cars")
+          .map((role) => role.action);
+        setActions(paymentActions);
+      }, []);
     const handleFileChange = (file) => {
         if (file) {
             setFlag(file);
@@ -189,6 +212,8 @@ const AddCARS = () => {
     return (
         <div className='ml-6 flex flex-col mt-6 gap-6'>
             <AddAll navGo='/Car/CARS' name={edit?"Edit Cars":"Add Cars"} />
+            {(actions.includes('add') || actions.includes("edit")) && (
+<>
             <div className='flex flex-wrap gap-6'>
             <InputArrow 
                 placeholder="categories"
@@ -263,8 +288,11 @@ const AddCARS = () => {
 
           </button>
       </div>
-            <ToastContainer />
             </div>
+            </>
+      )}
+   
+            <ToastContainer />
         </div>
     )
 }

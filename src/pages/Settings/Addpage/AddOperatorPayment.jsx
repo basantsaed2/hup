@@ -18,7 +18,29 @@ const AddOperatorPayment = () => {
     const [valuee, setValue] = useState("inactive");
     const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(true);
-
+const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "operator_payment_methods")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
     const handleFileChange = (file) => {
         if (file) {
             setFlag(file);
@@ -134,6 +156,8 @@ const AddOperatorPayment = () => {
     return (
         <div className='ml-6 flex flex-col mt-6 gap-6'>
         <AddAll navGo='/Settings/OperatorPayment' name={edit?"Edit Operator Payment":"Add Operator Payment"} />
+     {(actions.includes('add') || actions.includes("edit")) && (
+<>
         <InputField
             placeholder=" Name"
             name="name"
@@ -157,6 +181,8 @@ const AddOperatorPayment = () => {
 
           </button>
       </div>
+      </>
+      )}
         <ToastContainer />
     </div>
     )

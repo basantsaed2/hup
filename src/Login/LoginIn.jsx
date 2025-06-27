@@ -37,6 +37,7 @@ function LoginIn({ setIsLoggedIn }) {
         setData(response.data);
         if (response.data.message === "Login Successfully") {
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('role', JSON.stringify(response.data.user.position));
           toast.success(`welcome`);
 
           setTimeout(() => {

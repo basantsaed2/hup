@@ -12,6 +12,30 @@ const CanceledBooking = () => {
   const [update, setUpdate] = useState(false);
    const [searchQuery, setSearchQuery] = useState(''); 
             const [selectedFilter, setSelectedFilter] = useState(''); 
+            const [actions, setActions] = useState([]);
+              useEffect(() => {
+                const storedPosition = localStorage.getItem("role");
+                let roles = [];
+                if (storedPosition) {
+                  try {
+                    const position = JSON.parse(storedPosition);
+                    if (position && Array.isArray(position.roles)) {
+                      roles = position.roles;
+                    } else {
+                      console.warn("Position.roles is not an array or missing", position);
+                    }
+                  } catch (error) {
+                    console.error("Error parsing position from localStorage", error);
+                  }
+                } else {
+                  console.warn("No position found in localStorage");
+                }
+                const paymentActions = roles
+                  .filter((role) => role.module === "booking")
+                  .map((role) => role.action);
+                setActions(paymentActions);
+               
+              }, []);
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -107,6 +131,8 @@ code:"code"
                   <th className="w-[158px] h-[56px]  text-[14px]  border-b text-left">Status</th>
                 </tr>
               </thead>
+                        {actions.includes("view") && (
+
               <tbody>
                
               {paginatedData.map((item,index) => (
@@ -123,9 +149,13 @@ code:"code"
                 
                   </tr>
                 ))}
-              </tbody>
+              </tbody>          )}
+
             </table>
           </div> 
+                {actions.includes("view") && (
+        <>
+
           <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
           {paginatedData.map((item, index) => (
@@ -170,6 +200,28 @@ code:"code"
           ))}
         </div>
       </div>
+            <div className="flex justify-center mt-4">
+                  <Pagination
+                    count={pageCount}
+                    page={currentPage}
+                    onChange={(e, page) => setCurrentPage(page)}
+                    sx={{
+                      "& .MuiPaginationItem-root": {
+                        color: "#F58220",
+                        "&.Mui-selected": {
+                          backgroundColor: "#F58220",
+                          color: "white",
+                        },
+                        "&:hover": {
+                          backgroundColor: "#f5923a", // درجة أفتح عند الـhover (اختياري)
+                        },
+                      },
+                    }}
+                    shape="rounded"
+                  />
+                </div>
+                  </>
+      )}
       </div>
   )
 }

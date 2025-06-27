@@ -51,6 +51,30 @@ const AddTrips = () => {
   // const [cancellationDate, setCancellationDate] = useState();
   const [selectedDays, setSelectedDays] = useState([]);
     const [edit, setEdit] = useState(false);
+    
+    const [actions, setActions] = useState([]);
+      useEffect(() => {
+        const storedPosition = localStorage.getItem("role");
+        let roles = [];
+        if (storedPosition) {
+          try {
+            const position = JSON.parse(storedPosition);
+            if (position && Array.isArray(position.roles)) {
+              roles = position.roles;
+            } else {
+              console.warn("Position.roles is not an array or missing", position);
+            }
+          } catch (error) {
+            console.error("Error parsing position from localStorage", error);
+          }
+        } else {
+          console.warn("No position found in localStorage");
+        }
+        const paymentActions = roles
+          .filter((role) => role.module === "trips")
+          .map((role) => role.action);
+        setActions(paymentActions);
+      }, []);
 useEffect(()=>{
   console.log(selectedDays)
 },[selectedDays])
@@ -418,7 +442,10 @@ newTrip.day=selectedDays,
   }
   return (
     <div className='ml-6 flex flex-col  mt-6 gap-6'>
+
       <AddAll navGo='/Trips' name={edit ?"Edit Trips": "Add Trips"} />
+      {(actions.includes('add') || actions.includes("edit")) && (
+<>
       <div className="flex flex-wrap gap-6 mt-6">
 <div className='w-full flex-col  '>
   <h2 className='text-2xl text-one  font-bold'>Trip Information</h2>
@@ -782,6 +809,7 @@ newTrip.day=selectedDays,
 
           </button>
       </div>
+</>)}
       <ToastContainer />
     </div>
   )

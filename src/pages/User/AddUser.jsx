@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import picdone from '../../assets/picdone.svg';
 import AddAll from '../../ui/AddAll';
 import InputField from '../../ui/InputField';
 import InputArrow from '../../ui/InputArrow';
@@ -33,6 +32,30 @@ const AddUser = () => {
     email: '',
     password: ''
   });
+
+  const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "user")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
 
   useEffect(() => {
     const { sendData } = location.state || {};
@@ -110,6 +133,7 @@ const AddUser = () => {
     }
 
     if (edit) {
+      
       const { sendData } = location.state || {};
       axios.put(`https://bcknd.ticket-hub.net/api/admin/user/update/${sendData.id}`, newUser, {
         headers: {
@@ -182,7 +206,10 @@ const AddUser = () => {
   return (
     <div className="ml-6">
       <AddAll navGo="/User" name={edit?"Edit User":"AddUser"} />
-      <div className="flex flex-wrap gap-6 mt-6">
+{(actions.includes('add') || actions.includes("edit")) && (
+      
+<>
+   <div className="flex flex-wrap gap-6 mt-6">
         <InputField
           placeholder="User"
           name="name"
@@ -247,6 +274,9 @@ const AddUser = () => {
 
           </button>
       </div>
+</>
+      )}
+   
       <ToastContainer />
     </div>
   );

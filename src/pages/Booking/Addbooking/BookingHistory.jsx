@@ -15,6 +15,29 @@ const BookingHistory = () => {
         const [selectedFilter, setSelectedFilter] = useState(''); 
   const navigate = useNavigate();
 
+const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "booking")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -126,6 +149,8 @@ country:"country",
               <th className="text-left px-2">Booking</th>
             </tr>
           </thead>
+                    {actions.includes("view") && (
+
           <tbody>
 
             {paginatedData.map((item, index) => (
@@ -150,9 +175,13 @@ country:"country",
 
             ))}
           </tbody>
+                    )}
+
         </table>
       </div>
             {/* Mobile view */}
+             {actions.includes("view") && (
+        <>
       <div className="mt-10 ml-5 lg:hidden">
         <div className='w-[95%] bg-six'>
           {paginatedData.map((item, index) => (
@@ -221,6 +250,8 @@ country:"country",
                 shape="rounded"
               />
             </div>
+            </>
+             )}
     </div>
   )
 }

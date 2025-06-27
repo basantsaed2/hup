@@ -24,6 +24,29 @@ const Addtrains = () => {
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(true);
 
+const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "trains")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
   const [errors, setErrors] = useState({
     name: "",
     agent: "",
@@ -111,7 +134,8 @@ const Addtrains = () => {
             navigate("/Train/Trains");
           }, 2000);
         })
-        .catch(() => {});
+        .catch(() => {                         toast.error("failed");
+        });
       return;
     }
 
@@ -132,7 +156,8 @@ const Addtrains = () => {
           navigate("/Train/Trains");
         }, 2000);
       })
-      .catch(() => {});
+      .catch(() => {                          toast.error("failed");
+      });
 
     setName("");
     setagent("");
@@ -155,6 +180,8 @@ const Addtrains = () => {
   return (
     <div className="ml-6 flex flex-col mt-6 gap-6">
       <AddAll navGo="/Train/Trains" name={edit ? "Edit train" : "Add train"} />
+        {(actions.includes('add') || actions.includes("edit")) && (
+<>
       <div className="flex flex-wrap  gap-6 mt-6">
         <InputField
           placeholder="train "
@@ -244,6 +271,8 @@ const Addtrains = () => {
           <span className="absolute w-20 h-20 right-45 lg:right-60  bg-three top-0 transform transition rotate-45"></span>
         </button>
       </div>
+      </>
+      )}
       <ToastContainer />
     </div>
   );

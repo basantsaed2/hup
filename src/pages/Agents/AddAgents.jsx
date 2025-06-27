@@ -56,6 +56,29 @@ const AddAgents = () => {
     }
   };
 
+  const [actions, setActions] = useState([]);
+  useEffect(() => {
+    const storedPosition = localStorage.getItem("role");
+    let roles = [];
+    if (storedPosition) {
+      try {
+        const position = JSON.parse(storedPosition);
+        if (position && Array.isArray(position.roles)) {
+          roles = position.roles;
+        } else {
+          console.warn("Position.roles is not an array or missing", position);
+        }
+      } catch (error) {
+        console.error("Error parsing position from localStorage", error);
+      }
+    } else {
+      console.warn("No position found in localStorage");
+    }
+    const paymentActions = roles
+      .filter((role) => role.module === "operators")
+      .map((role) => role.action);
+    setActions(paymentActions);
+  }, []);
   
   useEffect(() => {
     const { sendData } = location.state || {};
@@ -202,6 +225,7 @@ setEnableprivate(commission?.privateRequest != null);
     if (enableBus) newCountryData.bus_commission = busCommission;
     if (enableHiace) newCountryData.hiace_commission = hiaceCommission;
     if (enableprivate) newCountryData.privateRequest_commission = privaterequset;
+    
     if (flag !== originalFlag) {
       newCountryData.image = flag;
     }
@@ -336,6 +360,8 @@ if (loading) {
   return (
     <div className='ml-6 flex flex-col mt-6 gap-6'>
       <AddAll navGo='/Operators' name= {edit?"Edit operator":"Add operator"}  />
+{(actions.includes('add') || actions.includes("edit")) && (
+<>
       <div className="flex flex-wrap gap-6 mt-6">
         <InputField placeholder="Name" name="name" value={name} onChange={handleChange} required />
         <InputField placeholder="Description" name="description" value={description} onChange={handleChange} required />
@@ -530,6 +556,8 @@ placeholder="type"
 
           </button>
       </div>
+</>
+)}
       <ToastContainer />
     </div>
   );
